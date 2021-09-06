@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Bagian 2 Pengantar R | STA561 Komputasi Statistika</title>
+  <meta name="description" content="Catatan Latihan dan Kuliah STA561 Komputasi Statistika." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Bagian 2 Pengantar R | STA561 Komputasi Statistika" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Catatan Latihan dan Kuliah STA561 Komputasi Statistika." />
+  <meta name="github-repo" content="openscapes/series" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Bagian 2 Pengantar R | STA561 Komputasi Statistika" />
+  
+  <meta name="twitter:description" content="Catatan Latihan dan Kuliah STA561 Komputasi Statistika." />
+  
+
+<meta name="author" content="Nur Andi Setiabudi" />
+
+
+<meta name="date" content="2021-09-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="pengenalan-r.html"/>
+<link rel="next" href="operasi-dasar-r.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="lib/css/style.css" type="text/css" />
+<link rel="stylesheet" href="lib/css/lesson.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Deary STA561</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="pengenalan-r.html"><a href="pengenalan-r.html"><i class="fa fa-check"></i><b>1</b> Pengenalan R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="pengenalan-r.html"><a href="pengenalan-r.html#apa-itu-r"><i class="fa fa-check"></i><b>1.1</b> Apa itu R?</a></li>
+<li class="chapter" data-level="1.2" data-path="pengenalan-r.html"><a href="pengenalan-r.html#fitur-dasar-r"><i class="fa fa-check"></i><b>1.2</b> Fitur Dasar R</a></li>
+<li class="chapter" data-level="1.3" data-path="pengenalan-r.html"><a href="pengenalan-r.html#sistem-r"><i class="fa fa-check"></i><b>1.3</b> Sistem R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="pengantar-r.html"><a href="pengantar-r.html"><i class="fa fa-check"></i><b>2</b> Pengantar R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="pengantar-r.html"><a href="pengantar-r.html#memasukkan-input"><i class="fa fa-check"></i><b>2.1</b> Memasukkan Input</a></li>
+<li class="chapter" data-level="2.2" data-path="pengantar-r.html"><a href="pengantar-r.html#assigment"><i class="fa fa-check"></i><b>2.2</b> Assigment</a></li>
+<li class="chapter" data-level="2.3" data-path="pengantar-r.html"><a href="pengantar-r.html#penamaan-objek"><i class="fa fa-check"></i><b>2.3</b> Penamaan Objek</a></li>
+<li class="chapter" data-level="2.4" data-path="pengantar-r.html"><a href="pengantar-r.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working Directory</a></li>
+<li class="chapter" data-level="2.5" data-path="pengantar-r.html"><a href="pengantar-r.html#objek-data"><i class="fa fa-check"></i><b>2.5</b> Objek Data</a></li>
+<li class="chapter" data-level="2.6" data-path="pengantar-r.html"><a href="pengantar-r.html#tipe-objek-data"><i class="fa fa-check"></i><b>2.6</b> Tipe Objek Data</a></li>
+<li class="chapter" data-level="2.7" data-path="pengantar-r.html"><a href="pengantar-r.html#vector"><i class="fa fa-check"></i><b>2.7</b> Vector</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="pengantar-r.html"><a href="pengantar-r.html#membuat-vector"><i class="fa fa-check"></i><b>2.7.1</b> Membuat vector</a></li>
+<li class="chapter" data-level="2.7.2" data-path="pengantar-r.html"><a href="pengantar-r.html#mengakses-element-dari-vector"><i class="fa fa-check"></i><b>2.7.2</b> Mengakses element dari vector</a></li>
+<li class="chapter" data-level="2.7.3" data-path="pengantar-r.html"><a href="pengantar-r.html#fungsi-lain"><i class="fa fa-check"></i><b>2.7.3</b> Fungsi lain</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="pengantar-r.html"><a href="pengantar-r.html#factor"><i class="fa fa-check"></i><b>2.8</b> Factor</a></li>
+<li class="chapter" data-level="2.9" data-path="pengantar-r.html"><a href="pengantar-r.html#matriks"><i class="fa fa-check"></i><b>2.9</b> Matriks</a></li>
+<li class="chapter" data-level="2.10" data-path="pengantar-r.html"><a href="pengantar-r.html#array"><i class="fa fa-check"></i><b>2.10</b> Array</a></li>
+<li class="chapter" data-level="2.11" data-path="pengantar-r.html"><a href="pengantar-r.html#dataframe"><i class="fa fa-check"></i><b>2.11</b> Dataframe</a></li>
+<li class="chapter" data-level="2.12" data-path="pengantar-r.html"><a href="pengantar-r.html#list"><i class="fa fa-check"></i><b>2.12</b> List</a></li>
+<li class="chapter" data-level="2.13" data-path="pengantar-r.html"><a href="pengantar-r.html#missing-value"><i class="fa fa-check"></i><b>2.13</b> Missing value</a></li>
+<li class="chapter" data-level="2.14" data-path="pengantar-r.html"><a href="pengantar-r.html#penamaan-elemen"><i class="fa fa-check"></i><b>2.14</b> Penamaan Elemen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html"><i class="fa fa-check"></i><b>3</b> Operasi Dasar R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen"><i class="fa fa-check"></i><b>3.1</b> Akses Elemen</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen-vector"><i class="fa fa-check"></i><b>3.1.1</b> Akses elemen vector</a></li>
+<li class="chapter" data-level="3.1.2" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen-matriks"><i class="fa fa-check"></i><b>3.1.2</b> Akses elemen matriks</a></li>
+<li class="chapter" data-level="3.1.3" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen-list"><i class="fa fa-check"></i><b>3.1.3</b> Akses elemen list</a></li>
+<li class="chapter" data-level="3.1.4" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen-dataframe"><i class="fa fa-check"></i><b>3.1.4</b> Akses elemen dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#operasi-aritmatika-dasar"><i class="fa fa-check"></i><b>3.2</b> Operasi aritmatika dasar</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#menampilkan-atribut"><i class="fa fa-check"></i><b>3.2.1</b> Menampilkan atribut</a></li>
+<li class="chapter" data-level="3.2.2" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#operasi-pada-vector"><i class="fa fa-check"></i><b>3.2.2</b> Operasi pada vector</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#operasi-pada-matriks"><i class="fa fa-check"></i><b>3.3</b> Operasi pada matriks</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html"><i class="fa fa-check"></i><b>4</b> Manipulasi Data dengan <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#manipulasi-data"><i class="fa fa-check"></i><b>4.1</b> Manipulasi Data</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#r-tidyverse-dan-dplyr"><i class="fa fa-check"></i><b>4.2</b> R, <code>tidyverse</code> dan <code>dplyr</code></a></li>
+<li class="chapter" data-level="4.3" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#studi-kasus-data-movielens"><i class="fa fa-check"></i><b>4.3</b> Studi Kasus: Data MovieLens</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#persiapan"><i class="fa fa-check"></i><b>4.3.1</b> Persiapan</a></li>
+<li class="chapter" data-level="4.3.2" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#operator-pipe"><i class="fa fa-check"></i><b>4.3.2</b> Operator <em>pipe</em> <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="4.3.3" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#dplyrs-verbs"><i class="fa fa-check"></i><b>4.3.3</b> <code>dplyr</code><em>’s verbs</em></a></li>
+<li class="chapter" data-level="4.3.4" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#memilih-kolom-select"><i class="fa fa-check"></i><b>4.3.4</b> Memilih kolom: <code>select()</code></a></li>
+<li class="chapter" data-level="4.3.5" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#menyeleksi-baris-filter"><i class="fa fa-check"></i><b>4.3.5</b> Menyeleksi baris: <code>filter()</code></a></li>
+<li class="chapter" data-level="4.3.6" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#menambah-kolom-mutate"><i class="fa fa-check"></i><b>4.3.6</b> Menambah kolom: <code>mutate()</code></a></li>
+<li class="chapter" data-level="4.3.7" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#meringkas-data-summarise"><i class="fa fa-check"></i><b>4.3.7</b> Meringkas data: <code>summarise()</code></a></li>
+<li class="chapter" data-level="4.3.8" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#mengurutkan-baris-arrange"><i class="fa fa-check"></i><b>4.3.8</b> Mengurutkan baris: <code>arrange()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#gabungan-beberapa-fungsi-sekaligus"><i class="fa fa-check"></i><b>4.4</b> Gabungan beberapa fungsi sekaligus</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA561 Komputasi Statistika</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pengantar-r" class="section level1" number="2">
+<h1><span class="header-section-number">Bagian 2</span> Pengantar R</h1>
+<div id="memasukkan-input" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Memasukkan Input</h2>
+<p>R merupakan bahasa interpreter. Ketika kita memasukkan suatu input pada <em>console</em> R (atau menjalankan sebuah <em>script</em> R), sebuah program dalam sistem R, dinamakan interpreter, akan mengeksekusi perintah yang kita tulis. R juga bersifat interaktif, artinya setiap perintah yang kita tulis dapat langsung dievaluasi oleh R dan hasilnya dapat ditampilkan pada layar.</p>
+<p>Misalnya, dengan memasukkan perintah perkalian berikut pada <em>console</em> R:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="pengantar-r.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<p>Ketika kita menekan tombol enter, R akan mengeksekusi dan menampilkan hasilnya</p>
+<pre><code>## [1] 20</code></pre>
+<p><em>Console</em> R diawali tanda <code>&gt;</code>, yang menunjukkan bahwa R siap menerima perinta baru. Jika kita memasukan perintah yang tidak lengkap, maka tanda tersebut akan berubah menjadi tanda <code>+</code>.</p>
+<p>Semua perintah atau teks yang ditulis setelah tanda <code>#</code> tidak akan dieksekusi oleh R. Biasanya ini berguna untuk memberikan komentar atau catatan</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="pengantar-r.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perkalian 10 x 2</span></span>
+<span id="cb3-2"><a href="pengantar-r.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+</div>
+<div id="assigment" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Assigment</h2>
+<p>Dalam R, sangat disarankan untuk menggunakan tanda <code>&lt;-</code> sebagai operator <em>assigment</em>. <code>obj &lt;- expr</code> berarti masukkan nilai hasil dari operasi di sisi kanan (<code>expr</code>) ke dalam objek di sisi kiri (<code>obj</code>). Misalnya:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="pengantar-r.html#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">20</span></span></code></pre></div>
+<p>Artinya kita memasukkan nilai <code>20</code> ke dalam objek <code>x</code>. Contoh lain</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="pengantar-r.html#cb6-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">+</span> <span class="dv">50</span></span></code></pre></div>
+<p>Artinya kita memasukkan hasi dari operasi <code>100 + 50</code> ke dalam objek <code>y</code>. Selain dengan operator <code>&lt;-</code>, kita juga dapat menggunakan operator <code>=</code> atau <code>-&gt;</code>.</p>
+<p>Untuk menampilkan objek dalam layar, cukup tuliskan nama objek lalu enter.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="pengantar-r.html#cb7-1" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="pengantar-r.html#cb9-1" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
+<pre><code>## [1] 150</code></pre>
+<p>Atau bisa juga dengan perintah <code>print()</code></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="pengantar-r.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="pengantar-r.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y)</span></code></pre></div>
+<pre><code>## [1] 150</code></pre>
+</div>
+<div id="penamaan-objek" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Penamaan Objek</h2>
+<p>Segala hal dalam R dipandang sebagai objek, misalnya data, fungsi, dan lain-lain. Objek-objek tersebut dapat “diberi nama” dengan apapun yang kita mau. Pada contoh sebelumnya, kita mempunyai objek dengan nama <code>x</code> dan <code>y</code>. Meskipun demikian, ada beberapa aturan penamaan objek dalam R yang harus dipenuhi, yaitu:</p>
+<ul>
+<li>Menggunakan kombinasi alfabet (a-z, A-Z), angka (0-9), titik (.) atau underscore (_),</li>
+<li>Hanya dapat diawali oleh alfabet, titik atau underscore dan tidak boleh diawali dengan angka,</li>
+<li>Tidak mengandung spasi, tab atau karakter khusus seperti !, @, #,</li>
+<li>Sebaiknya tidak menggunakan penamaan atau nilai yang sudah digunakan oleh R, seperti <code>c</code>, <code>df</code>, <code>rnorm</code> dan lainnya.</li>
+</ul>
+<p>Ketika membuat sebuah program dalam R (atau bahasa pemrograman apapun), disarankan untuk menggunakan penamaan yang lazin dan konsisten, seperti:</p>
+<ul>
+<li>alllowercase: misal <code>adjustcolor</code></li>
+<li>period.separated: misal <code>plot.new</code></li>
+<li>underscore_separated: misal <code>numeric_version</code></li>
+<li>lowerCamelCase: misal <code>addTaskCallback</code></li>
+<li>UpperCamelCase: misal <code>SignatureMethod</code></li>
+</ul>
+<p>Note: meskipun diizinkan, penggunaan <em>undescore</em> sebaiknya dihindari karena tidak diimplementasikan disemua <em>engine</em> S.</p>
+<p>R bersifat <code>case-sensitive</code> baik dalam penamaan objek maupun isi dari objek tersebut. Artinya huruf kecil dan huruf besar menunjukkan hal berbeda. Dengan demikian, “ABC” berbeda dengan “abc,” berbeda dengan “Abc” dan berbeda dengan “AbC” dan seterusnya.</p>
+</div>
+<div id="working-directory" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Working Directory</h2>
+<p>Sesuai namanya, <em>working directory</em> adalah folder atau <em>directory</em> di mana kita bekerja. Untuk mengetahui <em>working directory</em> kita saat ini, bisa menggunakan perintah</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="pengantar-r.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;D:/SSD21/Bookdown/sta561&quot;</code></pre>
+<p>Untuk mengganti <em>working directory</em>, dapat menggunakan perintah</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="pengantar-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;D:/Learning/R&quot;</span>)</span></code></pre></div>
+<p>Perhatikan <em>path</em> dipisahkan oleh tanda <code>/</code>, atau bisa juga dengan tanda <code>\\</code>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="pengantar-r.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;D:</span><span class="sc">\\</span><span class="st">Learning</span><span class="sc">\\</span><span class="st">R&quot;</span>)</span></code></pre></div>
+<p>Untuk mengakses file yang berada dalam <em>working directory</em>, kita cukup menuliskan nama filenya saja, misalnya</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="pengantar-r.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;dataku.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="objek-data" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Objek Data</h2>
+<p>R mempunyai beberapa jenis mode objek dasar, atau disebut sebagai “atomic” class dari objek, yaitu:</p>
+<ul>
+<li><p><em>character</em>, misalnya <code>"ipb"</code>, <code>"mahasiswa"</code>, <code>"stastika"</code></p></li>
+<li><p><em>numeric</em>, misalnya <code>12, 2.3</code>, <code>1.2e-2</code></p></li>
+<li><p><em>complex</em>, misalnya <code>1.2e6+2i</code></p></li>
+<li><p><em>logical</em>, misalnya <code>T</code>, <code>F</code>, <code>TRUE</code>, <code>FALSE</code></p></li>
+</ul>
+<p><strong>Objek Angka:</strong></p>
+<p>Angka dalam R umumnya diperlakukan sebagai objek numerik (atau angka riil). Artinya, sebuah angka yang terlihat sebagai “1” atau “2,” sebetulnya direpresentasikan oleh R sebagai objek numerik, seperti “1.00” atau “2.00.” Apabila kita menginginkan objek integer, kita harus menambahkan akhiran <code>L</code>. Misal untuk mendapatkan integer <code>1</code> harus ditulis <code>1L</code>.</p>
+</div>
+<div id="tipe-objek-data" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Tipe Objek Data</h2>
+<p>Terdapat beberapa tipe objek data standar dalam R, yaitu:</p>
+<ul>
+<li><p><em>Vector</em>: tipe sederhana dari objek data dalam R di mana setiap elemennya mempunyai mode yang sama</p></li>
+<li><p><em>Factor</em>: vektor dengan anggota/elemennya berupa kategori</p></li>
+<li><p><em>Matrix</em>: vektor yang berdimensi dua yaitu baris dan kolom</p></li>
+<li><p><em>Array</em>: tipe objek yang dapat menyimpan data lebih dari dua dimensi</p></li>
+<li><p><em>Dataframe</em>: objek yang menyimpan data dalam bentuk tabular (baris dan kolom)</p></li>
+<li><p><em>List</em>: vektor dengan anggota/elemennya berupa objek. Mode dari elemen list boleh berbeda-beda</p></li>
+</ul>
+<div class="figure">
+<img src="img/object-type.png" alt="" />
+<p class="caption">Tipe Object R</p>
+</div>
+</div>
+<div id="vector" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> Vector</h2>
+<p>Vector merupakan objek data paling sederhana dalam R dan digunakan oleh hampir semua fungsi aritmetik. Dalam vector, mode anggota/elemen adalah sama. Ada beberapa cara membuat vector, di antaranya:</p>
+<div id="membuat-vector" class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Membuat vector</h3>
+<p>Banyak cara membuat vector. Beberapa di antaranya adalah menggunakan perintah <code>c()</code>, <code>seq()</code> dan <code>rep()</code>.</p>
+<div id="fungsi-c" class="section level4" number="2.7.1.1">
+<h4><span class="header-section-number">2.7.1.1</span> Fungsi <code>c()</code></h4>
+<p>Sebuah vektor dapat dibuat dengan fungsi <code>c()</code> di mana setiap elemen dipisahkan oleh tanda koma. Misalnya.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="pengantar-r.html#cb20-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.6</span>)</span>
+<span id="cb20-2"><a href="pengantar-r.html#cb20-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>## [1] 0.5 0.6</code></pre>
+<p>Contoh lain</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="pengantar-r.html#cb22-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>)    <span class="do">## logical</span></span>
+<span id="cb22-2"><a href="pengantar-r.html#cb22-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">c</span>(T, F)           <span class="do">## logical</span></span>
+<span id="cb22-3"><a href="pengantar-r.html#cb22-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)  <span class="do">## character</span></span>
+<span id="cb22-4"><a href="pengantar-r.html#cb22-4" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="dv">9</span><span class="sc">:</span><span class="dv">29</span>              <span class="do">## integer</span></span>
+<span id="cb22-5"><a href="pengantar-r.html#cb22-5" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">+</span>0i, <span class="dv">2</span><span class="sc">+</span>4i)     <span class="do">## complex</span></span></code></pre></div>
+<p>Kadang kita memasukkan objek dengan mode berbeda kedalam suatu vektor, baik karena disengaja maupun tidak. Apa yang akan terjadi?</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="pengantar-r.html#cb23-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.7</span>, <span class="st">&quot;a&quot;</span>)  <span class="co"># character</span></span>
+<span id="cb23-2"><a href="pengantar-r.html#cb23-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>## [1] &quot;1.7&quot; &quot;a&quot;</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="pengantar-r.html#cb25-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="dv">2</span>)   <span class="co"># numeric</span></span>
+<span id="cb25-2"><a href="pengantar-r.html#cb25-2" aria-hidden="true" tabindex="-1"></a>b</span></code></pre></div>
+<pre><code>## [1] 1 2</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="pengantar-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="cn">TRUE</span>) <span class="co"># character</span></span>
+<span id="cb27-2"><a href="pengantar-r.html#cb27-2" aria-hidden="true" tabindex="-1"></a>c</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot;    &quot;TRUE&quot;</code></pre>
+<p>Untuk kasus seperti itu, R akan mengkonversi data kedalam mode yang paling sesuai. Pada contoh pertama, ada dua kemungkinan mode yaitu numeric da character. Karena mengkonversi yang memungkinkan adalah konversi numeric ke character (bukan sebaliknya), maka akan mengkonversi <code>1.7</code> menjadi character <code>"1.7"</code>.</p>
+</div>
+<div id="fungsi-seq" class="section level4" number="2.7.1.2">
+<h4><span class="header-section-number">2.7.1.2</span> Fungsi <code>seq()</code></h4>
+<p>Fungsi <code>seq()</code> digunakan untuk membuat vector yang berisi angka berurutan. Misalnya</p>
+<p>Vector 1 sampai dengan 10, dengan <em>incremental</em> 1</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="pengantar-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>)</span>
+<span id="cb29-2"><a href="pengantar-r.html#cb29-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<p>Atau bisa ditulis dengan perintah berikut</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="pengantar-r.html#cb31-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb31-2"><a href="pengantar-r.html#cb31-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<p>Vector 1 sampai dengan 10, dengan <em>incremental</em> 2</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="pengantar-r.html#cb33-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb33-2"><a href="pengantar-r.html#cb33-2" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
+<pre><code>## [1] 1 3 5 7 9</code></pre>
+</div>
+<div id="fungsi-rep" class="section level4" number="2.7.1.3">
+<h4><span class="header-section-number">2.7.1.3</span> Fungsi <code>rep()</code></h4>
+<p>Fungsi <code>rep()</code> digunakan untuk membuat vector dengan mengulang nilai yang diinginak, misalnya</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="pengantar-r.html#cb35-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>)</span>
+<span id="cb35-2"><a href="pengantar-r.html#cb35-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>##  [1] 1 1 1 1 1 1 1 1 1 1</code></pre>
+</div>
+</div>
+<div id="mengakses-element-dari-vector" class="section level3" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> Mengakses element dari vector</h3>
+<p>Element pada vector dapat diakses melalui indeksnya dengan menggunakan operator <code>[ ]</code>. Dua contoh berikut mengambil elemen pertama serta elemen ke-2 dan ke-3 dari vector</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="pengantar-r.html#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb37-2"><a href="pengantar-r.html#cb37-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="pengantar-r.html#cb39-1" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)]</span></code></pre></div>
+<pre><code>## [1] 20 30</code></pre>
+</div>
+<div id="fungsi-lain" class="section level3" number="2.7.3">
+<h3><span class="header-section-number">2.7.3</span> Fungsi lain</h3>
+<p>Fungsi lain sering digunakan dalam vector adalah <code>length()</code> dan <code>class()</code>. Fungsi <code>length()</code> berguna untuk mengetahui pajang atau banyaknye elemen dari suatu vector sedangkan <code>class()</code> untuk mengetahi <em>class</em> atau mode dari suatu vector.</p>
+</div>
+</div>
+<div id="factor" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> Factor</h2>
+<p>Faktor digunakan untuk merepresentasikan data kategorik, baik terurut/<em>ordered</em> maupun tidak diurutkan/<em>unordered</em>. Faktor dapat dianggap sebagai vektor di mana setiap elemennya memiliki label. Objek faktor dapat dibuat dengan fungsi <code>factor()</code>.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="pengantar-r.html#cb41-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;SD&quot;</span>, <span class="st">&quot;SMA&quot;</span>, <span class="st">&quot;SMP&quot;</span>, <span class="st">&quot;SD&quot;</span>, <span class="st">&quot;SMA&quot;</span>, <span class="st">&quot;SMP&quot;</span>, <span class="st">&quot;SD&quot;</span>, <span class="st">&quot;SMP&quot;</span>))</span>
+<span id="cb41-2"><a href="pengantar-r.html#cb41-2" aria-hidden="true" tabindex="-1"></a>f</span></code></pre></div>
+<pre><code>## [1] SD  SMA SMP SD  SMA SMP SD  SMP
+## Levels: SD SMA SMP</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="pengantar-r.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(f, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;SD&quot;</span>, <span class="st">&quot;SMP&quot;</span>, <span class="st">&quot;SMA&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] SD  SMA SMP SD  SMA SMP SD  SMP
+## Levels: SD SMP SMA</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="pengantar-r.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(f, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;SD&quot;</span>, <span class="st">&quot;SMP&quot;</span>, <span class="st">&quot;SMA&quot;</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] SD  SMA SMP SD  SMA SMP SD  SMP
+## Levels: SD &lt; SMP &lt; SMA</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="pengantar-r.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(y)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="pengantar-r.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+</div>
+<div id="matriks" class="section level2" number="2.9">
+<h2><span class="header-section-number">2.9</span> Matriks</h2>
+<p>Matriks/<em>matrix</em> merupakan vector yang berdimensi dua yaitu baris dan kolom. Matriks dapat dibuat dengan mengubah dimensi dari suatu vector.</p>
+<p>Matriks dapat dibentuk dengan perintah <code>matrix()</code>. Secara <em>default</em>, matriks dibentuk dengan cara <em>column-wise</em> (<code>byrow = FALSE</code>), yaitu dengan mengisi kolom pertama terlebih dahulu, dari atas ke bawah, dilanjutkan kolom berikutnya.</p>
+<p>Misalnya untuk membuat matriks berukuran 2 x 3 :</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="pengantar-r.html#cb51-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>) </span>
+<span id="cb51-2"><a href="pengantar-r.html#cb51-2" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6</code></pre>
+<p>Atau bisa dengan menambahkan argumen <code>byrow = TRUE</code> sehingga akan mengisi baris pertama terlebih dahulu, mulai dari kiri ke kanan, dilanjutknya ke baris berikutnya.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="pengantar-r.html#cb53-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb53-2"><a href="pengantar-r.html#cb53-2" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6</code></pre>
+<p>Matriks dapat dibentuk secara langsung dari vector dengan cara menambahkan atribut dimensi.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="pengantar-r.html#cb55-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> </span>
+<span id="cb55-2"><a href="pengantar-r.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(m) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb55-3"><a href="pengantar-r.html#cb55-3" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    3    5    7    9
+## [2,]    2    4    6    8   10</code></pre>
+<p>Cara lain membentuk matriks adalah dengan penggabungan kolom dengan fungsi <code>cbind()</code> dan penggabungan baris dengan fungsi <code>rbind()</code>.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="pengantar-r.html#cb57-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span>
+<span id="cb57-2"><a href="pengantar-r.html#cb57-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">12</span></span>
+<span id="cb57-3"><a href="pengantar-r.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(x, y)</span></code></pre></div>
+<pre><code>##      x  y
+## [1,] 1 10
+## [2,] 2 11
+## [3,] 3 12</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="pengantar-r.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(x, y)</span></code></pre></div>
+<pre><code>##   [,1] [,2] [,3]
+## x    1    2    3
+## y   10   11   12</code></pre>
+</div>
+<div id="array" class="section level2" number="2.10">
+<h2><span class="header-section-number">2.10</span> Array</h2>
+<p>Array adalah struktur data yang dapat menampung data multidimensi. Dalam R, jika matriks hanya mempunyai 2 dimensi, maka array dapat memiliki lebih dari 2 dimensi.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="pengantar-r.html#cb61-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>)</span>
+<span id="cb61-2"><a href="pengantar-r.html#cb61-2" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>, <span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">60</span>)</span>
+<span id="cb61-3"><a href="pengantar-r.html#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="pengantar-r.html#cb61-4" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(v1, v2), <span class="at">dim =</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">3</span>))</span></code></pre></div>
+<p>Untuk mengetahui dimensi dari suatu array, dapat menggunakan fungsi <code>dim()</code></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="pengantar-r.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(arr)</span></code></pre></div>
+<pre><code>## [1] 4 4 3</code></pre>
+</div>
+<div id="dataframe" class="section level2" number="2.11">
+<h2><span class="header-section-number">2.11</span> Dataframe</h2>
+<p>Baris dalam dataframe merepresentasikan pengamatan/observasi, sedangkan kolom mereprentasikan peubah/<em>variable</em>. Setiap elemen dalam kolom yang sama mempunyai mode yang sama, namun antar kolom bisa mempunyai mode yang berbeda.</p>
+<p>Dataframe dapat dibuat menggunakan fungsi <code>data.frame()</code>:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="pengantar-r.html#cb64-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">foo =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">bar =</span> <span class="fu">c</span>(T, T, F, F)) </span>
+<span id="cb64-2"><a href="pengantar-r.html#cb64-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##   foo   bar
+## 1   1  TRUE
+## 2   2  TRUE
+## 3   3 FALSE
+## 4   4 FALSE</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="pengantar-r.html#cb66-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">numbers =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>),</span>
+<span id="cb66-2"><a href="pengantar-r.html#cb66-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">text =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;a&quot;</span>))</span>
+<span id="cb66-3"><a href="pengantar-r.html#cb66-3" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
+<pre><code>##   numbers text
+## 1      10    a
+## 2      20    b
+## 3      30    c
+## 4      40    a</code></pre>
+</div>
+<div id="list" class="section level2" number="2.12">
+<h2><span class="header-section-number">2.12</span> List</h2>
+<p>List merupakan bentuk khusus dari vector yang memungkinkan elemennya bisa berupa objek dengan mode yang berbeda-beda. Elemen-elemen dari list dapat berupa vector, matriks, array, list atau gabungan beberapa struktur data.</p>
+<p>List dapat dibuat dengan menggunakan fungsi <code>list()</code></p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="pengantar-r.html#cb68-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="st">&quot;A&quot;</span> </span>
+<span id="cb68-2"><a href="pengantar-r.html#cb68-2" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb68-3"><a href="pengantar-r.html#cb68-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb68-4"><a href="pengantar-r.html#cb68-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">numbers =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>),</span>
+<span id="cb68-5"><a href="pengantar-r.html#cb68-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">text =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;a&quot;</span>))</span>
+<span id="cb68-6"><a href="pengantar-r.html#cb68-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="pengantar-r.html#cb68-7" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">list</span>(s, v, m, df)</span>
+<span id="cb68-8"><a href="pengantar-r.html#cb68-8" aria-hidden="true" tabindex="-1"></a>l</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;A&quot;
+## 
+## [[2]]
+##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+## 
+## [[3]]
+##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## 
+## [[4]]
+##   numbers text
+## 1      10    a
+## 2      20    b
+## 3      30    c
+## 4      40    a</code></pre>
+</div>
+<div id="missing-value" class="section level2" number="2.13">
+<h2><span class="header-section-number">2.13</span> Missing value</h2>
+<p>Ada beberapa <em>missing value</em> dalam R, yaitu:</p>
+<ul>
+<li><p>NULL</p>
+<p>Sebuah objek yang diperoleh ketika suatu ekspresi atau fungsi menghasilkan nilai yang tidak terdefinisi <em>(undefined value)</em></p></li>
+<li><p>NA</p>
+<p>Singkatan dari “Not Available.” Merupakan sebuah logical untuk mengindikasikan <em>missing value</em>.</p></li>
+<li><p>NaN</p>
+<p>Singkatan dari “Not a Number.” Merupakan sebuah logical untuk angka dan merupakan gambaran imajiner dari nilai nilai yang sangat kompleks.</p></li>
+<li><p>Inf / -Inf</p>
+<p>Singkatand ari <em>infinity</em> atau tidak hingga. Merupakan angka yang sangat besar atau sangat kecil.</p></li>
+</ul>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="pengantar-r.html#cb70-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">10</span>, <span class="dv">3</span>)  </span>
+<span id="cb70-2"><a href="pengantar-r.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)  </span></code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="pengantar-r.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.nan</span>(x) </span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="pengantar-r.html#cb74-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NaN</span>, <span class="cn">NA</span>, <span class="dv">4</span>)</span>
+<span id="cb74-2"><a href="pengantar-r.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.nan</span>(x)</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE FALSE</code></pre>
+</div>
+<div id="penamaan-elemen" class="section level2" number="2.14">
+<h2><span class="header-section-number">2.14</span> Penamaan Elemen</h2>
+<p>Objek R dapat mempunyai nama. Demikian juga dengan setiap elemen dalam sebuah objek data. Hal ini sangat berguna ketika menuliskan kode dan menjelaskan objek. Untuk memberikan nama bagi elemen-elemen dari vector, dapat menggunakan fungsi <code>names()</code></p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="pengantar-r.html#cb76-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span>
+<span id="cb76-2"><a href="pengantar-r.html#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(x)</span></code></pre></div>
+<pre><code>## NULL</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="pengantar-r.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(x) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;New York&quot;</span>, <span class="st">&quot;Seattle&quot;</span>, <span class="st">&quot;Los Angeles&quot;</span>) </span>
+<span id="cb78-2"><a href="pengantar-r.html#cb78-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>##    New York     Seattle Los Angeles 
+##           1           2           3</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="pengantar-r.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;New York&quot;    &quot;Seattle&quot;     &quot;Los Angeles&quot;</code></pre>
+<p>Cara yang sama untuk list</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="pengantar-r.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(l)</span></code></pre></div>
+<pre><code>## NULL</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="pengantar-r.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(l) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;teks&quot;</span>, <span class="st">&quot;vektor&quot;</span>, <span class="st">&quot;matriks&quot;</span>, <span class="st">&quot;tabel&quot;</span>)</span>
+<span id="cb84-2"><a href="pengantar-r.html#cb84-2" aria-hidden="true" tabindex="-1"></a>l</span></code></pre></div>
+<pre><code>## $teks
+## [1] &quot;A&quot;
+## 
+## $vektor
+##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+## 
+## $matriks
+##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## 
+## $tabel
+##   numbers text
+## 1      10    a
+## 2      20    b
+## 3      30    c
+## 4      40    a</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="pengantar-r.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(l)</span></code></pre></div>
+<pre><code>## [1] &quot;teks&quot;    &quot;vektor&quot;  &quot;matriks&quot; &quot;tabel&quot;</code></pre>
+<p>Matriks dapat mempunyai nama kolom dan barisnya dengan menggunakan fungsi <code>dimnames()</code></p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="pengantar-r.html#cb88-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb88-2"><a href="pengantar-r.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(m) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)) </span>
+<span id="cb88-3"><a href="pengantar-r.html#cb88-3" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
+<pre><code>##   c d
+## a 1 3
+## b 2 4</code></pre>
+<p>Penamaan kolom dan baris pada matriks bisa dilakukan terpisah menggunakan fungsi <code>colnames()</code> dan <code>rownames()</code></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="pengantar-r.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(m) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;h&quot;</span>, <span class="st">&quot;f&quot;</span>)</span>
+<span id="cb90-2"><a href="pengantar-r.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(m) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;z&quot;</span>)</span>
+<span id="cb90-3"><a href="pengantar-r.html#cb90-3" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
+<pre><code>##   h f
+## x 1 3
+## z 2 4</code></pre>
+<p>Seperti halnya matriks, kolom dan baris pada dataframe juga dapat diberikan nama dengan menggunakan fungsi <code>names()</code> dan <code>rownames()</code>. Perhatikan ada perbedaan fungsi yang digunakan.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="pengantar-r.html#cb92-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>)</span>
+<span id="cb92-2"><a href="pengantar-r.html#cb92-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;a&quot;</span>)</span>
+<span id="cb92-3"><a href="pengantar-r.html#cb92-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(a, b)</span>
+<span id="cb92-4"><a href="pengantar-r.html#cb92-4" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##    a b
+## 1 10 a
+## 2 20 b
+## 3 30 c
+## 4 40 a</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="pengantar-r.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;numbers&quot;</span>, <span class="st">&quot;chars&quot;</span>)</span>
+<span id="cb94-2"><a href="pengantar-r.html#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb94-3"><a href="pengantar-r.html#cb94-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-4"><a href="pengantar-r.html#cb94-4" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##   numbers chars
+## a      10     a
+## b      20     b
+## c      30     c
+## d      40     a</code></pre>
+<p>Note: Ketika membuat dataframe, R akan memberikan nama untuk kolom-kolom yang terbentuk. Hanya saja kadang nama yang diberikan tidak sesuai dengan apa yang kita inginkan.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="pengantar-r.html#cb96-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>), </span>
+<span id="cb96-2"><a href="pengantar-r.html#cb96-2" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;a&quot;</span>))</span>
+<span id="cb96-3"><a href="pengantar-r.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df2)</span></code></pre></div>
+<pre><code>## [1] &quot;c.10..20..30..40.&quot;     &quot;c..a....b....c....a..&quot;</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="pengenalan-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="operasi-dasar-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/nurandi/sta561/edit/main/r-dasar.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["series.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

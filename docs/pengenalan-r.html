@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | STA561 Komputasi Statistika</title>
+  <title>Bagian 1 Pengenalan R | STA561 Komputasi Statistika</title>
   <meta name="description" content="Catatan Latihan dan Kuliah STA561 Komputasi Statistika." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | STA561 Komputasi Statistika" />
+  <meta property="og:title" content="Bagian 1 Pengenalan R | STA561 Komputasi Statistika" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="openscapes/series" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | STA561 Komputasi Statistika" />
+  <meta name="twitter:title" content="Bagian 1 Pengenalan R | STA561 Komputasi Statistika" />
   
   <meta name="twitter:description" content="Catatan Latihan dan Kuliah STA561 Komputasi Statistika." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="index.html"/>
+<link rel="next" href="pengantar-r.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -243,19 +243,48 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="pengenalan-r" class="section level1" number="1">
+<h1><span class="header-section-number">Bagian 1</span> Pengenalan R</h1>
+<div id="apa-itu-r" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Apa itu R?</h2>
+<p>Pada 1976, John Chambers dan tim di Bell Telephone Laboratories (bagian dari AT&amp;T Corp) mengembangkan bahasa pemrograman S sebagai <em>tools</em> analisis statistika di internal perusahaan. Awalnya S diimplementasikan sebagai modul yang berjalan pada Fortran. Lalu pada 1988, S ditulis dalam bahasa C (yang merupakan versi ke-3) dan mulai mirip dengan bahasa yang kita kenal sekarang. Versi 4 dari bahasa S yang dirilis tahun 1998 merupakan versi yang kita gunakan sekarang. Meskipun banyak pengembangan, secara fundamental bahasa S tidak mengalami perubahan berarti sejak saat itu.</p>
+<p>Salah satu batasan utama bahasa S adalah hanya tersedia dalam paket komersial, S-PLUS. Pada tahun 1991, dengan mengimplementasikan bahas S, R diciptakan oleh Ross Ihaka dan Robert Gentleman di Departemen Statistika di Universitas Auckland. Pada tahun 1993 diumumkan bahwa R dibuat untuk publik. Pada tahun 1995, atas saran dari Martin Mächler, Ross dan Robert mengubah lisensi R menjadi GNU General Public License sehingga menjadikan R perangkat lunak bebas. Ini sangat penting karena memungkinkan kode sumber untuk seluruh sistem R dapat diakses oleh siapa saja.</p>
+</div>
+<div id="fitur-dasar-r" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Fitur Dasar R</h2>
+<p>Pada fase awal, fitur utama R adalah sintaksnya sangat mirip dengan S, sehingga memudahkan pengguna S-PLUS untuk beralih menggunakan R. Saat ini, R dapat dijalankan di hampir semua platform komputasi dan sistem operasi. Sifatnya yang terbuka (opensource) membuat siapa pun bebas untuk mengadaptasi perangkat lunak ke platform apa pun yang mereka pilih. Salah satu hal menarik R sebagai perangkat lunak terbuka adalah perilisan fitur baru secara reguler, yang biasanya dilakukan di bulan Oktober.</p>
+<p>Fitur utama lain yang dimiliki R adalah kemampuan grafisnya yang canggih. Kemampuan R untuk membuat grafik “kualitas publikasi” telah ada sejak awal dan secara umum lebih baik dibandingkan banyak paket statistik lainnya.</p>
+<p>R mempertahankan filosofi bahasa S, yaitu menyediakan bahasa yang berguna untuk pekerjaan secara interaktif, dan juga memungkinkan pengguna untuk mengembangkan alat baru. Artinya pengguna dapat menggunakan R dan menerapkannya ke data, lalu secara perlahan menjadi pengembang yang menciptakan alat baru.</p>
+<p>Terakhir, salah satu keunggulan R adalah adanya komunitas aktif dan <em>supportive</em> di mana ribuan orang di seluruh dunia telah berkontribusi kepada R baik untuk mengembangkan paket maupun saling membantu menggunakan R untuk berbagai keperluan.</p>
+</div>
+<div id="sistem-r" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Sistem R</h2>
+<p>R terbagi menjadi dua bagian utama, yaitu</p>
+<ul>
+<li><em>Base R</em> yang merupakan perangkat lunak dasar yang berisi bahasa pemrograman R</li>
+<li>Paket/<em>package</em></li>
+</ul>
+<p>Paket R dapat dibagi menjadi beberapa bagian, antara lain.</p>
+<ul>
+<li><p><em>Base R</em> berisi paket <code>base</code> yang diperlukan untuk menjalankan R dan berisi fungsi-fungsi paling mendasar,</p></li>
+<li><p>Selain itu saat instalasi, disertakan juga paket pendukung lainnya seperti <code>utils</code>, <code>stats</code>, <code>datasets</code> dan lain-lain.</p></li>
+<li><p>Paket-paket lainnya dapat ditambahkan setelah instalasi, yang berasal dari</p>
+<ul>
+<li>Lebih dari 4000 paket di <em>The Comprehensive R Archive Network</em> atau <a href="https://cran.r-project.org/">CRAN</a></li>
+<li>Sejumlah paket termasuk paket dalam pengembangan di repositori GitHub</li>
+<li>Sumber-sumber lainnya</li>
+</ul></li>
+</ul>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pengantar-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -286,7 +315,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nurandi/sta561/edit/main/%s",
+"link": "https://github.com/nurandi/sta561/edit/main/what-r.Rmd",
 "text": "Edit"
 },
 "history": {
