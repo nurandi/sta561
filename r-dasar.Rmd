@@ -1,0 +1,454 @@
+# Pengantar R
+
+## Memasukkan Input
+
+R merupakan bahasa interpreter. Ketika kita memasukkan suatu input pada *console* R (atau menjalankan sebuah *script* R), sebuah program dalam sistem R, dinamakan interpreter, akan mengeksekusi perintah yang kita tulis. R juga bersifat interaktif, artinya setiap perintah yang kita tulis dapat langsung dievaluasi oleh R dan hasilnya dapat ditampilkan pada layar.
+
+Misalnya, dengan memasukkan perintah perkalian berikut pada *console* R:
+
+```{r eval=FALSE, include=TRUE}
+10*2
+```
+
+Ketika kita menekan tombol enter, R akan mengeksekusi dan menampilkan hasilnya
+
+```{r eval=TRUE, echo=FALSE}
+10*2
+```
+
+*Console* R diawali tanda `>`, yang menunjukkan bahwa R siap menerima perinta baru. Jika kita memasukan perintah yang tidak lengkap, maka tanda tersebut akan berubah menjadi tanda `+`.
+
+Semua perintah atau teks yang ditulis setelah tanda `#` tidak akan dieksekusi oleh R. Biasanya ini berguna untuk memberikan komentar atau catatan
+
+```{r}
+# perkalian 10 x 2
+10*2
+```
+
+
+## Assigment
+
+Dalam R, sangat disarankan untuk menggunakan tanda `<-` sebagai operator *assigment*. `obj <- expr` berarti masukkan nilai hasil dari operasi di sisi kanan (`expr`) ke dalam objek di sisi kiri (`obj`). Misalnya:
+
+```{r}
+x <- 20
+```
+
+Artinya kita memasukkan nilai `20` ke dalam objek `x`. Contoh lain
+
+```{r}
+y <- 100 + 50
+```
+
+Artinya kita memasukkan hasi dari operasi `100 + 50` ke dalam objek `y`. Selain dengan operator `<-`, kita juga dapat menggunakan operator `=` atau `->`.
+
+
+Untuk menampilkan objek dalam layar, cukup tuliskan nama objek lalu enter.
+
+```{r}
+x
+y
+```
+
+
+Atau bisa juga dengan perintah `print()`
+
+
+```{r}
+print(x)
+print(y)
+```
+
+## Penamaan Objek
+
+Segala hal dalam R dipandang sebagai objek, misalnya data, fungsi, dan lain-lain. Objek-objek tersebut dapat "diberi nama" dengan apapun yang kita mau. Pada contoh sebelumnya, kita mempunyai objek dengan nama `x` dan `y`. Meskipun demikian, ada beberapa aturan penamaan objek dalam R yang harus dipenuhi, yaitu:
+
+* Menggunakan kombinasi alfabet (a-z, A-Z), angka (0-9), titik (.) atau underscore (_),
+* Hanya dapat diawali oleh alfabet, titik atau underscore dan tidak boleh diawali dengan angka,
+* Tidak mengandung spasi, tab atau karakter khusus seperti !, @, #, 
+* Sebaiknya tidak menggunakan penamaan atau nilai yang sudah digunakan oleh R, seperti `c`, `df`, `rnorm` dan lainnya.
+
+Ketika membuat sebuah program dalam R (atau bahasa pemrograman apapun), disarankan untuk menggunakan penamaan yang lazin dan konsisten, seperti:
+
+* alllowercase: misal `adjustcolor`
+* period.separated: misal `plot.new`
+* underscore_separated: misal `numeric_version`
+* lowerCamelCase: misal `addTaskCallback`
+* UpperCamelCase: misal `SignatureMethod`
+
+Note: meskipun diizinkan, penggunaan *undescore* sebaiknya dihindari karena tidak diimplementasikan disemua *engine* S. 
+
+R bersifat `case-sensitive` baik dalam penamaan objek maupun isi dari objek tersebut. Artinya huruf kecil dan huruf besar menunjukkan hal berbeda. Dengan demikian, "ABC" berbeda dengan "abc", berbeda dengan "Abc" dan berbeda dengan "AbC" dan seterusnya.
+
+## Working Directory
+
+Sesuai namanya, *working directory* adalah folder atau *directory* di mana kita bekerja. Untuk mengetahui *working directory* kita saat ini, bisa menggunakan perintah
+
+```{r}
+getwd()
+```
+
+Untuk mengganti *working directory*, dapat menggunakan perintah
+
+```{r eval=FALSE, echo=TRUE}
+setwd("D:/Learning/R")
+```
+
+Perhatikan *path* dipisahkan oleh tanda `/`, atau bisa juga dengan tanda `\\`.
+
+```{r eval=FALSE, echo=TRUE}
+setwd("D:\\Learning\\R")
+```
+
+Untuk mengakses file yang berada dalam *working directory*, kita cukup menuliskan nama filenya saja, misalnya
+
+```{r eval=FALSE, echo=TRUE}
+read.csv("dataku.csv")
+```
+
+## Objek Data 
+
+R mempunyai beberapa jenis mode objek dasar, atau disebut sebagai "atomic" class dari objek, yaitu:
+
+* *character*, misalnya `"ipb"`, `"mahasiswa"`, `"stastika"`
+
+* *numeric*, misalnya `12, 2.3`, `1.2e-2`
+
+* *complex*, misalnya `1.2e6+2i`
+
+* *logical*, misalnya `T`, `F`, `TRUE`, `FALSE`
+
+
+**Objek Angka:**
+
+Angka dalam R umumnya diperlakukan sebagai objek numerik (atau angka riil). Artinya,  sebuah angka yang terlihat sebagai "1" atau "2", sebetulnya direpresentasikan oleh R sebagai objek numerik, seperti "1.00" atau "2.00". Apabila kita menginginkan objek integer, kita harus menambahkan akhiran `L`. Misal untuk mendapatkan integer `1` harus ditulis `1L`.
+
+
+## Tipe Objek Data 
+
+Terdapat beberapa tipe objek data standar dalam R, yaitu:
+
+* *Vector*: tipe sederhana dari objek data dalam R di mana setiap elemennya mempunyai mode yang sama
+
+* *Factor*: vektor dengan anggota/elemennya berupa kategori
+
+* *Matrix*: vektor yang berdimensi dua yaitu baris dan kolom
+
+* *Array*: tipe objek yang dapat menyimpan data lebih dari dua dimensi
+
+* *Dataframe*: objek yang menyimpan data dalam bentuk tabular (baris dan kolom)
+
+* *List*: vektor dengan anggota/elemennya berupa objek. Mode dari elemen list boleh berbeda-beda
+
+
+![Tipe Object R](img/object-type.png)
+
+
+## Vector
+
+Vector merupakan objek data paling sederhana dalam R dan digunakan oleh hampir semua fungsi aritmetik. Dalam vector, mode anggota/elemen adalah sama. Ada beberapa cara membuat vector, di antaranya:
+
+### Membuat vector
+
+Banyak cara membuat vector. Beberapa di antaranya adalah menggunakan perintah `c()`, `seq()` dan `rep()`.
+
+#### Fungsi `c()`
+
+Sebuah vektor dapat dibuat dengan fungsi `c()` di mana setiap elemen dipisahkan oleh tanda koma. Misalnya.
+
+```{r}
+a <- c(0.5, 0.6)
+a
+```
+
+Contoh lain
+
+```{r}
+b <- c(TRUE, FALSE)    ## logical
+c <- c(T, F)           ## logical
+d <- c("a", "b", "c")  ## character
+e <- 9:29              ## integer
+f <- c(1+0i, 2+4i)     ## complex
+```
+
+Kadang kita memasukkan objek dengan mode berbeda kedalam suatu vektor, baik karena disengaja maupun tidak.  Apa yang akan terjadi? 
+
+```{r}
+a <- c(1.7, "a")  # character
+a
+b <- c(TRUE, 2)   # numeric
+b
+c <- c("a", TRUE) # character
+c
+```
+
+Untuk kasus seperti itu, R akan mengkonversi data kedalam mode yang paling sesuai. Pada contoh pertama, ada dua kemungkinan mode yaitu numeric da character. Karena mengkonversi yang memungkinkan adalah konversi numeric ke character (bukan sebaliknya), maka akan mengkonversi `1.7` menjadi character `"1.7"`.
+
+
+#### Fungsi `seq()`
+
+Fungsi `seq()` digunakan untuk membuat vector yang berisi angka berurutan. Misalnya
+
+Vector 1 sampai dengan 10, dengan *incremental* 1
+
+```{r}
+x <- seq(from = 1, to = 10)
+x
+```
+
+Atau bisa ditulis dengan perintah berikut
+
+```{r}
+x <- 1:10
+x
+```
+
+Vector 1 sampai dengan 10, dengan *incremental* 2
+
+
+```{r}
+y <- seq(from = 1, to = 10, by = 2)
+y
+```
+
+#### Fungsi `rep()`
+
+Fungsi `rep()` digunakan untuk membuat vector dengan mengulang nilai yang diinginak, misalnya
+
+
+```{r}
+x <- rep(1, 10)
+x
+```
+
+### Mengakses element dari vector
+
+Element pada vector dapat diakses melalui indeksnya dengan menggunakan operator `[ ]`. Dua contoh berikut mengambil elemen pertama serta elemen ke-2 dan ke-3 dari vector
+
+```{r}
+x <- c(10, 20, 30, 40, 50)
+x[1]
+
+x[c(2,3)]
+```
+
+### Fungsi lain
+
+Fungsi lain sering digunakan dalam vector adalah `length()` dan `class()`. Fungsi `length()` berguna untuk mengetahui pajang atau banyaknye elemen dari suatu vector sedangkan `class()` untuk mengetahi *class* atau mode dari suatu vector.
+
+
+## Factor
+
+Faktor digunakan untuk merepresentasikan data kategorik, baik terurut/*ordered* maupun tidak diurutkan/*unordered*. Faktor dapat dianggap sebagai vektor di mana setiap elemennya memiliki label. Objek faktor dapat dibuat dengan fungsi `factor()`.
+
+```{r}
+f <- factor(c("SD", "SMA", "SMP", "SD", "SMA", "SMP", "SD", "SMP"))
+f
+
+factor(f, levels = c("SD", "SMP", "SMA"))
+
+factor(f, levels = c("SD", "SMP", "SMA"), ordered = TRUE)
+```
+
+
+```{r}
+length(y)
+class(y)
+```
+
+
+## Matriks
+
+Matriks/*matrix* merupakan vector yang berdimensi dua yaitu baris dan kolom. Matriks dapat dibuat dengan mengubah dimensi dari suatu vector.
+
+Matriks dapat dibentuk dengan perintah `matrix()`. Secara *default*, matriks dibentuk dengan cara *column-wise* (`byrow = FALSE`), yaitu dengan mengisi kolom pertama terlebih dahulu, dari atas ke bawah, dilanjutkan kolom berikutnya.
+
+Misalnya untuk membuat matriks berukuran 2 x 3 :
+
+```{r}
+m <- matrix(1:6, nrow = 2, ncol = 3) 
+m
+```
+
+Atau bisa dengan menambahkan argumen `byrow = TRUE` sehingga akan mengisi baris pertama terlebih dahulu, mulai dari kiri ke kanan, dilanjutknya ke baris berikutnya.
+
+```{r}
+m <- matrix(1:6, nrow = 2, ncol = 3, byrow = TRUE) 
+m
+```
+
+Matriks dapat dibentuk secara langsung dari vector dengan cara menambahkan atribut dimensi. 
+
+```{r}
+m <- 1:10 
+dim(m) <- c(2, 5)
+m
+```
+
+Cara lain membentuk matriks adalah dengan penggabungan kolom dengan fungsi `cbind()` dan penggabungan baris dengan fungsi  `rbind()`.
+
+```{r}
+x <- 1:3
+y <- 10:12
+cbind(x, y)
+
+rbind(x, y)
+```
+
+## Array
+
+Array adalah struktur data yang dapat menampung data multidimensi. Dalam R, jika matriks hanya mempunyai 2 dimensi, maka array dapat memiliki lebih dari 2 dimensi.
+
+```{r}
+v1 <-  c(5, 10, 15, 20)
+v2 <-  c(25, 30, 35, 40, 45, 50, 55, 60)
+
+arr <- array(c(v1, v2), dim =c(4,4,3))
+```
+
+Untuk mengetahui dimensi dari suatu array, dapat menggunakan fungsi `dim()`
+
+```{r}
+dim(arr)
+```
+
+## Dataframe
+
+Baris dalam dataframe merepresentasikan pengamatan/observasi, sedangkan kolom mereprentasikan peubah/*variable*. Setiap elemen dalam kolom yang sama mempunyai mode yang sama, namun antar kolom bisa mempunyai mode yang berbeda.
+
+Dataframe dapat dibuat menggunakan fungsi `data.frame()`:
+
+```{r}
+df <- data.frame(foo = 1:4, bar = c(T, T, F, F)) 
+df
+```
+
+```{r}
+df2 <- data.frame(numbers = c(10, 20, 30, 40),
+                  text = c("a", "b", "c", "a"))
+df2
+```
+
+## List
+
+List merupakan bentuk khusus dari vector yang memungkinkan elemennya bisa berupa objek dengan mode yang berbeda-beda. Elemen-elemen dari list dapat berupa vector, matriks, array, list atau gabungan beberapa struktur data.
+
+List dapat dibuat dengan menggunakan fungsi `list()`
+
+```{r}
+s <- "A" 
+v <- c(1:20)
+m <- matrix(1:6, nrow = 2, ncol = 3, byrow = TRUE) 
+df <- data.frame(numbers = c(10, 20, 30, 40),
+                  text = c("a", "b", "c", "a"))
+
+l <- list(s, v, m, df)
+l
+```
+
+## Missing value
+
+Ada beberapa *missing value* dalam R, yaitu:
+
+* NULL
+   
+   Sebuah objek yang diperoleh ketika suatu ekspresi atau fungsi menghasilkan nilai yang tidak terdefinisi *(undefined value)*
+   
+* NA
+   
+   Singkatan dari "Not Available". Merupakan sebuah logical untuk mengindikasikan *missing value*.
+   
+* NaN
+   
+   Singkatan dari "Not a Number". Merupakan sebuah logical untuk angka dan merupakan gambaran imajiner dari nilai nilai yang sangat kompleks.
+   
+* Inf / -Inf
+
+   Singkatand ari *infinity* atau tidak hingga. Merupakan angka yang sangat besar atau sangat kecil.
+   
+```{r}
+x <- c(1, 2, NA, 10, 3)  
+is.na(x)  
+is.nan(x) 
+```
+
+```{r}
+x <- c(1, 2, NaN, NA, 4)
+is.nan(x)
+```
+   
+
+
+## Penamaan Elemen
+
+Objek R dapat mempunyai nama. Demikian juga dengan setiap elemen dalam sebuah objek data. Hal ini sangat berguna ketika menuliskan kode dan menjelaskan objek. Untuk memberikan nama bagi elemen-elemen dari vector, dapat menggunakan fungsi `names()`
+
+```{r}
+x <- 1:3
+names(x)
+
+names(x) <- c("New York", "Seattle", "Los Angeles") 
+x
+
+names(x)
+```
+
+Cara yang sama untuk list
+
+
+```{r}
+names(l)
+names(l) <- c("teks", "vektor", "matriks", "tabel")
+l
+
+names(l)
+```
+
+Matriks dapat mempunyai nama  kolom dan barisnya dengan menggunakan fungsi `dimnames()`
+
+```{r}
+m <- matrix(1:4, nrow = 2, ncol = 2)
+dimnames(m) <- list(c("a", "b"), c("c", "d")) 
+m
+```
+
+Penamaan kolom dan baris pada matriks bisa dilakukan terpisah menggunakan fungsi `colnames()` dan `rownames()`
+
+```{r}
+colnames(m) <- c("h", "f")
+rownames(m) <- c("x", "z")
+m
+```
+
+Seperti halnya matriks, kolom dan baris pada dataframe juga dapat diberikan nama dengan menggunakan fungsi `names()` dan `rownames()`. Perhatikan ada perbedaan fungsi yang digunakan.
+
+```{r}
+a <- c(10, 20, 30, 40)
+b <- c("a", "b", "c", "a")
+df <- data.frame(a, b)
+df
+
+names(df) <- c("numbers", "chars")
+row.names(df) <- c("a", "b", "c", "d")
+
+df
+```
+
+Note: Ketika membuat dataframe, R akan memberikan nama untuk kolom-kolom yang terbentuk. Hanya saja kadang nama yang diberikan tidak sesuai dengan apa yang kita inginkan.
+
+
+```{r}
+df2 <- data.frame(c(10, 20, 30, 40), 
+                  c("a", "b", "c", "a"))
+names(df2)
+
+```
+
+
+
+
+
+
+
+
+

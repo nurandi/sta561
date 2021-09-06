@@ -1,0 +1,38 @@
+# Pengenalan R
+
+## Apa itu R?
+
+Pada 1976, John Chambers dan tim di Bell Telephone Laboratories (bagian dari AT&T Corp) mengembangkan bahasa pemrograman S sebagai *tools* analisis statistika di internal perusahaan. Awalnya S diimplementasikan sebagai modul yang berjalan pada Fortran. Lalu pada 1988, S ditulis dalam bahasa C (yang merupakan versi ke-3) dan mulai mirip dengan bahasa yang kita kenal sekarang. Versi 4 dari bahasa S yang dirilis tahun 1998 merupakan versi yang kita gunakan sekarang. Meskipun banyak pengembangan, secara fundamental bahasa S tidak mengalami perubahan berarti sejak saat itu. 
+
+Salah satu batasan utama bahasa S adalah hanya tersedia dalam paket komersial, S-PLUS. Pada tahun 1991, dengan mengimplementasikan bahas S, R diciptakan oleh Ross Ihaka dan Robert Gentleman di Departemen Statistika di Universitas Auckland. Pada tahun 1993 diumumkan bahwa R dibuat untuk publik. Pada tahun 1995, atas saran dari Martin Mächler, Ross dan Robert mengubah lisensi R menjadi GNU General Public License sehingga menjadikan R perangkat lunak bebas. Ini sangat penting karena memungkinkan kode sumber untuk seluruh sistem R dapat diakses oleh siapa saja.
+
+## Fitur Dasar R
+
+Pada fase awal, fitur utama R adalah sintaksnya sangat mirip dengan S, sehingga memudahkan pengguna S-PLUS untuk beralih menggunakan R. Saat ini, R dapat dijalankan di hampir semua platform komputasi dan sistem operasi. Sifatnya yang terbuka (opensource) membuat siapa pun bebas untuk mengadaptasi perangkat lunak ke platform apa pun yang mereka pilih. Salah satu hal menarik R sebagai perangkat lunak terbuka adalah perilisan fitur baru secara reguler, yang biasanya dilakukan di bulan Oktober.  
+
+Fitur utama lain yang dimiliki R adalah kemampuan grafisnya yang canggih. Kemampuan R untuk membuat grafik "kualitas publikasi" telah ada sejak awal dan secara umum lebih baik dibandingkan banyak paket statistik lainnya.
+
+R mempertahankan filosofi bahasa S, yaitu menyediakan bahasa yang berguna untuk pekerjaan secara interaktif, dan juga memungkinkan pengguna untuk mengembangkan alat baru. Artinya pengguna dapat menggunakan R dan menerapkannya ke data, lalu secara perlahan menjadi pengembang yang menciptakan alat baru.
+
+Terakhir, salah satu keunggulan R adalah adanya komunitas aktif dan *supportive* di mana ribuan orang di seluruh dunia telah berkontribusi kepada R baik untuk mengembangkan paket maupun saling membantu menggunakan R untuk berbagai keperluan. 
+
+## Sistem R
+
+R terbagi menjadi dua bagian utama, yaitu
+
+* *Base R* yang merupakan perangkat lunak dasar yang berisi bahasa pemrograman R
+* Paket/*package*
+
+Paket R dapat dibagi menjadi beberapa bagian, antara lain.
+
+* *Base R* berisi paket `base` yang diperlukan untuk menjalankan R dan berisi fungsi-fungsi paling mendasar,
+* Selain itu saat instalasi, disertakan juga paket pendukung lainnya seperti `utils`, `stats`, `datasets` dan lain-lain.
+* Paket-paket lainnya dapat ditambahkan setelah instalasi, yang berasal dari
+  
+  *  Lebih dari 4000 paket di *The Comprehensive R Archive Network* atau [CRAN](https://cran.r-project.org/)
+  *  Sejumlah paket termasuk paket dalam pengembangan di repositori GitHub
+  *  Sumber-sumber lainnya
+  
+
+
+

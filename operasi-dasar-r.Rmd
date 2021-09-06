@@ -1,0 +1,329 @@
+# Operasi Dasar R
+
+## Akses Elemen
+
+
+Ada tiga operator yang dapat digunakan untuk mengekstrak/mengakses elemen atau bagian dari objek R.
+
+* Operator `[ ]` selalu mengembalikan objek dari kelas yang sama dengan aslinya. Dapat digunakan untuk memilih satu atau beberapa elemen dari suatu objek.
+
+* Operator `[[ ]]` digunakan untuk mengekstrak elemen dari list atau dataframe. Hanya dapat digunakan untukmengekstrak satu elemen dan kelas objek yang dikembalikan tidak harus sama seperti objek awalnya.
+
+* Operator `$` digunakan untuk mengekstrak elemen  list atau dataframe melalui namanya. Secara semantik, ini mirip dengan operator `[[ ]]`.
+
+### Akses elemen vector
+
+Elemen vector dapat diekstrak dengan memasukkan nomor urut elemen ke dalam operator `[ ]`. Elemen dari vektor dan objek R lainnya, dimulai dari `.
+
+```{r}
+x <- c("a", "b", "c", "c", "d", "a")  
+```
+
+Mengakses elemen pertama
+
+```{r}
+x[1]
+```
+
+Mengakses elemen ke-2
+
+```{r}
+x[2]
+```
+
+Mengakses semua elemen kecuali elemen ke-2
+
+```{r}
+x[-2]
+```
+
+Jika vector sudah mempunyai nama, dapat diakses menggunakan namanya
+
+```{r}
+y <- 1:3
+names(y) <- c("New York", "Seattle", "Los Angeles") 
+
+y["Seattle"]
+```
+
+Operator `[ ]` dapat digunakan untuk mengakses beberapa elemen sekaligus, misalnya untuk mengekstrak element pertama sampai ke-4
+
+```{r}
+x[1:4]
+```
+
+Mengkases elemen ke-1, ke-2 dan ke-4
+
+```{r}
+x[c(1,2,4)]
+```
+
+Selain dengan integer, memilih elemen juga bisa menggunakan logical. Misalnya untuk memilih elemen bukan "a"
+
+```{r}
+u <- x != "a"
+u
+
+x[u]
+```
+
+Atau dapat diringkas
+
+```{r}
+x[x != "a"]
+```
+
+
+### Akses elemen matriks
+
+Sepertihalnya vector, akses terhadap elemen matriks dapat dilakukan dengan operator `[ ]` dengan memasukkan posisi baris dan kolom dengan format `[row, col]`. Sehingga apabila akan mengambil elemen di baris ke-2 kolom ke-1 dan baris ke-1 kolom ke-3 dapat kita tuliskan:
+
+```{r}
+x <- matrix(1:6, 2, 3)
+x
+```
+
+```{r}
+x[2,1] # baris ke-2 kolom ke-1
+x[1,3] # baris ke-1 kolom ke-3
+```
+
+Atau untuk mengekstrak seluruh kolom atau baris tertentu
+
+```{r}
+x[2,] # ekstrak baris ke-2
+x[,3] # ekstrak kolom ke-3
+```
+
+
+### Akses elemen list
+
+Elemen dari list dapat diakses dengan menggunakan tiga operator di atas dengan tujuan yang berbeda-beda. 
+
+
+```{r}
+x <- list(foo = 1:4, bar = 0.6, foobar = c("a","b","c"))
+x
+```
+
+Akses list dengan `[ ]` sama seperti vektor
+
+```{r}
+x[1]   # elemen pertama
+x[1:2] # elemen pertama dan kedua
+```
+
+Untuk akses elemen tunggal, dapat menggunakan operator `[[ ]]`
+
+
+```{r}
+x[[2]]  # akses elemen ke-2
+```
+
+```{r}
+x[["bar"]]  # akses elemen yang bernama "bar"
+```
+
+Untuk mengakses elemen dalam elemen:
+
+```{r}
+x[[3]][[1]]
+```
+
+Atau menggunakan operator `$`
+
+```{r}
+x$bar
+```
+
+```{r}
+x$data
+```
+
+Perhatikan tidak ada elemen bernama "data", sehingga R mengembalikan "NULL", bukan *error*.
+
+### Akses elemen dataframe
+
+Akses elemen data frame mirip seperti matriks dengan menggunakan operator `[ ]`
+
+```{r}
+df <- data.frame(numbers = c(10, 20, 30, 40),
+                  text = c("a", "b", "c", "a"),
+                  logic = c(T, F, T, F))
+df
+```
+
+```{r}
+df[1,2] # baris pertama kolom ke-2
+df[1,]  # baris pertama
+df[,2]  # kolom ke-2
+
+df[df[1] < 30, ] # semua kolom dan semua baris yang lebih kecil dari 20
+```
+
+Atau dengan operator `[[ ]]`
+
+```{r}
+df[[2]]  # kolom ke-2
+df[["text"]]  # kolom "text"
+```
+
+Atau dengan operator `$`
+
+```{r}
+df$text
+```
+
+
+## Operasi aritmatika dasar
+
+
+### Menampilkan atribut 
+ 
+Objek R biasanya mempunyai atribut, seperti
+
+* names, dimnames
+
+* dimensions
+
+* class (e.g. integer, numeric)
+
+* length
+
+* dan lain-lain
+
+Misalnya kita mempunyai data frame
+
+```{r}
+df <- data.frame(numbers = c(10, 20, 30, 40),
+                  text = c("a", "b", "c", "a"),
+                  logic = c(T, F, T, F))
+```
+
+```{r}
+names(df)  # nama dari kolom
+dim(df)    # dimensi dari df
+nrow(df)   # jumlah kolom
+ncol(df)   # jumlah kolom
+```
+
+
+```{r}
+class(df)  # class objek
+
+x <- df[[1]]
+length(x)  # jumlah elemen
+```
+
+Untuk mengetahui atribut apasaja yang ada data objek kita, dapat menggunakan perintah `attributes()`.
+
+```{r}
+attributes(df)
+```
+
+
+### Operasi pada vector
+
+Operasi-operasi pada vector dilakukan secara element by element (elementwise). Misalnya
+
+```{r}
+x <- c(1:10)
+y <- c(11:20)
+
+x + y
+```
+
+Maka elemen pertama dari `x` akan dijumlahkan dengan elemen pertama dari `y`, elemen ke-2 dari `x` akan dijumlahkan dengan elemen ke-2 dari `y`, dan seterusnya.
+
+Jika vector-vector yang dioperasikan memiliki panjang berbeda, maka berlalu aturan *recycling*, yaitu vektor dengan elemen sedikit akan diulang mengikuti vektor yang memiliki elemen paling banyak. Contoh
+
+```{r}
+x <- c(1:10)
+y <- c(11:18)
+
+x + y
+```
+
+Objek `x` mempunyai 10 elemen sedangkan `y` hanya ada 8. Untuk penjumlahan elemen 1 sd. 8, berlaku normal seperti contoh sebelumnya, sedangkan untuk elemen 9 dan 10 menggunakan aturan *recycling*. Dalam hal ini, R akan me-*recycle* elemen pertama dan ke-2 dari `y` sebagai objek "pengganti" bagi elemen ke-9 dan 10.
+
+#### Operasi sederhana vector numerik
+
+R mengenal banyak sekali operasi numerik, seperti
+
+* `+ - * /`  : Penjumlahan, pengurangan, perkalian, pembagian
+* `%%` : Modulus
+* `%/%` : Pembagian integer
+* `%*%` : Perkalian matriks setara `x'x`
+* `%o%` : Perkalian matriks setara `xx'`
+* `< <= > >= == !=` : Operasi logika/perbandingan
+
+Contoh
+
+```{r}
+x <- c(1:10)
+y <- c(11:20)
+
+x + y  # penjumlah
+x < y  # logical
+y %% 3   # modulus
+y %/% 3  # pembagian integral
+
+x %*% y  # Perkalian matriks setara `x'x`
+x %o% y  # Perkalian matriks setara `xx'`
+```
+
+#### Operasi sederhana vector karakter
+
+R juga mempunyai banyak fungsi untuk operasi terhadap vektor karakter, beberapa diantaranya
+
+* `nchar()` : Menghitung panjang karakter
+* `paste()` : Menggabungkan elemen
+* `substr()` : Mengambil bagian dari teks berdasarkan posisi tertentu 
+
+Contoh:
+
+```{r}
+y <- c("Institut", "Pertanian", "Bogor", "IPB")
+
+nchar(y)  # menghitung panjang karakter
+paste(y, collapse = " ")  # menggabungkan elemen
+paste(y, "ku", sep = "")  # menggabungkan dengan vektor lain
+substr(y, 1, 3) # mengambil huruf pertama sampai huruf ke-3
+```
+
+## Operasi pada matriks
+
+R dilengkapi banyak fungsi untuk matriks. Beberapa diataranya:
+* `*`   : Perkalain element by element
+* `t()` : Transpose
+* `%*%` : Perkalian matriks setara `x'x`
+* `%o%` : Perkalian matriks setara `xx'`
+* `solve()` : Menghitung matriks inverse
+* `eigen()` : Menghitung eigen value dan eigen vector
+
+Contoh
+
+```{r}
+Z1 <- matrix(1:6,2,3)
+Z2 <- matrix(1:6,3,2,byrow=T)
+Z3 <- matrix(6:9,2,2)
+
+Z4 <- Z1 %*% Z2
+Z4
+
+Z1 %o% Z2
+Z3 * Z4
+
+invZ <- solve(Z4) # invers
+invZ
+
+invZ %*% Z4  # matriks identitas
+
+h <- c(5,11)
+p <- solve(Z4,h) #solusi persamaan linear Zp=h
+
+
+e <- eigen(Z4) #eigen value & eigen vector dr Z4
+e$values #akses eigen values
+e[[2]] #akses eigen vectors
+```

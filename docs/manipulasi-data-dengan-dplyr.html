@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Bagian 4 Manipulasi Data dengan dplyr | STA561 Komputasi Statistika</title>
+  <meta name="description" content="Catatan Latihan dan Kuliah STA561 Komputasi Statistika." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Bagian 4 Manipulasi Data dengan dplyr | STA561 Komputasi Statistika" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Catatan Latihan dan Kuliah STA561 Komputasi Statistika." />
+  <meta name="github-repo" content="openscapes/series" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Bagian 4 Manipulasi Data dengan dplyr | STA561 Komputasi Statistika" />
+  
+  <meta name="twitter:description" content="Catatan Latihan dan Kuliah STA561 Komputasi Statistika." />
+  
+
+<meta name="author" content="Nur Andi Setiabudi" />
+
+
+<meta name="date" content="2021-09-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="operasi-dasar-r.html"/>
+
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="lib/css/style.css" type="text/css" />
+<link rel="stylesheet" href="lib/css/lesson.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Deary STA561</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="pengenalan-r.html"><a href="pengenalan-r.html"><i class="fa fa-check"></i><b>1</b> Pengenalan R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="pengenalan-r.html"><a href="pengenalan-r.html#apa-itu-r"><i class="fa fa-check"></i><b>1.1</b> Apa itu R?</a></li>
+<li class="chapter" data-level="1.2" data-path="pengenalan-r.html"><a href="pengenalan-r.html#fitur-dasar-r"><i class="fa fa-check"></i><b>1.2</b> Fitur Dasar R</a></li>
+<li class="chapter" data-level="1.3" data-path="pengenalan-r.html"><a href="pengenalan-r.html#sistem-r"><i class="fa fa-check"></i><b>1.3</b> Sistem R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="pengantar-r.html"><a href="pengantar-r.html"><i class="fa fa-check"></i><b>2</b> Pengantar R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="pengantar-r.html"><a href="pengantar-r.html#memasukkan-input"><i class="fa fa-check"></i><b>2.1</b> Memasukkan Input</a></li>
+<li class="chapter" data-level="2.2" data-path="pengantar-r.html"><a href="pengantar-r.html#assigment"><i class="fa fa-check"></i><b>2.2</b> Assigment</a></li>
+<li class="chapter" data-level="2.3" data-path="pengantar-r.html"><a href="pengantar-r.html#penamaan-objek"><i class="fa fa-check"></i><b>2.3</b> Penamaan Objek</a></li>
+<li class="chapter" data-level="2.4" data-path="pengantar-r.html"><a href="pengantar-r.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working Directory</a></li>
+<li class="chapter" data-level="2.5" data-path="pengantar-r.html"><a href="pengantar-r.html#objek-data"><i class="fa fa-check"></i><b>2.5</b> Objek Data</a></li>
+<li class="chapter" data-level="2.6" data-path="pengantar-r.html"><a href="pengantar-r.html#tipe-objek-data"><i class="fa fa-check"></i><b>2.6</b> Tipe Objek Data</a></li>
+<li class="chapter" data-level="2.7" data-path="pengantar-r.html"><a href="pengantar-r.html#vector"><i class="fa fa-check"></i><b>2.7</b> Vector</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="pengantar-r.html"><a href="pengantar-r.html#membuat-vector"><i class="fa fa-check"></i><b>2.7.1</b> Membuat vector</a></li>
+<li class="chapter" data-level="2.7.2" data-path="pengantar-r.html"><a href="pengantar-r.html#mengakses-element-dari-vector"><i class="fa fa-check"></i><b>2.7.2</b> Mengakses element dari vector</a></li>
+<li class="chapter" data-level="2.7.3" data-path="pengantar-r.html"><a href="pengantar-r.html#fungsi-lain"><i class="fa fa-check"></i><b>2.7.3</b> Fungsi lain</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="pengantar-r.html"><a href="pengantar-r.html#factor"><i class="fa fa-check"></i><b>2.8</b> Factor</a></li>
+<li class="chapter" data-level="2.9" data-path="pengantar-r.html"><a href="pengantar-r.html#matriks"><i class="fa fa-check"></i><b>2.9</b> Matriks</a></li>
+<li class="chapter" data-level="2.10" data-path="pengantar-r.html"><a href="pengantar-r.html#array"><i class="fa fa-check"></i><b>2.10</b> Array</a></li>
+<li class="chapter" data-level="2.11" data-path="pengantar-r.html"><a href="pengantar-r.html#dataframe"><i class="fa fa-check"></i><b>2.11</b> Dataframe</a></li>
+<li class="chapter" data-level="2.12" data-path="pengantar-r.html"><a href="pengantar-r.html#list"><i class="fa fa-check"></i><b>2.12</b> List</a></li>
+<li class="chapter" data-level="2.13" data-path="pengantar-r.html"><a href="pengantar-r.html#missing-value"><i class="fa fa-check"></i><b>2.13</b> Missing value</a></li>
+<li class="chapter" data-level="2.14" data-path="pengantar-r.html"><a href="pengantar-r.html#penamaan-elemen"><i class="fa fa-check"></i><b>2.14</b> Penamaan Elemen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html"><i class="fa fa-check"></i><b>3</b> Operasi Dasar R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen"><i class="fa fa-check"></i><b>3.1</b> Akses Elemen</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen-vector"><i class="fa fa-check"></i><b>3.1.1</b> Akses elemen vector</a></li>
+<li class="chapter" data-level="3.1.2" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen-matriks"><i class="fa fa-check"></i><b>3.1.2</b> Akses elemen matriks</a></li>
+<li class="chapter" data-level="3.1.3" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen-list"><i class="fa fa-check"></i><b>3.1.3</b> Akses elemen list</a></li>
+<li class="chapter" data-level="3.1.4" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen-dataframe"><i class="fa fa-check"></i><b>3.1.4</b> Akses elemen dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#operasi-aritmatika-dasar"><i class="fa fa-check"></i><b>3.2</b> Operasi aritmatika dasar</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#menampilkan-atribut"><i class="fa fa-check"></i><b>3.2.1</b> Menampilkan atribut</a></li>
+<li class="chapter" data-level="3.2.2" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#operasi-pada-vector"><i class="fa fa-check"></i><b>3.2.2</b> Operasi pada vector</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#operasi-pada-matriks"><i class="fa fa-check"></i><b>3.3</b> Operasi pada matriks</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html"><i class="fa fa-check"></i><b>4</b> Manipulasi Data dengan <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#manipulasi-data"><i class="fa fa-check"></i><b>4.1</b> Manipulasi Data</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#r-tidyverse-dan-dplyr"><i class="fa fa-check"></i><b>4.2</b> R, <code>tidyverse</code> dan <code>dplyr</code></a></li>
+<li class="chapter" data-level="4.3" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#studi-kasus-data-movielens"><i class="fa fa-check"></i><b>4.3</b> Studi Kasus: Data MovieLens</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#persiapan"><i class="fa fa-check"></i><b>4.3.1</b> Persiapan</a></li>
+<li class="chapter" data-level="4.3.2" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#operator-pipe"><i class="fa fa-check"></i><b>4.3.2</b> Operator <em>pipe</em> <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="4.3.3" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#dplyrs-verbs"><i class="fa fa-check"></i><b>4.3.3</b> <code>dplyr</code><em>’s verbs</em></a></li>
+<li class="chapter" data-level="4.3.4" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#memilih-kolom-select"><i class="fa fa-check"></i><b>4.3.4</b> Memilih kolom: <code>select()</code></a></li>
+<li class="chapter" data-level="4.3.5" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#menyeleksi-baris-filter"><i class="fa fa-check"></i><b>4.3.5</b> Menyeleksi baris: <code>filter()</code></a></li>
+<li class="chapter" data-level="4.3.6" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#menambah-kolom-mutate"><i class="fa fa-check"></i><b>4.3.6</b> Menambah kolom: <code>mutate()</code></a></li>
+<li class="chapter" data-level="4.3.7" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#meringkas-data-summarise"><i class="fa fa-check"></i><b>4.3.7</b> Meringkas data: <code>summarise()</code></a></li>
+<li class="chapter" data-level="4.3.8" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#mengurutkan-baris-arrange"><i class="fa fa-check"></i><b>4.3.8</b> Mengurutkan baris: <code>arrange()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html#gabungan-beberapa-fungsi-sekaligus"><i class="fa fa-check"></i><b>4.4</b> Gabungan beberapa fungsi sekaligus</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA561 Komputasi Statistika</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manipulasi-data-dengan-dplyr" class="section level1" number="4">
+<h1><span class="header-section-number">Bagian 4</span> Manipulasi Data dengan <code>dplyr</code></h1>
+<blockquote>
+<p>Artikel ini juga dipublikasikan di <a href="https://rpubs.com/nurandi/manipulasi-data-dplyr">RPubs.com/nurandi</a>.</p>
+</blockquote>
+<div id="manipulasi-data" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Manipulasi Data</h2>
+<p>Aktivitas apa yang biasa dilakukan oleh <em>data scientist</em> terhadap data tabular? Barangkali menghapus kolom atau baris, melakukan kalkulasi, menambahkan kolom baru atau melakukan agregasi. Aktivitas-aktivitas tersebut sering disebut sebagai <em>data wrangling</em> <span class="citation">(<a href="#ref-OHI" role="doc-biblioref">The OHI Team 2019</a>)</span> atau manipulasi data (dalam konitasi positif) yang bertujuan untuk mengubah data menjadi format yang lebih mudah digunakan atau mudah dipahami. Manipulasi data menjadi bagian tidak diterpisahkan dalam persiapan data yang umumnya membutuhkan waktu paling lama dari keseluruhan rangkaian analisis data. Skenario dalam proses ini berbeda-beda tergantung pada data yang digunakan dan tujuan yang ingin dicapai <span class="citation">(<a href="#ref-HBR" role="doc-biblioref">Stobierski 2021</a>)</span>.</p>
+</div>
+<div id="r-tidyverse-dan-dplyr" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> R, <code>tidyverse</code> dan <code>dplyr</code></h2>
+<p>Sebagai bahasa pemrograman populer dalam sains data, R menyediakan berbagai paket/<em>library</em> untuk tujuan-tujuan spesifik. Sebagai contoh, kita dapat memanfaatkan paket <code>tidyverse</code>; sekumpulan beberapa paket untuk ekplorasi, manipulasi dan visualisasi data <span class="citation">(<a href="#ref-TIDYVERSE" role="doc-biblioref">Wickham et al. 2019</a>)</span>, yang terdiri dari paket-paket antara lain:</p>
+<ul>
+<li><code>ggplot2</code> : membuat grafik dan visualisasi data</li>
+<li><code>dplyr</code> : manipulasi data</li>
+<li><code>tidyr</code> : membentuk <em>“tidy data”</em>, yaitu data dalam format yang konsisten</li>
+<li><code>readr</code> : membaca berbagai data tabular</li>
+<li><code>purrr</code> : bekerja dengan fungsi dan vektor</li>
+<li><code>tibble</code> : bentuk lain dari <em>data frame</em> yang lebih modern</li>
+<li><code>stringr</code> : bekerja dengan <em>string</em></li>
+<li><code>forcats</code> : bekerja dengan <em>factor</em></li>
+<li><code>lubridate</code> : bekerja dengan data berformat tanggal dan waktu</li>
+</ul>
+<div class="figure">
+<img src="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2019/05/ggplot_hive.jpg" alt="" />
+<p class="caption">tidyverse. Sumber gambar: Che Smith (<a href="mailto:chsmith1@davidson.edu" class="email">chsmith1@davidson.edu</a>)</p>
+</div>
+<p>Artikel ini akan fokus pada pemanfaatan paket <code>dplyr</code> <span class="citation">(<a href="#ref-DPLYR" role="doc-biblioref">Wickham et al. 2021b</a>)</span>. Paket yang dikembangkan oleh Hadley Wickham dan tim ini dipandang sebagai <em>“grammar”</em> yang di dalamnya tersedia sejumlah <em>“verb”</em> untuk menyesaikan berbagai pekerjaan terkait manipulasi data <span class="citation">(<a href="#ref-DPLYR2" role="doc-biblioref">Wickham et al. 2021a</a>)</span>, di antaranya untuk:</p>
+<ul>
+<li>memilih kolom,</li>
+<li>menyeleksi baris berdasarkan kriteria tertentu,</li>
+<li>agregasi data,</li>
+<li>menghitung kolom/variabel baru,</li>
+<li>mengatur urutan baris, dan lain-lain</li>
+</ul>
+</div>
+<div id="studi-kasus-data-movielens" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Studi Kasus: Data MovieLens</h2>
+<p>Untuk mengeksplorasi dasar-dasar manipulasi data dengan <code>dplyr</code>, kita akan menggunakan data <strong>MoviLens</strong> <span class="citation">(<a href="#ref-MOVIELENS" role="doc-biblioref">Harper and Konstan 2015</a>)</span>, yang bisa diperoleh dari paket <code>dslabs</code>. Data set ini berisi rating dari <em>movie</em>/film dari website <a href="https://movielens.org/">MovieLens</a> yang dikumpulkan dan dikelola oleh GroupLens, kelompok riset di <a href="https://twin-cities.umn.edu/">Universitas Minnesota</a></p>
+<div id="persiapan" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Persiapan</h3>
+<p>Instalasi paket-paket yang diperlukan, yaitu <code>tidyverse</code> (atau cukup <code>dplyr</code>) dan <code>dslabs</code>. Instalasi paket ini sifatnya opsional. Maksudnya apabila paket tersebut sudah terinstal maka tidak perlu melakukan instalasi lagi.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="manipulasi-data-dengan-dplyr.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;dslabs&quot;</span>))</span></code></pre></div>
+<p>Lalu <em>load</em> paket-paket tersebut.</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="manipulasi-data-dengan-dplyr.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb214-2"><a href="manipulasi-data-dengan-dplyr.html#cb214-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span></code></pre></div>
+<p>Selanjutnya <em>load</em> data <code>movilens</code> dari paket <code>dslabs</code></p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="manipulasi-data-dengan-dplyr.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(movielens)</span></code></pre></div>
+<p>Sebelum memulai proses manipulasi data, sangat direkomendasikan untuk melihat bentuk dan struktur data.
+Kita sudah mempunyai data <code>movilens</code>, yang merupakan sebuah <em>data frame</em>, yang dapat kita ubah menjadi <code>tibble</code> agar lebih mudah dalam menginspeksi data, terutama data yang berukuran besar. Sebuah <code>tibble</code> apabila ditampilkan dalam layar, hanya muncul maksimal 10 baris pertama, dilengkapi dengan informasi mengenai dimensi tabel, nama dan tipe kolom serta tampilan akan menyesuaikan lebar layar.</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="manipulasi-data-dengan-dplyr.html#cb216-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(movielens)</span>
+<span id="cb216-2"><a href="manipulasi-data-dengan-dplyr.html#cb216-2" aria-hidden="true" tabindex="-1"></a>movielens</span></code></pre></div>
+<pre><code># A tibble: 100,004 x 7
+   movieId title                  year genres            userId rating timestamp
+     &lt;int&gt; &lt;chr&gt;                 &lt;int&gt; &lt;fct&gt;              &lt;int&gt;  &lt;dbl&gt;     &lt;int&gt;
+ 1      31 Dangerous Minds        1995 Drama                  1    2.5    1.26e9
+ 2    1029 Dumbo                  1941 Animation|Childr~      1    3      1.26e9
+ 3    1061 Sleepers               1996 Thriller               1    3      1.26e9
+ 4    1129 Escape from New York   1981 Action|Adventure~      1    2      1.26e9
+ 5    1172 Cinema Paradiso (Nuo~  1989 Drama                  1    4      1.26e9
+ 6    1263 Deer Hunter, The       1978 Drama|War              1    2      1.26e9
+ 7    1287 Ben-Hur                1959 Action|Adventure~      1    2      1.26e9
+ 8    1293 Gandhi                 1982 Drama                  1    2      1.26e9
+ 9    1339 Dracula (Bram Stoker~  1992 Fantasy|Horror|R~      1    3.5    1.26e9
+10    1343 Cape Fear              1991 Thriller               1    2      1.26e9
+# ... with 99,994 more rows</code></pre>
+<p>Alternatif lain untuk menampilkan struktur data adalah fungsi <code>glimpse</code>. Fungsi ini sebenernya mirip dengan fungsi <code>str</code> dari paket <code>utils</code>.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="manipulasi-data-dengan-dplyr.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(movielens)</span></code></pre></div>
+<pre><code>Rows: 100,004
+Columns: 7
+$ movieId   &lt;int&gt; 31, 1029, 1061, 1129, 1172, 1263, 1287, 1293, 1339, 1343, 13~
+$ title     &lt;chr&gt; &quot;Dangerous Minds&quot;, &quot;Dumbo&quot;, &quot;Sleepers&quot;, &quot;Escape from New Yor~
+$ year      &lt;int&gt; 1995, 1941, 1996, 1981, 1989, 1978, 1959, 1982, 1992, 1991, ~
+$ genres    &lt;fct&gt; Drama, Animation|Children|Drama|Musical, Thriller, Action|Ad~
+$ userId    &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
+$ rating    &lt;dbl&gt; 2.5, 3.0, 3.0, 2.0, 4.0, 2.0, 2.0, 2.0, 3.5, 2.0, 2.5, 1.0, ~
+$ timestamp &lt;int&gt; 1260759144, 1260759179, 1260759182, 1260759185, 1260759205, ~</code></pre>
+<p>Dari output di atas kita tahun bahwa data <code>movielens</code> terdiri dari 100004 baris dan 7 kolom, yaitu</p>
+<table>
+<thead>
+<tr class="header">
+<th>Nama</th>
+<th>Tipe</th>
+<th>Contoh</th>
+<th>Keterangan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>movieId</td>
+<td>int</td>
+<td>31</td>
+<td>ID film</td>
+</tr>
+<tr class="even">
+<td>title</td>
+<td>chr</td>
+<td>Dangerous Minds</td>
+<td>Judul film</td>
+</tr>
+<tr class="odd">
+<td>year</td>
+<td>int</td>
+<td>1995</td>
+<td>Tahun rilis</td>
+</tr>
+<tr class="even">
+<td>genres</td>
+<td>fct</td>
+<td>Drama</td>
+<td><em>Genre</em>/aliran (bisa terdapat beberapa genre)</td>
+</tr>
+<tr class="odd">
+<td>userId</td>
+<td>int</td>
+<td>1</td>
+<td>ID pengguna</td>
+</tr>
+<tr class="even">
+<td>rating</td>
+<td>dbl</td>
+<td>2.5</td>
+<td>Rating</td>
+</tr>
+<tr class="odd">
+<td>timestamp</td>
+<td>int</td>
+<td>1260759144</td>
+<td>Waktu dalam format <em>unix timestamp</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="operator-pipe" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Operator <em>pipe</em> <code>%&gt;%</code></h3>
+<p>Sebelum membahas <code>dplyr</code> lebih lanjut, mari berkenalan dengan operator <em>pipe</em> <code>%&gt;%</code>. <em>Pipe</em> merupakan operator yang berasal dari paket <code>magrittr</code> <span class="citation">(<a href="#ref-MAGRITTR" role="doc-biblioref">Bache and Wickham 2020</a>)</span>, yang dalam <code>tidyverse</code> dimuat secara otomatis.</p>
+<p>Perhatikan perintah berikut ini.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="manipulasi-data-dengan-dplyr.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nama_fungsi</span>(nama_object)</span></code></pre></div>
+<p>apabila ditulis dengan <em>pipe</em>, akan menjadi</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="manipulasi-data-dengan-dplyr.html#cb221-1" aria-hidden="true" tabindex="-1"></a>nama_object <span class="sc">%&gt;%</span></span>
+<span id="cb221-2"><a href="manipulasi-data-dengan-dplyr.html#cb221-2" aria-hidden="true" tabindex="-1"></a>    nama_fungsi</span></code></pre></div>
+<p>Operator <em>pipe</em> sangat bermafaat untuk menuliskan banyak operasi secara sekuensial atau berurutan. Sebagai contoh, kita ingin membulatkan vektor numerik hingga dua tempat desimal, mengurutkannya dari besar ke kecil, lalu tampilkan enam elemen pertama.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="manipulasi-data-dengan-dplyr.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb222-2"><a href="manipulasi-data-dengan-dplyr.html#cb222-2" aria-hidden="true" tabindex="-1"></a>number_data <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">15</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span></code></pre></div>
+<p>Dengan <em>base R</em> dapat kita tulis</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="manipulasi-data-dengan-dplyr.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">sort</span>(<span class="fu">round</span>(number_data, <span class="at">digit =</span> <span class="dv">2</span>), <span class="at">decreasing =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>[1] 95.68 94.05 89.24 88.30 78.83 67.76</code></pre>
+<p>Dengan operator <em>pipe</em> menjadi:</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="manipulasi-data-dengan-dplyr.html#cb225-1" aria-hidden="true" tabindex="-1"></a>number_data <span class="sc">%&gt;%</span></span>
+<span id="cb225-2"><a href="manipulasi-data-dengan-dplyr.html#cb225-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb225-3"><a href="manipulasi-data-dengan-dplyr.html#cb225-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sort</span>(<span class="at">decreasing =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb225-4"><a href="manipulasi-data-dengan-dplyr.html#cb225-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>[1] 95.68 94.05 89.24 88.30 78.83 67.76</code></pre>
+</div>
+<div id="dplyrs-verbs" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> <code>dplyr</code><em>’s verbs</em></h3>
+<p>Sebagai <em>“grammar”</em> untuk manipulasi data, paket <code>dplyr</code> mempunyai setidaknya lima <em>“verbs”</em> utama, masing-masing mempunya fungsi yang spesifik, yaitu:</p>
+<ul>
+<li><code>select()</code> : memilih kolom</li>
+<li><code>filter()</code> : menyeleksi baris berdasarkan kriteria tertentu</li>
+<li><code>summarise()</code> : meringkas atau agregasi data</li>
+<li><code>mutate()</code> : menghitung kolom/variabel baru</li>
+<li><code>arrange()</code> : mengatur urutan baris</li>
+</ul>
+<p>Selain fungsi-fungsi di atas, masih banyak fungsi lain yang dapat digunakan, misalnya <code>group_by()</code> untuk pengelompokan data. Mari kita eksplorasi lebih lanjut.</p>
+</div>
+<div id="memilih-kolom-select" class="section level3" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Memilih kolom: <code>select()</code></h3>
+<p>Ketika bekerja dengan data yang mempunyai banyak kolom, biasanya kita ingin memilih kolom-kolom tertentu saja. Hal ini bisa kita lakukan dengan memanfaatkan fungsi <code>select()</code>berdasarkan nama atau posisi kolom. Misalnya dua perintah berikut akan memilih kolom <code>title</code>, <code>year</code> dan <code>genres</code> dari <code>movielens</code>.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="manipulasi-data-dengan-dplyr.html#cb227-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb227-2"><a href="manipulasi-data-dengan-dplyr.html#cb227-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(title, year, genres)</span></code></pre></div>
+<pre><code># A tibble: 100,004 x 3
+   title                                    year genres                         
+   &lt;chr&gt;                                   &lt;int&gt; &lt;fct&gt;                          
+ 1 Dangerous Minds                          1995 Drama                          
+ 2 Dumbo                                    1941 Animation|Children|Drama|Music~
+ 3 Sleepers                                 1996 Thriller                       
+ 4 Escape from New York                     1981 Action|Adventure|Sci-Fi|Thrill~
+ 5 Cinema Paradiso (Nuovo cinema Paradiso)  1989 Drama                          
+ 6 Deer Hunter, The                         1978 Drama|War                      
+ 7 Ben-Hur                                  1959 Action|Adventure|Drama         
+ 8 Gandhi                                   1982 Drama                          
+ 9 Dracula (Bram Stoker&#39;s Dracula)          1992 Fantasy|Horror|Romance|Thriller
+10 Cape Fear                                1991 Thriller                       
+# ... with 99,994 more rows</code></pre>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="manipulasi-data-dengan-dplyr.html#cb229-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb229-2"><a href="manipulasi-data-dengan-dplyr.html#cb229-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div>
+<pre><code># A tibble: 100,004 x 3
+   title                                    year genres                         
+   &lt;chr&gt;                                   &lt;int&gt; &lt;fct&gt;                          
+ 1 Dangerous Minds                          1995 Drama                          
+ 2 Dumbo                                    1941 Animation|Children|Drama|Music~
+ 3 Sleepers                                 1996 Thriller                       
+ 4 Escape from New York                     1981 Action|Adventure|Sci-Fi|Thrill~
+ 5 Cinema Paradiso (Nuovo cinema Paradiso)  1989 Drama                          
+ 6 Deer Hunter, The                         1978 Drama|War                      
+ 7 Ben-Hur                                  1959 Action|Adventure|Drama         
+ 8 Gandhi                                   1982 Drama                          
+ 9 Dracula (Bram Stoker&#39;s Dracula)          1992 Fantasy|Horror|Romance|Thriller
+10 Cape Fear                                1991 Thriller                       
+# ... with 99,994 more rows</code></pre>
+<p>Kita dapat menambahkan tanda minus <code>-</code> untuk tidak memilih kolom tersebut.</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="manipulasi-data-dengan-dplyr.html#cb231-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb231-2"><a href="manipulasi-data-dengan-dplyr.html#cb231-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>title, <span class="sc">-</span>year, <span class="sc">-</span>genres)</span></code></pre></div>
+<pre><code># A tibble: 100,004 x 4
+   movieId userId rating  timestamp
+     &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;      &lt;int&gt;
+ 1      31      1    2.5 1260759144
+ 2    1029      1    3   1260759179
+ 3    1061      1    3   1260759182
+ 4    1129      1    2   1260759185
+ 5    1172      1    4   1260759205
+ 6    1263      1    2   1260759151
+ 7    1287      1    2   1260759187
+ 8    1293      1    2   1260759148
+ 9    1339      1    3.5 1260759125
+10    1343      1    2   1260759131
+# ... with 99,994 more rows</code></pre>
+<p>Ada sejumlah fungsi pembantu <em>(helper function)</em> yang bisa digunakan dalam <code>select()</code>, di antaranya:</p>
+<ul>
+<li><code>starts_with("abc")</code> : nama kolom diawali “abc.”</li>
+<li><code>ends_with("xyz")</code> : nama kolom diakhiri “xyz.”</li>
+<li><code>contains("ijk")</code> : nama kolom mengandung “ijk.”</li>
+<li><code>num_range("x", 1:3)</code> : memilih kolom <code>x1</code>, <code>x2</code> dan <code>x3</code>.</li>
+</ul>
+<p>Selain memilih kolom, <code>select()</code> juga dapat digunakan untuk mengubah nama kolom, misalnya</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="manipulasi-data-dengan-dplyr.html#cb233-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb233-2"><a href="manipulasi-data-dengan-dplyr.html#cb233-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="at">movie_title =</span> title, year, genres)</span></code></pre></div>
+<pre><code># A tibble: 100,004 x 3
+   movie_title                              year genres                         
+   &lt;chr&gt;                                   &lt;int&gt; &lt;fct&gt;                          
+ 1 Dangerous Minds                          1995 Drama                          
+ 2 Dumbo                                    1941 Animation|Children|Drama|Music~
+ 3 Sleepers                                 1996 Thriller                       
+ 4 Escape from New York                     1981 Action|Adventure|Sci-Fi|Thrill~
+ 5 Cinema Paradiso (Nuovo cinema Paradiso)  1989 Drama                          
+ 6 Deer Hunter, The                         1978 Drama|War                      
+ 7 Ben-Hur                                  1959 Action|Adventure|Drama         
+ 8 Gandhi                                   1982 Drama                          
+ 9 Dracula (Bram Stoker&#39;s Dracula)          1992 Fantasy|Horror|Romance|Thriller
+10 Cape Fear                                1991 Thriller                       
+# ... with 99,994 more rows</code></pre>
+</div>
+<div id="menyeleksi-baris-filter" class="section level3" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Menyeleksi baris: <code>filter()</code></h3>
+<p><code>filter()</code> digunakan untuk menyeleksi atau memilih baris atau observasi berdasarkan nilainya. Misalnya kita ingin menampilkan film-film yang dirilis tahun 1995.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="manipulasi-data-dengan-dplyr.html#cb235-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb235-2"><a href="manipulasi-data-dengan-dplyr.html#cb235-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1995</span>)</span></code></pre></div>
+<pre><code># A tibble: 6,635 x 7
+   movieId title                   year genres           userId rating timestamp
+     &lt;int&gt; &lt;chr&gt;                  &lt;int&gt; &lt;fct&gt;             &lt;int&gt;  &lt;dbl&gt;     &lt;int&gt;
+ 1      31 Dangerous Minds         1995 Drama                 1    2.5    1.26e9
+ 2      10 GoldenEye               1995 Action|Adventur~      2    4      8.35e8
+ 3      17 Sense and Sensibility   1995 Drama|Romance         2    5      8.35e8
+ 4      39 Clueless                1995 Comedy|Romance        2    5      8.35e8
+ 5      47 Seven (a.k.a. Se7en)    1995 Mystery|Thriller      2    4      8.35e8
+ 6      50 Usual Suspects, The     1995 Crime|Mystery|T~      2    4      8.35e8
+ 7      52 Mighty Aphrodite        1995 Comedy|Drama|Ro~      2    3      8.35e8
+ 8      62 Mr. Holland&#39;s Opus      1995 Drama                 2    3      8.35e8
+ 9     110 Braveheart              1995 Action|Drama|War      2    4      8.35e8
+10     144 Brothers McMullen, The  1995 Comedy                2    3      8.35e8
+# ... with 6,625 more rows</code></pre>
+<p>Dalam <code>filter()</code>, kita dapat menggunakan berbagai operator, seperti operator dasar <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;</code>, <code>==</code> (sama dengan) dan <code>%in%</code> (bagian dari). Argumen <code>filter()</code> yang lebih dari satu dapat digabungkan dengan <em>bolean</em> operator, yaitu <code>&amp;</code> (<em>and</em>/dan), <code>|</code> (<em>or</em>/atau) dan <code>!</code> (<em>not</em>/tidak). Misalnya untuk menampilkan film-film yang dirilis tahun 1995 dan 1996 serta beraliran/<em>genre</em> hanya drama:</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="manipulasi-data-dengan-dplyr.html#cb237-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb237-2"><a href="manipulasi-data-dengan-dplyr.html#cb237-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1995</span>, <span class="dv">1996</span>) <span class="sc">&amp;</span> genres <span class="sc">==</span> <span class="st">&quot;Drama&quot;</span>)</span></code></pre></div>
+<pre><code># A tibble: 582 x 7
+   movieId title                     year genres userId rating  timestamp
+     &lt;int&gt; &lt;chr&gt;                    &lt;int&gt; &lt;fct&gt;   &lt;int&gt;  &lt;dbl&gt;      &lt;int&gt;
+ 1      31 Dangerous Minds           1995 Drama       1    2.5 1260759144
+ 2      62 Mr. Holland&#39;s Opus        1995 Drama       2    3    835355749
+ 3    1358 Sling Blade               1996 Drama       6    2   1109258181
+ 4      31 Dangerous Minds           1995 Drama       7    3    851868750
+ 5      40 Cry, the Beloved Country  1995 Drama       7    4    851866901
+ 6    1358 Sling Blade               1996 Drama       8    0.5 1154474527
+ 7      26 Othello                   1995 Drama       9    3    938628655
+ 8    1358 Sling Blade               1996 Drama       9    4    938628450
+ 9    1358 Sling Blade               1996 Drama      10    5    942766420
+10    1423 Hearts and Minds          1996 Drama      10    4    942766420
+# ... with 572 more rows</code></pre>
+<p>Sekarang, kolom <code>genres</code> hanya berisi satu nilai yaitu <code>Drama</code> sehingga kita bisa harus kolom tersebut</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="manipulasi-data-dengan-dplyr.html#cb239-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb239-2"><a href="manipulasi-data-dengan-dplyr.html#cb239-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1995</span>, <span class="dv">1996</span>) <span class="sc">&amp;</span> genres <span class="sc">==</span> <span class="st">&quot;Drama&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb239-3"><a href="manipulasi-data-dengan-dplyr.html#cb239-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>genres)</span></code></pre></div>
+<pre><code># A tibble: 582 x 6
+   movieId title                     year userId rating  timestamp
+     &lt;int&gt; &lt;chr&gt;                    &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;      &lt;int&gt;
+ 1      31 Dangerous Minds           1995      1    2.5 1260759144
+ 2      62 Mr. Holland&#39;s Opus        1995      2    3    835355749
+ 3    1358 Sling Blade               1996      6    2   1109258181
+ 4      31 Dangerous Minds           1995      7    3    851868750
+ 5      40 Cry, the Beloved Country  1995      7    4    851866901
+ 6    1358 Sling Blade               1996      8    0.5 1154474527
+ 7      26 Othello                   1995      9    3    938628655
+ 8    1358 Sling Blade               1996      9    4    938628450
+ 9    1358 Sling Blade               1996     10    5    942766420
+10    1423 Hearts and Minds          1996     10    4    942766420
+# ... with 572 more rows</code></pre>
+</div>
+<div id="menambah-kolom-mutate" class="section level3" number="4.3.6">
+<h3><span class="header-section-number">4.3.6</span> Menambah kolom: <code>mutate()</code></h3>
+<p>Selain menggunakan kolom yang sudah tersedia dalam data, seringkali kita ingin membuat kolom baru yang merupakan turunan dari kolom yang sudah ada. Dalam <code>movielens</code>, kolom <code>timestamp</code> ditulis dalam format <code>unix timestamp</code> (jumlah detik dihitung sejak 1 Januari 1970, jam 00:00:00 UTC). Agar lebih mudah dipahami, kita dapat membuat kolom baru dengan mengubah kolom tersebut ke format <em>datetime</em>.</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="manipulasi-data-dengan-dplyr.html#cb241-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb241-2"><a href="manipulasi-data-dengan-dplyr.html#cb241-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ts =</span> <span class="fu">as.POSIXct</span>(timestamp, <span class="at">origin =</span> <span class="st">&quot;1970-01-01&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb241-3"><a href="manipulasi-data-dengan-dplyr.html#cb241-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>timestamp)</span></code></pre></div>
+<pre><code># A tibble: 100,004 x 7
+   movieId title            year genres        userId rating ts                 
+     &lt;int&gt; &lt;chr&gt;           &lt;int&gt; &lt;fct&gt;          &lt;int&gt;  &lt;dbl&gt; &lt;dttm&gt;             
+ 1      31 Dangerous Minds  1995 Drama              1    2.5 2009-12-14 09:52:24
+ 2    1029 Dumbo            1941 Animation|Ch~      1    3   2009-12-14 09:52:59
+ 3    1061 Sleepers         1996 Thriller           1    3   2009-12-14 09:53:02
+ 4    1129 Escape from Ne~  1981 Action|Adven~      1    2   2009-12-14 09:53:05
+ 5    1172 Cinema Paradis~  1989 Drama              1    4   2009-12-14 09:53:25
+ 6    1263 Deer Hunter, T~  1978 Drama|War          1    2   2009-12-14 09:52:31
+ 7    1287 Ben-Hur          1959 Action|Adven~      1    2   2009-12-14 09:53:07
+ 8    1293 Gandhi           1982 Drama              1    2   2009-12-14 09:52:28
+ 9    1339 Dracula (Bram ~  1992 Fantasy|Horr~      1    3.5 2009-12-14 09:52:05
+10    1343 Cape Fear        1991 Thriller           1    2   2009-12-14 09:52:11
+# ... with 99,994 more rows</code></pre>
+<p>Contoh lain, kita ingin membuat kolom baru yang menyatakan bahwa film berjenis Drama atau bukan:</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="manipulasi-data-dengan-dplyr.html#cb243-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb243-2"><a href="manipulasi-data-dengan-dplyr.html#cb243-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">isDrama =</span> <span class="fu">grepl</span>(<span class="st">&quot;Drama&quot;</span>, genres))</span></code></pre></div>
+<pre><code># A tibble: 100,004 x 8
+   movieId title             year genres         userId rating timestamp isDrama
+     &lt;int&gt; &lt;chr&gt;            &lt;int&gt; &lt;fct&gt;           &lt;int&gt;  &lt;dbl&gt;     &lt;int&gt; &lt;lgl&gt;  
+ 1      31 Dangerous Minds   1995 Drama               1    2.5    1.26e9 TRUE   
+ 2    1029 Dumbo             1941 Animation|Chi~      1    3      1.26e9 TRUE   
+ 3    1061 Sleepers          1996 Thriller            1    3      1.26e9 FALSE  
+ 4    1129 Escape from New~  1981 Action|Advent~      1    2      1.26e9 FALSE  
+ 5    1172 Cinema Paradiso~  1989 Drama               1    4      1.26e9 TRUE   
+ 6    1263 Deer Hunter, The  1978 Drama|War           1    2      1.26e9 TRUE   
+ 7    1287 Ben-Hur           1959 Action|Advent~      1    2      1.26e9 TRUE   
+ 8    1293 Gandhi            1982 Drama               1    2      1.26e9 TRUE   
+ 9    1339 Dracula (Bram S~  1992 Fantasy|Horro~      1    3.5    1.26e9 FALSE  
+10    1343 Cape Fear         1991 Thriller            1    2      1.26e9 FALSE  
+# ... with 99,994 more rows</code></pre>
+<p>Kedua perintah di atas dapat digabungkan menjadi</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="manipulasi-data-dengan-dplyr.html#cb245-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb245-2"><a href="manipulasi-data-dengan-dplyr.html#cb245-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ts =</span> <span class="fu">as.POSIXct</span>(timestamp, <span class="at">origin =</span> <span class="st">&quot;1970-01-01&quot;</span>), <span class="at">isDrama =</span> <span class="fu">grepl</span>(<span class="st">&quot;Drama&quot;</span>,</span>
+<span id="cb245-3"><a href="manipulasi-data-dengan-dplyr.html#cb245-3" aria-hidden="true" tabindex="-1"></a>        genres)) <span class="sc">%&gt;%</span></span>
+<span id="cb245-4"><a href="manipulasi-data-dengan-dplyr.html#cb245-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>timestamp)</span></code></pre></div>
+<pre><code># A tibble: 100,004 x 8
+   movieId title        year genres    userId rating ts                  isDrama
+     &lt;int&gt; &lt;chr&gt;       &lt;int&gt; &lt;fct&gt;      &lt;int&gt;  &lt;dbl&gt; &lt;dttm&gt;              &lt;lgl&gt;  
+ 1      31 Dangerous ~  1995 Drama          1    2.5 2009-12-14 09:52:24 TRUE   
+ 2    1029 Dumbo        1941 Animatio~      1    3   2009-12-14 09:52:59 TRUE   
+ 3    1061 Sleepers     1996 Thriller       1    3   2009-12-14 09:53:02 FALSE  
+ 4    1129 Escape fro~  1981 Action|A~      1    2   2009-12-14 09:53:05 FALSE  
+ 5    1172 Cinema Par~  1989 Drama          1    4   2009-12-14 09:53:25 TRUE   
+ 6    1263 Deer Hunte~  1978 Drama|War      1    2   2009-12-14 09:52:31 TRUE   
+ 7    1287 Ben-Hur      1959 Action|A~      1    2   2009-12-14 09:53:07 TRUE   
+ 8    1293 Gandhi       1982 Drama          1    2   2009-12-14 09:52:28 TRUE   
+ 9    1339 Dracula (B~  1992 Fantasy|~      1    3.5 2009-12-14 09:52:05 FALSE  
+10    1343 Cape Fear    1991 Thriller       1    2   2009-12-14 09:52:11 FALSE  
+# ... with 99,994 more rows</code></pre>
+</div>
+<div id="meringkas-data-summarise" class="section level3" number="4.3.7">
+<h3><span class="header-section-number">4.3.7</span> Meringkas data: <code>summarise()</code></h3>
+<p><code>summarise()</code> berfungsi untuk meringkas atau agregasi baris data, seperti untuk menghitung banyaknya pengamatan, nilai tengah, total, nilai maksimum dan minimum, dan lain-lain.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="manipulasi-data-dengan-dplyr.html#cb247-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb247-2"><a href="manipulasi-data-dengan-dplyr.html#cb247-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">uniqueTitle =</span> <span class="fu">n_distinct</span>(title), <span class="at">totalReview =</span> <span class="fu">n</span>(), <span class="at">avgRating =</span> <span class="fu">mean</span>(rating))</span></code></pre></div>
+<pre><code># A tibble: 1 x 3
+  uniqueTitle totalReview avgRating
+        &lt;int&gt;       &lt;int&gt;     &lt;dbl&gt;
+1        8832      100004      3.54</code></pre>
+<p>Contoh di atas menghitung banyaknya baris, banyaknya judul unik, dan rata-rata dari rating dalam keseluruhan <em>dataframe</em>, dan meringkasnya menjadi satu baris. Kita dapat melakukan agregasi untuk setiap kelompok/<em>group</em>/<em>class</em> satu kolom atau lebih, dengan memanfaatkan perintah <code>group_by()</code>. Misalnya, contoh di atas dapat dimodifikasi agar perhitungan dilakukan untuk setiap tahun rilis. Dengan menambahkan <code>group_by(year)</code>, maka perintah yang dimaksud adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="manipulasi-data-dengan-dplyr.html#cb249-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb249-2"><a href="manipulasi-data-dengan-dplyr.html#cb249-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb249-3"><a href="manipulasi-data-dengan-dplyr.html#cb249-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">uniqueTitle =</span> <span class="fu">n_distinct</span>(title), <span class="at">totalReview =</span> <span class="fu">n</span>(), <span class="at">avgRating =</span> <span class="fu">mean</span>(rating))</span></code></pre></div>
+<pre><code># A tibble: 104 x 4
+    year uniqueTitle totalReview avgRating
+   &lt;int&gt;       &lt;int&gt;       &lt;int&gt;     &lt;dbl&gt;
+ 1  1902           1           6      4.33
+ 2  1915           1           2      3   
+ 3  1916           1           1      3.5 
+ 4  1917           1           2      4.25
+ 5  1918           1           2      4.25
+ 6  1919           1           1      3   
+ 7  1920           3          15      3.7 
+ 8  1921           5          12      4.42
+ 9  1922           6          28      3.80
+10  1923           3           3      4.17
+# ... with 94 more rows</code></pre>
+<p>Terlihat bahwa kolom tahun bersifat unik, artinya satu tahun hanya menempati satu baris.</p>
+<p><code>mutate()</code> juga dapat dipasangkan dengan <code>group_by()</code>, sehingga kolom baru yang terbentu akan berisi nilai agregat yang dihitung per grup. Misal</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="manipulasi-data-dengan-dplyr.html#cb251-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb251-2"><a href="manipulasi-data-dengan-dplyr.html#cb251-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb251-3"><a href="manipulasi-data-dengan-dplyr.html#cb251-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">uniqueTitle =</span> <span class="fu">n_distinct</span>(title), <span class="at">totalReview =</span> <span class="fu">n</span>(), <span class="at">avgRating =</span> <span class="fu">mean</span>(rating)) <span class="sc">%&gt;%</span></span>
+<span id="cb251-4"><a href="manipulasi-data-dengan-dplyr.html#cb251-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">&lt;</span> <span class="dv">1920</span>)</span></code></pre></div>
+<pre><code># A tibble: 14 x 10
+# Groups:   year [6]
+   movieId title    year genres  userId rating timestamp uniqueTitle totalReview
+     &lt;int&gt; &lt;chr&gt;   &lt;int&gt; &lt;fct&gt;    &lt;int&gt;  &lt;dbl&gt;     &lt;int&gt;       &lt;int&gt;       &lt;int&gt;
+ 1    7065 Birth ~  1915 Drama|~    262    2.5    1.43e9           1           2
+ 2   32898 Trip t~  1902 Action~    262    3      1.43e9           1           6
+ 3   32898 Trip t~  1902 Action~    299    4.5    1.34e9           1           6
+ 4   32898 Trip t~  1902 Action~    378    4      1.44e9           1           6
+ 5    3309 Dog&#39;s ~  1918 Comedy     468    4.5    1.30e9           1           2
+ 6    7065 Birth ~  1915 Drama|~    468    3.5    1.30e9           1           2
+ 7    8511 Immigr~  1917 Comedy     468    4.5    1.30e9           1           2
+ 8   32898 Trip t~  1902 Action~    468    4.5    1.30e9           1           6
+ 9   62383 20,000~  1916 Action~    468    3.5    1.30e9           1           1
+10   72626 Billy ~  1919 Comedy~    468    3      1.30e9           1           1
+11   32898 Trip t~  1902 Action~    481    5      1.44e9           1           6
+12   32898 Trip t~  1902 Action~    547    5      1.43e9           1           6
+13    3309 Dog&#39;s ~  1918 Comedy     554    4      1.01e9           1           2
+14    8511 Immigr~  1917 Comedy     648    4      1.18e9           1           2
+# ... with 1 more variable: avgRating &lt;dbl&gt;</code></pre>
+<p>Perhatikan output diatas, untuk kelompok tahun yang sama, maka <code>uniqueTitle</code>, <code>totalReview</code> dan <code>avgRating</code> juga sama nilainya.</p>
+</div>
+<div id="mengurutkan-baris-arrange" class="section level3" number="4.3.8">
+<h3><span class="header-section-number">4.3.8</span> Mengurutkan baris: <code>arrange()</code></h3>
+<p>Data yang terurut umumnya lebih mudah dibaca. Di paket <code>dplyr</code> kita dapat mengurutkan <em>dataframe</em> berdasarkan kolom tertentu dengan fungsi <code>arrange()</code>. Contoh sebelumnya, misalnya, dapat kita urutkan dari tahun terlama ke tahun terbaru sebagai berikut:</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="manipulasi-data-dengan-dplyr.html#cb253-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb253-2"><a href="manipulasi-data-dengan-dplyr.html#cb253-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb253-3"><a href="manipulasi-data-dengan-dplyr.html#cb253-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">uniqueTitle =</span> <span class="fu">n_distinct</span>(title), <span class="at">totalReview =</span> <span class="fu">n</span>(), <span class="at">avgRating =</span> <span class="fu">mean</span>(rating)) <span class="sc">%&gt;%</span></span>
+<span id="cb253-4"><a href="manipulasi-data-dengan-dplyr.html#cb253-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">&lt;</span> <span class="dv">1920</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb253-5"><a href="manipulasi-data-dengan-dplyr.html#cb253-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(year)</span></code></pre></div>
+<pre><code># A tibble: 14 x 10
+# Groups:   year [6]
+   movieId title    year genres  userId rating timestamp uniqueTitle totalReview
+     &lt;int&gt; &lt;chr&gt;   &lt;int&gt; &lt;fct&gt;    &lt;int&gt;  &lt;dbl&gt;     &lt;int&gt;       &lt;int&gt;       &lt;int&gt;
+ 1   32898 Trip t~  1902 Action~    262    3      1.43e9           1           6
+ 2   32898 Trip t~  1902 Action~    299    4.5    1.34e9           1           6
+ 3   32898 Trip t~  1902 Action~    378    4      1.44e9           1           6
+ 4   32898 Trip t~  1902 Action~    468    4.5    1.30e9           1           6
+ 5   32898 Trip t~  1902 Action~    481    5      1.44e9           1           6
+ 6   32898 Trip t~  1902 Action~    547    5      1.43e9           1           6
+ 7    7065 Birth ~  1915 Drama|~    262    2.5    1.43e9           1           2
+ 8    7065 Birth ~  1915 Drama|~    468    3.5    1.30e9           1           2
+ 9   62383 20,000~  1916 Action~    468    3.5    1.30e9           1           1
+10    8511 Immigr~  1917 Comedy     468    4.5    1.30e9           1           2
+11    8511 Immigr~  1917 Comedy     648    4      1.18e9           1           2
+12    3309 Dog&#39;s ~  1918 Comedy     468    4.5    1.30e9           1           2
+13    3309 Dog&#39;s ~  1918 Comedy     554    4      1.01e9           1           2
+14   72626 Billy ~  1919 Comedy~    468    3      1.30e9           1           1
+# ... with 1 more variable: avgRating &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div id="gabungan-beberapa-fungsi-sekaligus" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Gabungan beberapa fungsi sekaligus</h2>
+<p>Setelah mempraktikan bagaimana menggunakan fungsi-fungsi dasar <code>dplyr</code>, mari gabungkan beberapa fungsi dalam satu perintah.</p>
+<p><strong>Contoh 1:</strong> Katakan untuk setiap film drama, kita ingin menghitung berapa banyak penilaian yang diberikan pada tahun perdana dan tahun-tahun setelahnya. Hasilnya diurutkan dari yang mendapat penilaian terbanyak di tahun perdana.</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="manipulasi-data-dengan-dplyr.html#cb255-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb255-2"><a href="manipulasi-data-dengan-dplyr.html#cb255-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;Drama&quot;</span>, genres)) <span class="sc">%&gt;%</span></span>
+<span id="cb255-3"><a href="manipulasi-data-dengan-dplyr.html#cb255-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">yearRating =</span> <span class="fu">as.numeric</span>(<span class="fu">format</span>(<span class="fu">as.POSIXct</span>(timestamp, <span class="at">origin =</span> <span class="st">&quot;1970-01-01&quot;</span>),</span>
+<span id="cb255-4"><a href="manipulasi-data-dengan-dplyr.html#cb255-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;%Y&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb255-5"><a href="manipulasi-data-dengan-dplyr.html#cb255-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">firstYear =</span> year <span class="sc">==</span> yearRating, <span class="at">nextYear =</span> year <span class="sc">&lt;</span> yearRating) <span class="sc">%&gt;%</span></span>
+<span id="cb255-6"><a href="manipulasi-data-dengan-dplyr.html#cb255-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb255-7"><a href="manipulasi-data-dengan-dplyr.html#cb255-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">firstYear =</span> <span class="fu">sum</span>(firstYear), <span class="at">nextYear =</span> <span class="fu">sum</span>(nextYear)) <span class="sc">%&gt;%</span></span>
+<span id="cb255-8"><a href="manipulasi-data-dengan-dplyr.html#cb255-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(firstYear))</span></code></pre></div>
+<pre><code># A tibble: 4,249 x 3
+   title                    firstYear nextYear
+   &lt;chr&gt;                        &lt;int&gt;    &lt;int&gt;
+ 1 Fargo                           19      205
+ 2 Gladiator                       19      153
+ 3 American Beauty                 18      202
+ 4 Blair Witch Project, The        18       68
+ 5 Ex Machina                      18        8
+ 6 High Fidelity                   18       70
+ 7 Dark Knight, The                17      104
+ 8 Sixth Sense, The                17      176
+ 9 Erin Brockovich                 16       69
+10 Eraser                          14       55
+# ... with 4,239 more rows</code></pre>
+<p><strong>Contoh 2:</strong> Kita akan menampilkan satu film dengan rata-rata rating terbaik untuk setiap tahun perilisan. Jika ada beberapa film yang mempunyai rating tertinggi, maka dipilih film dengan jumlah rating terbanyak. Hasil akhir berupa <em>dataframe</em> dengan kolom tahun, judul dan rata-rata rating.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="manipulasi-data-dengan-dplyr.html#cb257-1" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">%&gt;%</span></span>
+<span id="cb257-2"><a href="manipulasi-data-dengan-dplyr.html#cb257-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(year, title) <span class="sc">%&gt;%</span></span>
+<span id="cb257-3"><a href="manipulasi-data-dengan-dplyr.html#cb257-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">avgRating =</span> <span class="fu">mean</span>(rating), <span class="at">nRating =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb257-4"><a href="manipulasi-data-dengan-dplyr.html#cb257-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb257-5"><a href="manipulasi-data-dengan-dplyr.html#cb257-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(year, <span class="fu">desc</span>(avgRating), <span class="fu">desc</span>(nRating)) <span class="sc">%&gt;%</span></span>
+<span id="cb257-6"><a href="manipulasi-data-dengan-dplyr.html#cb257-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">rn =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb257-7"><a href="manipulasi-data-dengan-dplyr.html#cb257-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(rn <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb257-8"><a href="manipulasi-data-dengan-dplyr.html#cb257-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>rn, <span class="sc">-</span>nRating) <span class="sc">%&gt;%</span></span>
+<span id="cb257-9"><a href="manipulasi-data-dengan-dplyr.html#cb257-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span></code></pre></div>
+<pre><code># A tibble: 104 x 3
+    year title                                                         avgRating
+   &lt;int&gt; &lt;chr&gt;                                                             &lt;dbl&gt;
+ 1  1902 Trip to the Moon, A (Voyage dans la lune, Le)                      4.33
+ 2  1915 Birth of a Nation, The                                             3   
+ 3  1916 20,000 Leagues Under the Sea                                       3.5 
+ 4  1917 Immigrant, The                                                     4.25
+ 5  1918 Dog&#39;s Life, A                                                      4.25
+ 6  1919 Billy Blazes, Esq.                                                 3   
+ 7  1920 Cabinet of Dr. Caligari, The (Cabinet des Dr. Caligari., Das)      4   
+ 8  1921 Goat, The                                                          5   
+ 9  1922 Cops                                                               5   
+10  1923 Our Hospitality                                                    4.5 
+# ... with 94 more rows</code></pre>
+<hr />
+<p>Dari hasil eksplorasi di atas, paket <code>dplyr</code> yang merupakan salah satu bagian inti dari paket <code>tidyverse</code> merupakan alat yang bisa diandalkan untuk manipulasi <em>dataframe</em> dalam R. Meskipun demikian, untuk keperluan yang lebih komplek, <code>dplyr</code> membutuhkan fungsi-fungsi yang tersedia di paket lain, baik itu paket bawaan seperti <code>base</code> dan <code>utils</code>, maupun paket lain. Misalnya untuk mengolah data <em>string/text</em> bisa menggunakan paket <code>stringr</code>, data berformat tanggal dan waktu bisa menggunakan paket <code>lubridate</code>. Sementara untuk melakukan <em>pivoting</em> atau <em>un-pivoting</em> bisa menggunakan paket <code>tidyr</code>.</p>
+<p>Contoh-contoh lain dalam menggunakan <code>dplyr</code> dapat dipelajari di buku <em>R for Data Science</em> <span class="citation">(<a href="#ref-RDS" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Bache, Stefan Milton, and Hadley Wickham. 2020. <em>Magrittr: A Forward-Pipe Operator for r</em>. <a href="https://CRAN.R-project.org/package=magrittr">https://CRAN.R-project.org/package=magrittr</a>.
+</div>
+<div class="csl-entry">
+Harper, F. Maxwell, and Joseph A. Konstan. 2015. <span>“The MovieLens Datasets: History and Context.”</span> <em>ACM Trans. Interact. Intell. Syst.</em> 5 (4). <a href="https://doi.org/10.1145/2827872">https://doi.org/10.1145/2827872</a>.
+</div>
+<div class="csl-entry">
+Stobierski, Tim. 2021. <span>“Data Wrangling: What It Is &amp; Why It’s Important.”</span> Harvard Business School Online. <a href="https://online.hbs.edu/blog/post/data-wrangling">https://online.hbs.edu/blog/post/data-wrangling</a>.
+</div>
+<div class="csl-entry">
+The OHI Team. 2019. <span>“Introduction to Open Data Science.”</span> Ocean Health Index. <a href="https://ohi-science.org/data-science-training/">https://ohi-science.org/data-science-training/</a>.
+</div>
+<div class="csl-entry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div class="csl-entry">
+Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2021a. <span>“A Grammar of Data Manipulation: Dplyr.”</span> RStudio. <a href="https://dplyr.tidyverse.org/">https://dplyr.tidyverse.org/</a>.
+</div>
+<div class="csl-entry">
+———. 2021b. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+</div>
+<div class="csl-entry">
+Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 1st ed. Paperback; O’Reilly Media. <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.
+</div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-MAGRITTR" class="csl-entry">
+Bache, Stefan Milton, and Hadley Wickham. 2020. <em>Magrittr: A Forward-Pipe Operator for r</em>. <a href="https://CRAN.R-project.org/package=magrittr">https://CRAN.R-project.org/package=magrittr</a>.
+</div>
+<div id="ref-MOVIELENS" class="csl-entry">
+Harper, F. Maxwell, and Joseph A. Konstan. 2015. <span>“The MovieLens Datasets: History and Context.”</span> <em>ACM Trans. Interact. Intell. Syst.</em> 5 (4). <a href="https://doi.org/10.1145/2827872">https://doi.org/10.1145/2827872</a>.
+</div>
+<div id="ref-HBR" class="csl-entry">
+Stobierski, Tim. 2021. <span>“Data Wrangling: What It Is &amp; Why It’s Important.”</span> Harvard Business School Online. <a href="https://online.hbs.edu/blog/post/data-wrangling">https://online.hbs.edu/blog/post/data-wrangling</a>.
+</div>
+<div id="ref-OHI" class="csl-entry">
+The OHI Team. 2019. <span>“Introduction to Open Data Science.”</span> Ocean Health Index. <a href="https://ohi-science.org/data-science-training/">https://ohi-science.org/data-science-training/</a>.
+</div>
+<div id="ref-TIDYVERSE" class="csl-entry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div id="ref-DPLYR2" class="csl-entry">
+Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2021a. <span>“A Grammar of Data Manipulation: Dplyr.”</span> RStudio. <a href="https://dplyr.tidyverse.org/">https://dplyr.tidyverse.org/</a>.
+</div>
+<div id="ref-DPLYR" class="csl-entry">
+———. 2021b. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+</div>
+<div id="ref-RDS" class="csl-entry">
+Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 1st ed. Paperback; O’Reilly Media. <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="operasi-dasar-r.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/nurandi/sta561/edit/master/data-wrangling.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["series.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
