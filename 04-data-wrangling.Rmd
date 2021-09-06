@@ -39,7 +39,7 @@ Sebagai bahasa pemrograman populer dalam sains data, R menyediakan berbagai pake
 * `forcats` : bekerja dengan *factor*
 * `lubridate` : bekerja dengan data berformat tanggal dan waktu
 
-![tidyverse. Sumber gambar: Che Smith (chsmith1@davidson.edu)](https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2019/05/ggplot_hive.jpg)
+![tidyverse. Sumber gambar: Che Smith (chsmith1@davidson.edu)](img/ggplot_hive.jpg)
 
 Artikel ini akan fokus pada pemanfaatan paket `dplyr` [@DPLYR]. Paket yang dikembangkan oleh Hadley Wickham dan tim ini  dipandang sebagai *"grammar"* yang di dalamnya tersedia sejumlah *"verb"* untuk menyesaikan berbagai pekerjaan terkait manipulasi data  [@DPLYR2], di antaranya untuk:
 

@@ -327,3 +327,86 @@ e <- eigen(Z4) #eigen value & eigen vector dr Z4
 e$values #akses eigen values
 e[[2]] #akses eigen vectors
 ```
+
+
+## Latihan
+
+### Latihan 1
+
+Tentukan output syntax program berikut:
+
+```{r, eval=FALSE}
+c("la","ye")[rep(c(1,2,2,1),times=4)]
+c("la","ye")[rep(rep(1:2,each=3),2)]
+```
+
+**Jawab:**
+
+```{r}
+c("la","ye")[rep(c(1,2,2,1),times=4)]
+c("la","ye")[rep(rep(1:2,each=3),2)]
+```
+
+### Latihan 2
+
+
+Buatlah syntax agar dihasilkan output vektor sebagai berikut 
+
+```{r, eval=FALSE}
+X1 Y2 X3 Y4 X5 Y6 X7 Y8 X9 Y10
+1  4  7  10 13 16 19 22 25 28
+```
+
+
+### Latihan 3
+
+
+Seorang peneliti merancang sebuah perancangan percobaan RAKL dengan 4 perlakuan dan 3 kelompok (anggaplah respon percobaan berupa baris bilangan). Bantulah peneliti tersebut untuk membuat raw data seperti output sebagai berikut!
+
+```{eval=FALSE}
+> data1
+
+  Perl Kel Resp
+1   P1   1  1
+2   P1   2  3
+3   P1   3  5
+4   P2   1  7
+5   P2   2  9
+6   P2   3  11
+7   P3   1  13
+8   P3   2  15
+9   P3   3  17
+10  P4   1  19
+11  P4   2  21
+12  P4   3  23
+```
+
+
+**Jawab**
+
+```{r}
+jPerl <- 4
+jKel <-  3
+Perl <- factor(rep(paste0("P", c(1:jPerl)), each = jKel))
+Kel <- factor(rep(1:jKel, jPerl))
+Resp <- 2*seq(jPerl*jKel) - 1
+data1 <- data.frame(Perl, Kel, Resp)
+data1
+```
+
+Atau bisa dibuat fungsi sebagai berikut
+
+```{r, eval=FALSE}
+genRancob <- function(jPerl = 4, jKel = 3){
+  Perl <-factor(rep(paste0("P", c(1:jPerl)), each = jKel))
+  Kel <- factor(rep(1:jKel, jPerl))
+  Resp <- 2*seq(jPerl*jKel) - 1
+  data1 <- data.frame(Perl, Kel, Resp)
+  return(data1)
+}
+
+data1 <- genRancob(jPerl = 4, jKel = 3)
+data1
+```
+
+
