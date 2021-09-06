@@ -4,9 +4,9 @@ language:
     chapter_name: "Bagian "
 rmd_files: [
   "index.Rmd",
-  "what-r.Rmd",
-  "r-dasar.Rmd",
-  "operasi-dasar-r.Rmd",
-  "data-wrangling.Rmd"]
+  "01-what-r.Rmd",
+  "02-r-dasar.Rmd",
+  "03-operasi-dasar-r.Rmd",
+  "04-data-wrangling.Rmd"]
 delete_merged_file: true 
 output_dir: "docs"
