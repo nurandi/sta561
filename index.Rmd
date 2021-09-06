@@ -11,6 +11,9 @@ biblio-style: apalike
 link-citations: yes
 github-repo: openscapes/series
 description: Catatan Latihan dan Kuliah STA561 Komputasi Statistika.
+output: bookdown::pdf_document2
+classoption: a4paper
+geometry: left=2cm,right=2cm,top=2cm,bottom=2cm
 ---
 
 # Welcome {-}
