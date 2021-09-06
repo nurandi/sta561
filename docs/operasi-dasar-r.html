@@ -205,6 +205,12 @@ div.csl-indent {
 <li class="chapter" data-level="3.2.2" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#operasi-pada-vector"><i class="fa fa-check"></i><b>3.2.2</b> Operasi pada vector</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#operasi-pada-matriks"><i class="fa fa-check"></i><b>3.3</b> Operasi pada matriks</a></li>
+<li class="chapter" data-level="3.4" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#latihan"><i class="fa fa-check"></i><b>3.4</b> Latihan</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#latihan-1"><i class="fa fa-check"></i><b>3.4.1</b> Latihan 1</a></li>
+<li class="chapter" data-level="3.4.2" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#latihan-2"><i class="fa fa-check"></i><b>3.4.2</b> Latihan 2</a></li>
+<li class="chapter" data-level="3.4.3" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#latihan-3"><i class="fa fa-check"></i><b>3.4.3</b> Latihan 3</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="manipulasi-data-dengan-dplyr.html"><a href="manipulasi-data-dengan-dplyr.html"><i class="fa fa-check"></i><b>4</b> Manipulasi Data dengan <code>dplyr</code></a>
 <ul>
@@ -576,7 +582,79 @@ div.csl-indent {
 <pre><code>##           [,1]       [,2]
 ## [1,] 0.6196295 -0.7848945
 ## [2,] 0.7848945  0.6196295</code></pre>
+</div>
+<div id="latihan" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Latihan</h2>
+<div id="latihan-1" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Latihan 1</h3>
+<p>Tentukan output syntax program berikut:</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="operasi-dasar-r.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;la&quot;</span>,<span class="st">&quot;ye&quot;</span>)[<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>),<span class="at">times=</span><span class="dv">4</span>)]</span>
+<span id="cb213-2"><a href="operasi-dasar-r.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;la&quot;</span>,<span class="st">&quot;ye&quot;</span>)[<span class="fu">rep</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="at">each=</span><span class="dv">3</span>),<span class="dv">2</span>)]</span></code></pre></div>
+<p><strong>Jawab:</strong></p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="operasi-dasar-r.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;la&quot;</span>,<span class="st">&quot;ye&quot;</span>)[<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>),<span class="at">times=</span><span class="dv">4</span>)]</span></code></pre></div>
+<pre><code>##  [1] &quot;la&quot; &quot;ye&quot; &quot;ye&quot; &quot;la&quot; &quot;la&quot; &quot;ye&quot; &quot;ye&quot; &quot;la&quot; &quot;la&quot; &quot;ye&quot; &quot;ye&quot; &quot;la&quot; &quot;la&quot; &quot;ye&quot; &quot;ye&quot;
+## [16] &quot;la&quot;</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="operasi-dasar-r.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;la&quot;</span>,<span class="st">&quot;ye&quot;</span>)[<span class="fu">rep</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="at">each=</span><span class="dv">3</span>),<span class="dv">2</span>)]</span></code></pre></div>
+<pre><code>##  [1] &quot;la&quot; &quot;la&quot; &quot;la&quot; &quot;ye&quot; &quot;ye&quot; &quot;ye&quot; &quot;la&quot; &quot;la&quot; &quot;la&quot; &quot;ye&quot; &quot;ye&quot; &quot;ye&quot;</code></pre>
+</div>
+<div id="latihan-2" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Latihan 2</h3>
+<p>Buatlah syntax agar dihasilkan output vektor sebagai berikut</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="operasi-dasar-r.html#cb218-1" aria-hidden="true" tabindex="-1"></a>X1 Y2 X3 Y4 X5 Y6 X7 Y8 X9 Y10</span>
+<span id="cb218-2"><a href="operasi-dasar-r.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">4</span>  <span class="dv">7</span>  <span class="dv">10</span> <span class="dv">13</span> <span class="dv">16</span> <span class="dv">19</span> <span class="dv">22</span> <span class="dv">25</span> <span class="dv">28</span></span></code></pre></div>
+</div>
+<div id="latihan-3" class="section level3" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Latihan 3</h3>
+<p>Seorang peneliti merancang sebuah perancangan percobaan RAKL dengan 4 perlakuan dan 3 kelompok (anggaplah respon percobaan berupa baris bilangan). Bantulah peneliti tersebut untuk membuat raw data seperti output sebagai berikut!</p>
+<pre eval="FALSE"><code>&gt; data1
 
+  Perl Kel Resp
+1   P1   1  1
+2   P1   2  3
+3   P1   3  5
+4   P2   1  7
+5   P2   2  9
+6   P2   3  11
+7   P3   1  13
+8   P3   2  15
+9   P3   3  17
+10  P4   1  19
+11  P4   2  21
+12  P4   3  23</code></pre>
+<p><strong>Jawab</strong></p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="operasi-dasar-r.html#cb220-1" aria-hidden="true" tabindex="-1"></a>jPerl <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb220-2"><a href="operasi-dasar-r.html#cb220-2" aria-hidden="true" tabindex="-1"></a>jKel <span class="ot">&lt;-</span>  <span class="dv">3</span></span>
+<span id="cb220-3"><a href="operasi-dasar-r.html#cb220-3" aria-hidden="true" tabindex="-1"></a>Perl <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">&quot;P&quot;</span>, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>jPerl)), <span class="at">each =</span> jKel))</span>
+<span id="cb220-4"><a href="operasi-dasar-r.html#cb220-4" aria-hidden="true" tabindex="-1"></a>Kel <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>jKel, jPerl))</span>
+<span id="cb220-5"><a href="operasi-dasar-r.html#cb220-5" aria-hidden="true" tabindex="-1"></a>Resp <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">seq</span>(jPerl<span class="sc">*</span>jKel) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb220-6"><a href="operasi-dasar-r.html#cb220-6" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Perl, Kel, Resp)</span>
+<span id="cb220-7"><a href="operasi-dasar-r.html#cb220-7" aria-hidden="true" tabindex="-1"></a>data1</span></code></pre></div>
+<pre><code>##    Perl Kel Resp
+## 1    P1   1    1
+## 2    P1   2    3
+## 3    P1   3    5
+## 4    P2   1    7
+## 5    P2   2    9
+## 6    P2   3   11
+## 7    P3   1   13
+## 8    P3   2   15
+## 9    P3   3   17
+## 10   P4   1   19
+## 11   P4   2   21
+## 12   P4   3   23</code></pre>
+<p>Atau bisa dibuat fungsi sebagai berikut</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="operasi-dasar-r.html#cb222-1" aria-hidden="true" tabindex="-1"></a>genRancob <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">jPerl =</span> <span class="dv">4</span>, <span class="at">jKel =</span> <span class="dv">3</span>){</span>
+<span id="cb222-2"><a href="operasi-dasar-r.html#cb222-2" aria-hidden="true" tabindex="-1"></a>  Perl <span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">&quot;P&quot;</span>, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>jPerl)), <span class="at">each =</span> jKel))</span>
+<span id="cb222-3"><a href="operasi-dasar-r.html#cb222-3" aria-hidden="true" tabindex="-1"></a>  Kel <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>jKel, jPerl))</span>
+<span id="cb222-4"><a href="operasi-dasar-r.html#cb222-4" aria-hidden="true" tabindex="-1"></a>  Resp <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">seq</span>(jPerl<span class="sc">*</span>jKel) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb222-5"><a href="operasi-dasar-r.html#cb222-5" aria-hidden="true" tabindex="-1"></a>  data1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Perl, Kel, Resp)</span>
+<span id="cb222-6"><a href="operasi-dasar-r.html#cb222-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data1)</span>
+<span id="cb222-7"><a href="operasi-dasar-r.html#cb222-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb222-8"><a href="operasi-dasar-r.html#cb222-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb222-9"><a href="operasi-dasar-r.html#cb222-9" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">genRancob</span>(<span class="at">jPerl =</span> <span class="dv">4</span>, <span class="at">jKel =</span> <span class="dv">3</span>)</span>
+<span id="cb222-10"><a href="operasi-dasar-r.html#cb222-10" aria-hidden="true" tabindex="-1"></a>data1</span></code></pre></div>
+
+</div>
 </div>
 </div>
             </section>

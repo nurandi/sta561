@@ -35,6 +35,10 @@ operasi-pada-vector
 operasi-sederhana-vector-numerik
 operasi-sederhana-vector-karakter
 operasi-pada-matriks
+latihan
+latihan-1
+latihan-2
+latihan-3
 manipulasi-data-dengan-dplyr
 manipulasi-data
 r-tidyverse-dan-dplyr
