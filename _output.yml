@@ -10,7 +10,7 @@ bookdown::gitbook:
         <li><a href="./">Deary STA561</a></li>
       after: |
         <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/nurandi/sta561/edit/master/%s
+    edit: https://github.com/nurandi/sta561/edit/main/%s
     download: ["pdf"]
 #bookdown::pdf_book:
 #  includes:
