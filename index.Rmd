@@ -3,14 +3,13 @@ title: "STA561 Komputasi Statistika"
 author: "Nur Andi Setiabudi"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+description: Catatan Latihan dan Kuliah STA561 Komputasi Statistika.
+github-repo: nurandi/sta561
 documentclass: book
 bibliography:
-- book.bib
-- packages.bib
+- reference.bib
 biblio-style: apalike
 link-citations: yes
-github-repo: openscapes/series
-description: Catatan Latihan dan Kuliah STA561 Komputasi Statistika.
 output: bookdown::pdf_document2
 classoption: a4paper
 geometry: left=2cm,right=2cm,top=2cm,bottom=2cm
@@ -18,3 +17,6 @@ geometry: left=2cm,right=2cm,top=2cm,bottom=2cm
 
 # Welcome {-}
 
+```{bash}
+cowsay "Data science is awesome!"
+```

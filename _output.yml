@@ -12,8 +12,7 @@ bookdown::gitbook:
         <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
     edit: https://github.com/nurandi/sta561/edit/main/%s
     download: ["pdf"]
-#bookdown::pdf_book:
-#  includes:
-#    in_header: _preamble.tex
-#  latex_engine: xelatex
-#  keep_tex: no
+  split_bib: no
+bookdown::pdf_document2:
+  split_bib: no
+  

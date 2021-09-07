@@ -7,6 +7,7 @@ rmd_files: [
   "01-what-r.Rmd",
   "02-r-dasar.Rmd",
   "03-operasi-dasar-r.Rmd",
-  "04-data-wrangling.Rmd"]
+  "04-data-wrangling-1.Rmd",
+  "05-data-wrangling-2.Rmd" ]
 delete_merged_file: true 
 output_dir: "docs"
