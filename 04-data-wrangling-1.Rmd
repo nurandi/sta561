@@ -1,0 +1,204 @@
+# Data Wrangling
+
+
+*Data wrangling*, disebut juga *data munging* atau *data manipulation* (dalam konotasi positif), merupakam proses transformasi atau menyiapkan data menjadi format siap dianalisis. Banyak tantangan yang dihadapi dalam tahapan ini, mulai dari ukuran data yang besar, format yang beragam, sumber yang tidak terintegrasi dan lain-lain. Sehingga tidak heran jika *data wrangling* menghabiskan hingga 80% dari waktu keseluruhan analsis yang kita lakukan.
+
+Aktivitas utama dalam *data wrangling* di antaranya adalah:
+
+* Membuat kolom baru, biasanya diturunkan dari kolom yang sudah ada
+* Subsetting data atau memilih baris dan/kolom tertentu dari data
+* Sorting atau mengurutkan data
+* Recoding atau mengkodekan ulang nilai-nilai dari data
+* Merging data atau menggabungkan data, baik penggabungan baris maupun kolom
+* Reshaping data atau mengubah format menjadi bentuk *wide* ataupun *long*
+
+
+Pada bagian ini akan dipraktikan bagaimana melakukan *data wrangling* menggunakan paket `base` atau paket-paket bawaan R lainnya. Adapun data yang akan digunakan adalah sebagai berikut:
+
+```{r}
+employees <- data.frame(ID = c(1,2,3,5,6,7), 
+                        Name = c("Alex", "Joni", "Banu", "Ani", "Riska", "John"), 
+                        Age = c(21,27,18,25,22,27), 
+                        Sex = c("M","M","M", "F", "F","M"))
+employees
+```
+
+```{r}
+more.employees <- data.frame(ID = c(11,12,13), 
+                            Name = c("Bunga", "Kembang", "Puspa"), 
+                            Age = c(25,27,21),
+                            Sex = c("M","M","M"))
+more.employees
+```
+
+
+```{r}
+address <- data.frame(ID = c(1,2,3,5,6,7), 
+                      City = c("Bandung","Jakarta","Bogor", "Jakarta", "Bandung", "Jakarta"))
+address
+```
+
+## Inspeksi dataframe
+
+Selelum melakukan *data wranglingk* lebih lanjut, hal utama yang dikerjakan ada inspeksi terhadap dataframe, diantaranya menampilkan jumlah baris dan kolom, melihat statistik ringkasan, melihat struktur dataframe serta melihat beberapa baris data (baik baris teratas maupun terbawah)
+
+```{r}
+# menghitung jumlah baris
+nrow(employees)
+
+# menghitung jumlah baris
+ncol(employees)
+
+# menghitung dimensi (baris dan kolom)
+dim(employees)
+
+# menghitung statistik ringkasan
+summary(employees)
+
+# melihat struktur dataframe
+str(employees)
+
+# menampilkan beberapa baris teratas
+head(employees)
+
+# menampilkan beberapa baris terbawah
+tail(employees)
+```
+
+## Mengakses elemen
+
+Mengakses atau memilih sebagian elemen dari dataframe dapat menggunakan operator `[ ]`, `[[ ]]` dan `$`
+
+
+```{r}
+# baris 1, kolom 2
+employees[1,2]
+
+# baris 1, kolom "Name"
+employees[1,"Name"] 
+
+# baris 1, kolom "Name"
+employees[1,]$Name
+
+# baris ke-1, semua kolom
+employees[1,]
+
+# kolom ke-2, semua baris
+employees[,2]
+
+# kolom "Name", semua baris
+employees[,"Name"]
+
+# kolom "Name", semua baris
+employees$Name
+
+# baris 1-2, semua kolom
+employees[1:2,]
+
+# kolom 1-2, semua baris
+employees[,1:2]
+
+# kolom 1-2, semua baris
+employees[,c(1, 2)]
+
+# kolom "ID" dan "Name", semua baris
+employees[,c("ID", "Name")]
+
+# semua kolom, hanya baris yang memenuhi kriteria
+employees[employees$Age > 20, ]
+```
+
+## Mengubah data
+
+Dimungkinkan untuk mengubah/*mengupdate* nilai dari dataframe (misalnya jika diketahui ada kesalahan pencatatan)
+
+```{r}
+# Mengubah data di baris ke-3 kolom "Age"
+employees[3,"Age"] <- 29
+employees
+```
+
+## Mengurutkan baris
+
+Mengurutkan baris dapat dilakukan secara *ascending* (dari kecil ke besar, atau A-Z) atau *descending* (dari kecil ke besar, atau Z-A).
+
+```{r}
+# mengurutkan ascending
+employees[order(employees$Age),]
+
+```
+```{r}
+# mengurutkan descending
+employees[order(employees$Age, decreasing=T),]
+```
+
+## Menggabungkan dataframe
+
+Penggabungan dataframe dapat dilakukan secara column-wise (merge) ataupun row-wise (union). Untuk merge, bisa dilakukan dengan perintah `merge()` (berdasarkan ID tertentu), atau `cbind()` (berdasarkan urutan baris). Untuk penggabungan union, bisa menggunakan `rbind()`
+
+```{r}
+# menggabungkan kolom berdasarkan ID
+merge(employees, address, by="ID")
+```
+
+```{r}
+# menggabungkan kolom berdardasarkan urutan baris
+Salary <- c(100, 120, 110, 90, 130, 120)
+cbind(employees, Salary) 
+```
+
+```{r}
+# menggabungkan baris berdasarkan urutan kolom
+all.employees <- rbind(employees, more.employees)
+all.employees
+```
+
+## Agregasi data
+
+Menghitung agregasi data
+
+```{r}
+# menghitung rata-rata age
+mean(all.employees$Age)
+```
+
+```{r}
+# menghitung jumlah employees berdasarkan jenis kelamin
+aggregate(all.employees$Sex, list(City=all.employees$Sex), FUN=length)
+```
+
+## Reshaping dataframe
+
+Reshaping adalah mengubah format dataframe dari "long" ke "wide" atau sebaliknya. Sebagai contoh
+
+```{r}
+# https://riptutorial.com/r/example/12036/the-reshape-function
+set.seed(1234)
+df <- data.frame(identifier=rep(1:5, each=3),
+                 location=rep(c("up", "down", "left", "up", "center"), each=3),
+                 period=rep(1:3, 5), counts=sample(35, 15, replace=TRUE),
+                 values=runif(15, 5, 10))[-c(4,8,11),]
+df
+```
+
+### Long to wide
+
+Reshape ke format *wide* untuk pada kolom "period" 
+
+```{r}
+df.wide <- reshape(df, idvar="identifier", timevar="period",
+                   v.names=c("values", "counts"), direction="wide")
+df.wide
+```
+
+### Wide to long
+
+Reshape ke format *long* 
+
+```{r}
+reshape(df.wide, idvar="identifier",
+        varying=list(c(3,5,7), c(4,6,8)), direction="long")
+```
+
+
+

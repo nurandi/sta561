@@ -1,27 +1,9 @@
-# Manipulasi Data dengan `dplyr`
+# Data Wrangling dengan `tidyverse`
 
-```{r setup, include=FALSE}
-library(knitr)
-library(rmdformats)
-
-## Global options
-options(max.print="75")
-opts_chunk$set(echo=TRUE,
-               eval=TRUE,
-	             cache=TRUE,
-               prompt=FALSE,
-               tidy=TRUE,
-               comment=NA,
-               message=FALSE,
-               warning=FALSE)
-opts_knit$set(width=75)
-```
+> Tiga sub-bab pertama dalam artikel ini merupakan bagian dari tugas STA581 dan pernah dipublikasikan [RPubs.com/nurandi](https://rpubs.com/nurandi/manipulasi-data-dplyr).
 
 
-> Artikel ini juga dipublikasikan di [RPubs.com/nurandi](https://rpubs.com/nurandi/manipulasi-data-dplyr).
-
-
-## Manipulasi Data
+## Data Wrangling
 
 Aktivitas apa yang biasa dilakukan oleh *data scientist* terhadap data tabular? Barangkali menghapus kolom atau baris, melakukan kalkulasi, menambahkan kolom baru atau melakukan agregasi. Aktivitas-aktivitas tersebut sering disebut sebagai *data wrangling* [@OHI] atau manipulasi data (dalam konitasi positif) yang bertujuan untuk mengubah data menjadi format yang lebih mudah digunakan atau mudah dipahami. Manipulasi data menjadi bagian tidak diterpisahkan dalam persiapan data yang umumnya membutuhkan waktu paling lama dari keseluruhan rangkaian analisis data. Skenario dalam proses ini berbeda-beda tergantung pada data yang digunakan dan tujuan yang ingin dicapai [@HBR].
 
@@ -297,7 +279,7 @@ movielens %>%
   arrange(year)
 ```
 
-## Gabungan beberapa fungsi sekaligus
+### Gabungan beberapa fungsi sekaligus
 
 Setelah mempraktikan bagaimana menggunakan fungsi-fungsi dasar `dplyr`, mari gabungkan beberapa fungsi dalam satu perintah.
 
@@ -328,11 +310,159 @@ movielens %>%
   ungroup()
 ```
 
----
+
 
 Dari hasil eksplorasi di atas, paket `dplyr` yang merupakan salah satu bagian inti dari paket `tidyverse` merupakan alat yang bisa diandalkan untuk manipulasi *dataframe* dalam R. Meskipun demikian, untuk keperluan yang lebih komplek, `dplyr` membutuhkan fungsi-fungsi yang tersedia di paket lain, baik itu paket bawaan seperti `base` dan `utils`, maupun paket lain. Misalnya untuk mengolah data *string/text* bisa menggunakan paket `stringr`, data berformat tanggal dan waktu bisa menggunakan paket `lubridate`. Sementara untuk melakukan *pivoting* atau *un-pivoting* bisa menggunakan paket `tidyr`.
 
+
 Contoh-contoh lain dalam menggunakan `dplyr` dapat dipelajari di buku *R for Data Science* [@RDS].
+
+## Join/Merge Dataframe
+
+Join atau merge merupakan proses penggabungan dua dataframe berdasarkan kolom kunci tertentu. Dalam `dplyr`/`tidyverse` dikenal beberapa jenis join yaitu `inner_join()`, `semi_join()`, `left_join()`, `right_join()`,`full_join()`, dan `anti_join()`.
+
+![Join dalam tidyverse. Sumber gambar: Minnier & Niederhausen)](img/join-venn.png)
+
+
+Kita akan mempraktikan penggunaan ke-enam jenis join tersebut menggunakan data berikut ini. Seluruh pembahasan dalam sub-bagian join/merge diambil dari [stat545.com](https://stat545.com/join-cheatsheet.html).
+
+
+```{r}
+superheroes <- tibble::tribble(
+       ~name, ~alignment,  ~gender,          ~publisher,
+   "Magneto",      "bad",   "male",            "Marvel",
+     "Storm",     "good", "female",            "Marvel",
+  "Mystique",      "bad", "female",            "Marvel",
+    "Batman",     "good",   "male",                "DC",
+     "Joker",      "bad",   "male",                "DC",
+  "Catwoman",      "bad", "female",                "DC",
+   "Hellboy",     "good",   "male", "Dark Horse Comics"
+  )
+
+publishers <- tibble::tribble(
+  ~publisher, ~yr_founded,
+        "DC",       1934L,
+    "Marvel",       1939L,
+     "Image",       1992L
+  )
+```
+
+### `inner_join(x,y)`
+
+Mengembalikan semua baris dari `x` yang berpasangan dengan nilai di tabel `y` berdasarkan kolom tertentu. Semua kolom dari kedua tabel akan ditampilkan. Jika ada *multiple matches*, maka seluruh kombinasi yang *match* tersebut akan dikembalikan.
+
+```{r}
+inner_join(superheroes, publishers)
+```
+
+
+### `semi_join(x,y)`
+
+Mirip seperti `inner_join()` hanya saja tidak akan mengembalikan nilai duplikat. Pada `semi_join`, hanya mengembalikan kolom-kolom dari tabel `x`.
+
+```{r}
+semi_join(superheroes, publishers)
+```
+
+### `left_join(x,y)`
+
+Mengembalikan semua baris dari `x`. Jika ada match dengan tabel `y`, maka data akan dikembalikan. Jika tidak match, maka akan diisi dengan `NA`. Pada `left_join()` kolom-kolom dari tabel `x` dan `y` dikembalikan.
+
+
+```{r}
+left_join(superheroes, publishers)
+```
+
+### `right_join(x,y)`
+
+Kebalikannya dari `left_join()`
+
+```{r}
+right_join(superheroes, publishers)
+```
+
+### `full_join(x,y)`
+
+Mengembalikan semua baris dari tabel `x` dan `y` baik yang berpasangan maupun tidak. Untuk baris yang tidak berpasangan akan diisi dengan `NA`. `full_join()` mengembalikan kolom-kolom dari kedua tabel.
+
+```{r}
+full_join(superheroes, publishers)
+```
+
+### `anti_join(x,y)`
+
+Mengembalikan baris-baris dari `x` yang tidak berpasangan dengan `y`. Hanya kolom dari `x` yang dikembalikan.
+
+```{r}
+anti_join(superheroes, publishers)
+```
+
+## Reshaping Dataframe
+
+Reshaping atau pivoting merupakan proses mengubah format tabel, dari wide ke long atau sebaliknya. Namun umumnya, analis data lebih tertarik untuk mendapatkan format data yang "tidy". Suatu data disebut *tidy* apabila:
+
+* Setiap kolom adalah variabel/peubah
+* Setiap baris adalah pengamatan
+* Setiap cell adalah nilai tunggal
+
+Format *tidy data* merupakan format penyimpanan standar dalam *tidyverse*. Apabila data kita sudah berformat *tidy*, maka akan memudahkan untuk dilakukan analisis.
+
+Selain dengan paket `base` (seperti yang telah dipelajari di bab sebelumnya), salah satu paket yang dapat digunakan untuk melakukan reshape data adalah `tidyr` yang merupakan bagian dari paket `tidyverse`.
+
+Apabila belum menginstal paket tersebut, dipersilakan menginstalnya terlebih dahulu dan load kedalam workspace:
+
+```{r, eval = FALSE}
+install.packages("tidyr")
+```
+
+```{r, eval = FALSE}
+library(tidyr)
+```
+
+Untuk praktik kita akan menggunakan data set `airquality` yang ada pada paket `datasets` ([Sumber](https://sscc.wisc.edu/sscc/pubs/dwr/reshape-tidy.html)).
+
+```{r}
+data(airquality)
+head(airquality)
+
+```
+
+### Long ke wide
+
+Data `airquality` berformat long. Misalnya kita akan mengubahnya menjadi format wide untuk kolom `Month` sebagai nama dan `Temp` sebagai nilai. Fungsi yang dapat digunakan adalah `pivot_wider()`
+
+
+```{r}
+air_wide <- 
+  airquality %>% 
+  select(Temp, Month, Day) %>%
+  pivot_wider(names_from = Month, 
+              values_from = Temp,
+              names_prefix = "Month")
+air_wide
+```
+
+Sekarang tabel berformat wide, yang disusun berdasarkan baris `Day` dan kolom `Month5`, `Month6`, dan seterusnya. Nilai dalam setiap cell adalah `Temp`.
+
+
+### Wide ke long
+
+Jika tabel berupa format wide, kita bisa mengubahnya menjadi long dengan perintah `pivot_longer()`. 
+
+```{r}
+air_long <- 
+  airquality %>% 
+  pivot_longer(cols = Ozone:Temp, 
+               names_to = "Variable", 
+               values_to = "Value")
+air_long
+```
+
+Contoh diatas mengubah tabel menjadi long, kolom Ozone hinggal Temp menjadi kolom variabel yang nilai-nilainya ditempatkan pada kolom value.
+
+
+## Referensi {-}
+
 
 
 

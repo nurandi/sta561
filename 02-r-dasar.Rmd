@@ -144,15 +144,15 @@ Terdapat beberapa tipe objek data standar dalam R, yaitu:
 ![Tipe Object R](img/object-type.png)
 
 
-## Vector
+### Vector
 
 Vector merupakan objek data paling sederhana dalam R dan digunakan oleh hampir semua fungsi aritmetik. Dalam vector, mode anggota/elemen adalah sama. Ada beberapa cara membuat vector, di antaranya:
 
-### Membuat vector
+#### Membuat vector
 
 Banyak cara membuat vector. Beberapa di antaranya adalah menggunakan perintah `c()`, `seq()` dan `rep()`.
 
-#### Fungsi `c()`
+##### Fungsi `c()`
 
 Sebuah vektor dapat dibuat dengan fungsi `c()` di mana setiap elemen dipisahkan oleh tanda koma. Misalnya.
 
@@ -185,7 +185,7 @@ c
 Untuk kasus seperti itu, R akan mengkonversi data kedalam mode yang paling sesuai. Pada contoh pertama, ada dua kemungkinan mode yaitu numeric da character. Karena mengkonversi yang memungkinkan adalah konversi numeric ke character (bukan sebaliknya), maka akan mengkonversi `1.7` menjadi character `"1.7"`.
 
 
-#### Fungsi `seq()`
+##### Fungsi `seq()`
 
 Fungsi `seq()` digunakan untuk membuat vector yang berisi angka berurutan. Misalnya
 
@@ -211,7 +211,7 @@ y <- seq(from = 1, to = 10, by = 2)
 y
 ```
 
-#### Fungsi `rep()`
+##### Fungsi `rep()`
 
 Fungsi `rep()` digunakan untuk membuat vector dengan mengulang nilai yang diinginak, misalnya
 
@@ -221,7 +221,7 @@ x <- rep(1, 10)
 x
 ```
 
-### Mengakses element dari vector
+#### Mengakses element dari vector
 
 Element pada vector dapat diakses melalui indeksnya dengan menggunakan operator `[ ]`. Dua contoh berikut mengambil elemen pertama serta elemen ke-2 dan ke-3 dari vector
 
@@ -232,12 +232,12 @@ x[1]
 x[c(2,3)]
 ```
 
-### Fungsi lain
+#### Fungsi lain
 
 Fungsi lain sering digunakan dalam vector adalah `length()` dan `class()`. Fungsi `length()` berguna untuk mengetahui pajang atau banyaknye elemen dari suatu vector sedangkan `class()` untuk mengetahi *class* atau mode dari suatu vector.
 
 
-## Factor
+### Factor
 
 Faktor digunakan untuk merepresentasikan data kategorik, baik terurut/*ordered* maupun tidak diurutkan/*unordered*. Faktor dapat dianggap sebagai vektor di mana setiap elemennya memiliki label. Objek faktor dapat dibuat dengan fungsi `factor()`.
 
@@ -257,7 +257,7 @@ class(y)
 ```
 
 
-## Matriks
+### Matriks
 
 Matriks/*matrix* merupakan vector yang berdimensi dua yaitu baris dan kolom. Matriks dapat dibuat dengan mengubah dimensi dari suatu vector.
 
@@ -295,7 +295,7 @@ cbind(x, y)
 rbind(x, y)
 ```
 
-## Array
+### Array
 
 Array adalah struktur data yang dapat menampung data multidimensi. Dalam R, jika matriks hanya mempunyai 2 dimensi, maka array dapat memiliki lebih dari 2 dimensi.
 
@@ -312,7 +312,7 @@ Untuk mengetahui dimensi dari suatu array, dapat menggunakan fungsi `dim()`
 dim(arr)
 ```
 
-## Dataframe
+### Dataframe
 
 Baris dalam dataframe merepresentasikan pengamatan/observasi, sedangkan kolom mereprentasikan peubah/*variable*. Setiap elemen dalam kolom yang sama mempunyai mode yang sama, namun antar kolom bisa mempunyai mode yang berbeda.
 
@@ -329,7 +329,7 @@ df2 <- data.frame(numbers = c(10, 20, 30, 40),
 df2
 ```
 
-## List
+### List
 
 List merupakan bentuk khusus dari vector yang memungkinkan elemennya bisa berupa objek dengan mode yang berbeda-beda. Elemen-elemen dari list dapat berupa vector, matriks, array, list atau gabungan beberapa struktur data.
 
@@ -445,9 +445,197 @@ names(df2)
 ```
 
 
+## Struktur Kendali
+
+### Percabangan
+
+Pemilihan atau percabangan merupakan bagian penting dalam programming. Dalam R, hal ini dapat dilakukan dengan menggunakan perintah `if ... else`.
 
 
+#### if {-}
 
+Statement akan dieksekusi jika expression benar. Jika expression salah, maka tidak ada yang dieksekusi.
+
+```{r, eval=FALSE}
+# https://www.datamentor.io/r-programming
+if (expression) {
+   statement
+}
+```
+
+Contoh
+
+```{r}
+x <- 5
+if(x > 0){
+   print("Positive")
+}
+```
+
+
+#### if ... else {-}
+
+Jika expression benar, maka statement1 akan dieksekusi. Jaka salah maka statement2 akan dieksekusi.
+
+```{r, eval=FALSE}
+if (expression) {
+   statement1
+} else {
+   statement2
+}
+```
+
+Contoh
+
+```{r}
+x <- -5
+if(x > 0){
+   print("Non Negative")
+} else {
+   print("Negative")
+}
+```
+
+#### if ... else if ... else {-}
+
+Jika expression benar, maka statement1 akan dieksekusi. Jaka salah maka akan periksa expression2. Jika bener maka statement2 akan dieksekusi. Jika salah maka statement3 akan dieksekusi
+
+```{r, eval=FALSE}
+if ( expression) {
+   statement1
+} else if ( expression2) {
+   statement2
+} else {
+   statement3
+}
+```
+
+Contoh:
+
+```{r}
+x <- -5
+if(x == 0){
+   prin("Zero")
+} else if(x < 0){
+   print("Negative")
+} else {
+   print("Positive")
+}
+```
+
+### Loop
+
+Loop berfungsi untuk mengulang perintah atau blok perintah. Dalam R, ada beberapa fungsi perintah looping, yaitu `for`, `while`, `repeat`
+
+
+#### for loop {-}
+
+For loop digunakan untuk mengiterasi vektor
+
+```{r, eval=FALSE}
+for (val in sequence) {
+   statement
+}
+```
+
+Contoh mengiterasi vektor dan menjumlahkan angka genap
+
+```{r}
+x <- c(2,5,3,9,8,11,6)
+count <- 0
+
+for (val in x) {
+   if(val %% 2 == 0) {
+      count = count+1
+   }
+}
+
+print(count)
+```
+
+#### while loop {-}
+
+While loop digunakan untuk melakukan iterasi selama kondisi/expression tertentu terpenuhi.
+
+```{r, eval=FALSE}
+while (expression)
+{
+   statement
+}
+
+```
+
+Contoh 
+
+```{r}
+i <- 1
+while (i < 6) {
+   print(i)
+   i = i+1
+}
+```
+
+#### break dan next {-}
+
+Perintah `break` gigunakan di dalam loop untuk menghentikan iterasi. Sedangkan perintah `next` digunakan untuk melewati sebuah iterasi.
+
+```{r, eval=FALSE}
+# break
+if (expression) {
+   break
+}
+
+# next
+if (expression) {
+   next
+}
+```
+
+Contoh
+
+```{r}
+
+# break, berhenti pada iterasi ke-3
+x <- 1:5
+for (val in x) {
+   if (val == 3){
+      break
+      }
+   print(val)
+}
+
+# next, skip iterasi ke-3
+x <- 1:5
+for (val in x) {
+   if (val == 3){
+      next
+      }
+   print(val)
+}
+```
+
+#### repeat loop {-}
+
+Repeat loop digunakan untuk iterasi blok perintah berulang kali. Dalam repeat, tidak ada kondisi untuk keluar dari loop. Untuk itu, kita harus menggunakan perintah `break` secara eksplisit atau looping akan terus berjalan (infinite loop)
+
+```{r, eval=FALSE}
+repeat {
+   statement
+}
+```
+
+Contoh
+
+```{r}
+x <- 1
+repeat {
+   print(x)
+   x = x+1
+   if (x == 6){
+      break
+   }
+}
+```
 
 
 
