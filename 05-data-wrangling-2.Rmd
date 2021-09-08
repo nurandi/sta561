@@ -461,8 +461,6 @@ air_long
 Contoh diatas mengubah tabel menjadi long, kolom Ozone hinggal Temp menjadi kolom variabel yang nilai-nilainya ditempatkan pada kolom value.
 
 
-## Referensi {-}
-
 
 
 
