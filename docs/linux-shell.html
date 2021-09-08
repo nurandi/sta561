@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | STA561 Pemrograman Statistika</title>
+  <title>Bagian 6 Linux Shell | STA561 Pemrograman Statistika</title>
   <meta name="description" content="Catatan Latihan dan Kuliah STA561 Pemrograman Statistika" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | STA561 Pemrograman Statistika" />
+  <meta property="og:title" content="Bagian 6 Linux Shell | STA561 Pemrograman Statistika" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="nurandi/sta561" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | STA561 Pemrograman Statistika" />
+  <meta name="twitter:title" content="Bagian 6 Linux Shell | STA561 Pemrograman Statistika" />
   
   <meta name="twitter:description" content="Catatan Latihan dan Kuliah STA561 Pemrograman Statistika" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="data-wrangling-dengan-tidyverse.html"/>
+<link rel="next" href="referensi.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -289,19 +289,206 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="linux-shell" class="section level1" number="6">
+<h1><span class="header-section-number">Bagian 6</span> Linux Shell</h1>
+<div id="apa-itu-shell" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Apa itu Shell?</h2>
+<p>Shell adalah istilah untuk <em>commnd-line interface</em> antara user dan sistem operasi. Tampilan ini biasa dikenal dengan TUI (Text User Interfaces). Shell biasa digunakan mode interaktif, yaitu langsung kita ketikan perintah pada “terminal” dan enter, maka shell akan memberikan response berupa hasil atau response lainnya. Shell juga dapat digunakan dalam mode non interaktif <em>(batch)</em>. Kita simpan perintah-perintah ke dalam file, dan kemudian shell membaca dan mengeksekusi setiap baris command/perintah yang ada dalam file tersebut.</p>
+<p>Shell dapat berfungsi sebagai interpreter sekaligus bahasa pemrograman. Sebagai interpreter, artinya shell sebagai penyedia <em>utility</em> yang dilengkapi banyak sekali <em>command</em> bawaan, seperti <code>cd</code>, <code>rm</code>, <code>mkdir</code> dan lain-lain. Meskipun tujuan utamanya bukan sebagai bahasa pemrograman, shell juga dilengkapi dengan <em>variable</em>, <em>control flow</em> dan lain-lain.</p>
+<p>Setiap sistem operasi mempunyai shell masing-masing, seperti:</p>
+<ul>
+<li>Mac OS X = bash</li>
+<li>Windows = cmd.exe</li>
+<li>Linux = bash</li>
+</ul>
+<p>Untuk kesempatan ini, kita akan praktik dasar-dasar shell yang bisa digunakan di sistem operasi berbasis UNIX (seperti Linux, Mac OS dan lain-lain). Sebetulnya, UNIX tidak cuma mempunyai <strong>bash</strong> atau <em>Bourne Again Shell</em>, tetapi ada shell lain yang bisa digunakan seperti <em>Bourne shell/sh</em>, <em>Korn shell/ksh</em>, <em>POSIX shell/sh</em>.</p>
+<p>Bagi pengguna Windows, dapat menggunakan <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux</a> (WSL).</p>
+</div>
+<div id="perintah-dasar-shell" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Perintah Dasar Shell</h2>
+<div id="direktori" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Direktori</h3>
+<ul>
+<li>Melihat working directory: <code>pwd</code></li>
+</ul>
+<div class="sourceCode" id="cb393"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb393-1"><a href="linux-shell.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div>
+<pre><code>## /mnt/d/SSD21/Bookdown/sta561</code></pre>
+<ul>
+<li>Membuat directory baru: <code>mkdir</code></li>
+</ul>
+<div class="sourceCode" id="cb395"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb395-1"><a href="linux-shell.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> test</span></code></pre></div>
+<ul>
+<li>Pindah ke directory lain: <code>cd</code></li>
+</ul>
+<div class="sourceCode" id="cb396"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb396-1"><a href="linux-shell.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> test</span></code></pre></div>
+</div>
+<div id="file" class="section level3" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> File</h3>
+<ul>
+<li>Membuat file baru: <code>touch</code></li>
+</ul>
+<div class="sourceCode" id="cb397"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb397-1"><a href="linux-shell.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> myfile.txt</span></code></pre></div>
+<ul>
+<li>Menulis pada file</li>
+</ul>
+<div class="sourceCode" id="cb398"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb398-1"><a href="linux-shell.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;hello!&quot;</span> <span class="op">&gt;&gt;</span> myfile.txt</span></code></pre></div>
+<ul>
+<li>Menampilkan list file dan folder: <code>ls</code></li>
+</ul>
+<div class="sourceCode" id="cb399"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb399-1"><a href="linux-shell.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div>
+<pre><code>## 01-what-r.Rmd
+## 02-r-dasar.Rmd
+## 03-operasi-dasar-r.Rmd
+## 04-data-wrangling-1.Rmd
+## 05-data-wrangling-2.Rmd
+## 91-shell.Rmd
+## 99-referensi.Rmd
+## README.md
+## _bookdown.yml
+## _bookdown_files
+## _output.yml
+## docs
+## img
+## index.Rmd
+## myfile.txt
+## nur_andi_sta561.Rmd
+## nur_andi_sta561.log
+## nur_andi_sta561.pdf
+## nur_andi_sta561_cache
+## reference.bib
+## series_cache
+## sta561.Rproj
+## sta561_cache
+## test
+## test-figure</code></pre>
+<div class="sourceCode" id="cb401"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb401-1"><a href="linux-shell.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List file dalam format lebih lengkap</span></span>
+<span id="cb401-2"><a href="linux-shell.html#cb401-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div>
+<pre><code>## total 932
+## -rwxrwxrwx 1 nurandi nurandi   3243 Sep  6 03:16 01-what-r.Rmd
+## -rwxrwxrwx 1 nurandi nurandi  15860 Sep  7 18:15 02-r-dasar.Rmd
+## -rwxrwxrwx 1 nurandi nurandi   8636 Sep  6 16:13 03-operasi-dasar-r.Rmd
+## -rwxrwxrwx 1 nurandi nurandi   5602 Sep  7 15:52 04-data-wrangling-1.Rmd
+## -rwxrwxrwx 1 nurandi nurandi  18459 Sep  8 20:30 05-data-wrangling-2.Rmd
+## -rwxrwxrwx 1 nurandi nurandi   2585 Sep  8 20:45 91-shell.Rmd
+## -rwxrwxrwx 1 nurandi nurandi     21 Sep  8 20:47 99-referensi.Rmd
+## -rwxrwxrwx 1 nurandi nurandi      8 Sep  6 11:52 README.md
+## -rwxrwxrwx 1 nurandi nurandi    330 Sep  8 20:30 _bookdown.yml
+## drwxrwxrwx 1 nurandi nurandi    512 Sep  8 21:08 _bookdown_files
+## -rwxrwxrwx 1 nurandi nurandi    466 Sep  8 20:30 _output.yml
+## drwxrwxrwx 1 nurandi nurandi    512 Sep  8 21:07 docs
+## drwxrwxrwx 1 nurandi nurandi    512 Sep  7 17:44 img
+## -rwxrwxrwx 1 nurandi nurandi    505 Sep  8 20:09 index.Rmd
+## -rwxrwxrwx 1 nurandi nurandi      7 Sep  8 21:08 myfile.txt
+## -rwxrwxrwx 1 nurandi nurandi  55245 Sep  8 21:08 nur_andi_sta561.Rmd
+## -rwxrwxrwx 1 nurandi nurandi  29875 Sep  8 21:07 nur_andi_sta561.log
+## -rwxrwxrwx 1 nurandi nurandi 783372 Sep  8 21:07 nur_andi_sta561.pdf
+## drwxrwxrwx 1 nurandi nurandi    512 Sep  6 16:33 nur_andi_sta561_cache
+## -rwxrwxrwx 1 nurandi nurandi   5429 Sep  7 15:41 reference.bib
+## drwxrwxrwx 1 nurandi nurandi    512 Sep  6 12:35 series_cache
+## -rwxrwxrwx 1 nurandi nurandi    240 Sep  8 19:59 sta561.Rproj
+## drwxrwxrwx 1 nurandi nurandi    512 Sep  6 16:32 sta561_cache
+## drwxrwxrwx 1 nurandi nurandi    512 Sep  8 21:08 test
+## drwxrwxrwx 1 nurandi nurandi    512 Sep  4 07:28 test-figure</code></pre>
+<div class="sourceCode" id="cb403"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb403-1"><a href="linux-shell.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List file termasuk hidden file</span></span>
+<span id="cb403-2"><a href="linux-shell.html#cb403-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span></span></code></pre></div>
+<pre><code>## .
+## ..
+## .Rhistory
+## .Rproj.user
+## .git
+## .gitignore
+## 01-what-r.Rmd
+## 02-r-dasar.Rmd
+## 03-operasi-dasar-r.Rmd
+## 04-data-wrangling-1.Rmd
+## 05-data-wrangling-2.Rmd
+## 91-shell.Rmd
+## 99-referensi.Rmd
+## README.md
+## _bookdown.yml
+## _bookdown_files
+## _output.yml
+## docs
+## img
+## index.Rmd
+## myfile.txt
+## nur_andi_sta561.Rmd
+## nur_andi_sta561.log
+## nur_andi_sta561.pdf
+## nur_andi_sta561_cache
+## reference.bib
+## series_cache
+## sta561.Rproj
+## sta561_cache
+## test
+## test-figure</code></pre>
+<ul>
+<li>Memindahkan dan mengubah nama file: <code>mv</code></li>
+</ul>
+<div class="sourceCode" id="cb405"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb405-1"><a href="linux-shell.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> myfile.txt fileku.txt</span></code></pre></div>
+<ul>
+<li>Menyalin file: <code>cp</code></li>
+</ul>
+<div class="sourceCode" id="cb406"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb406-1"><a href="linux-shell.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> fileku.txt myfile.txt</span></code></pre></div>
+<ul>
+<li>Tampilkan list file: <code>ls</code></li>
+</ul>
+<div class="sourceCode" id="cb407"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb407-1"><a href="linux-shell.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div>
+<pre><code>## 01-what-r.Rmd
+## 02-r-dasar.Rmd
+## 03-operasi-dasar-r.Rmd
+## 04-data-wrangling-1.Rmd
+## 05-data-wrangling-2.Rmd
+## 91-shell.Rmd
+## 99-referensi.Rmd
+## README.md
+## _bookdown.yml
+## _bookdown_files
+## _output.yml
+## docs
+## fileku.txt
+## img
+## index.Rmd
+## myfile.txt
+## nur_andi_sta561.Rmd
+## nur_andi_sta561.log
+## nur_andi_sta561.pdf
+## nur_andi_sta561_cache
+## reference.bib
+## series_cache
+## sta561.Rproj
+## sta561_cache
+## test
+## test-figure</code></pre>
+<ul>
+<li>Menghitung jumlah baris: <code>wc</code></li>
+</ul>
+<div class="sourceCode" id="cb409"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb409-1"><a href="linux-shell.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> myfile.txt</span></code></pre></div>
+<pre><code>## 1 1 7 myfile.txt</code></pre>
+<ul>
+<li>Menampilkan isi file: <code>cat</code></li>
+</ul>
+<div class="sourceCode" id="cb411"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb411-1"><a href="linux-shell.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> myfile.txt</span></code></pre></div>
+<pre><code>## hello!</code></pre>
+<ul>
+<li>Menghapus file: <code>rm</code></li>
+</ul>
+<div class="sourceCode" id="cb413"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb413-1"><a href="linux-shell.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> myfile.txt fileku.txt</span></code></pre></div>
+<ul>
+<li>Menghapus directory: <code>rm -r</code></li>
+</ul>
+<div class="sourceCode" id="cb414"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb414-1"><a href="linux-shell.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> test</span></code></pre></div>
+
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="data-wrangling-dengan-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referensi.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -332,7 +519,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nurandi/sta561/edit/main/%s",
+"link": "https://github.com/nurandi/sta561/edit/main/91-shell.Rmd",
 "text": "Edit"
 },
 "history": {

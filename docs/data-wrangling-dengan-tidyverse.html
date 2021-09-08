@@ -4,27 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Bagian 5 Data Wrangling dengan tidyverse | STA561 Komputasi Statistika</title>
-  <meta name="description" content="Catatan Latihan dan Kuliah STA561 Komputasi Statistika." />
+  <title>Bagian 5 Data Wrangling dengan tidyverse | STA561 Pemrograman Statistika</title>
+  <meta name="description" content="Catatan Latihan dan Kuliah STA561 Pemrograman Statistika" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Bagian 5 Data Wrangling dengan tidyverse | STA561 Komputasi Statistika" />
+  <meta property="og:title" content="Bagian 5 Data Wrangling dengan tidyverse | STA561 Pemrograman Statistika" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Catatan Latihan dan Kuliah STA561 Komputasi Statistika." />
+  <meta property="og:description" content="Catatan Latihan dan Kuliah STA561 Pemrograman Statistika" />
   <meta name="github-repo" content="nurandi/sta561" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Bagian 5 Data Wrangling dengan tidyverse | STA561 Komputasi Statistika" />
+  <meta name="twitter:title" content="Bagian 5 Data Wrangling dengan tidyverse | STA561 Pemrograman Statistika" />
   
-  <meta name="twitter:description" content="Catatan Latihan dan Kuliah STA561 Komputasi Statistika." />
+  <meta name="twitter:description" content="Catatan Latihan dan Kuliah STA561 Pemrograman Statistika" />
   
 
 <meta name="author" content="Nur Andi Setiabudi" />
 
 
-<meta name="date" content="2021-09-07" />
+<meta name="date" content="2021-09-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="data-wrangling.html"/>
-
+<link rel="next" href="linux-shell.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -258,8 +258,17 @@ div.csl-indent {
 <li class="chapter" data-level="5.5.1" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#long-ke-wide"><i class="fa fa-check"></i><b>5.5.1</b> Long ke wide</a></li>
 <li class="chapter" data-level="5.5.2" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#wide-ke-long"><i class="fa fa-check"></i><b>5.5.2</b> Wide ke long</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#referensi"><i class="fa fa-check"></i>Referensi</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="linux-shell.html"><a href="linux-shell.html"><i class="fa fa-check"></i><b>6</b> Linux Shell</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="linux-shell.html"><a href="linux-shell.html#apa-itu-shell"><i class="fa fa-check"></i><b>6.1</b> Apa itu Shell?</a></li>
+<li class="chapter" data-level="6.2" data-path="linux-shell.html"><a href="linux-shell.html#perintah-dasar-shell"><i class="fa fa-check"></i><b>6.2</b> Perintah Dasar Shell</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="linux-shell.html"><a href="linux-shell.html#direktori"><i class="fa fa-check"></i><b>6.2.1</b> Direktori</a></li>
+<li class="chapter" data-level="6.2.2" data-path="linux-shell.html"><a href="linux-shell.html#file"><i class="fa fa-check"></i><b>6.2.2</b> File</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referensi.html"><a href="referensi.html"><i class="fa fa-check"></i>Referensi</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
 
@@ -272,7 +281,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA561 Komputasi Statistika</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA561 Pemrograman Statistika</a>
           </h1>
         </div>
 
@@ -287,11 +296,11 @@ div.csl-indent {
 </blockquote>
 <div id="data-wrangling-1" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Data Wrangling</h2>
-<p>Aktivitas apa yang biasa dilakukan oleh <em>data scientist</em> terhadap data tabular? Barangkali menghapus kolom atau baris, melakukan kalkulasi, menambahkan kolom baru atau melakukan agregasi. Aktivitas-aktivitas tersebut sering disebut sebagai <em>data wrangling</em> <span class="citation">(<a href="data-wrangling-dengan-tidyverse.html#ref-OHI" role="doc-biblioref">The OHI Team 2019</a>)</span> atau manipulasi data (dalam konitasi positif) yang bertujuan untuk mengubah data menjadi format yang lebih mudah digunakan atau mudah dipahami. Manipulasi data menjadi bagian tidak diterpisahkan dalam persiapan data yang umumnya membutuhkan waktu paling lama dari keseluruhan rangkaian analisis data. Skenario dalam proses ini berbeda-beda tergantung pada data yang digunakan dan tujuan yang ingin dicapai <span class="citation">(<a href="data-wrangling-dengan-tidyverse.html#ref-HBR" role="doc-biblioref">Stobierski 2021</a>)</span>.</p>
+<p>Aktivitas apa yang biasa dilakukan oleh <em>data scientist</em> terhadap data tabular? Barangkali menghapus kolom atau baris, melakukan kalkulasi, menambahkan kolom baru atau melakukan agregasi. Aktivitas-aktivitas tersebut sering disebut sebagai <em>data wrangling</em> <span class="citation">(<a href="referensi.html#ref-OHI" role="doc-biblioref">The OHI Team 2019</a>)</span> atau manipulasi data (dalam konitasi positif) yang bertujuan untuk mengubah data menjadi format yang lebih mudah digunakan atau mudah dipahami. Manipulasi data menjadi bagian tidak diterpisahkan dalam persiapan data yang umumnya membutuhkan waktu paling lama dari keseluruhan rangkaian analisis data. Skenario dalam proses ini berbeda-beda tergantung pada data yang digunakan dan tujuan yang ingin dicapai <span class="citation">(<a href="referensi.html#ref-HBR" role="doc-biblioref">Stobierski 2021</a>)</span>.</p>
 </div>
 <div id="r-tidyverse-dan-dplyr" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> R, <code>tidyverse</code> dan <code>dplyr</code></h2>
-<p>Sebagai bahasa pemrograman populer dalam sains data, R menyediakan berbagai paket/<em>library</em> untuk tujuan-tujuan spesifik. Sebagai contoh, kita dapat memanfaatkan paket <code>tidyverse</code>; sekumpulan beberapa paket untuk ekplorasi, manipulasi dan visualisasi data <span class="citation">(<a href="data-wrangling-dengan-tidyverse.html#ref-TIDYVERSE" role="doc-biblioref">Wickham et al. 2019</a>)</span>, yang terdiri dari paket-paket antara lain:</p>
+<p>Sebagai bahasa pemrograman populer dalam sains data, R menyediakan berbagai paket/<em>library</em> untuk tujuan-tujuan spesifik. Sebagai contoh, kita dapat memanfaatkan paket <code>tidyverse</code>; sekumpulan beberapa paket untuk ekplorasi, manipulasi dan visualisasi data <span class="citation">(<a href="referensi.html#ref-TIDYVERSE" role="doc-biblioref">Wickham et al. 2019</a>)</span>, yang terdiri dari paket-paket antara lain:</p>
 <ul>
 <li><code>ggplot2</code> : membuat grafik dan visualisasi data</li>
 <li><code>dplyr</code> : manipulasi data</li>
@@ -307,7 +316,7 @@ div.csl-indent {
 <img src="img/ggplot_hive.jpg" alt="" />
 <p class="caption">tidyverse. Sumber gambar: Che Smith (<a href="mailto:chsmith1@davidson.edu" class="email">chsmith1@davidson.edu</a>)</p>
 </div>
-<p>Artikel ini akan fokus pada pemanfaatan paket <code>dplyr</code> <span class="citation">(<a href="data-wrangling-dengan-tidyverse.html#ref-DPLYR" role="doc-biblioref">Wickham et al. 2021b</a>)</span>. Paket yang dikembangkan oleh Hadley Wickham dan tim ini dipandang sebagai <em>“grammar”</em> yang di dalamnya tersedia sejumlah <em>“verb”</em> untuk menyesaikan berbagai pekerjaan terkait manipulasi data <span class="citation">(<a href="data-wrangling-dengan-tidyverse.html#ref-DPLYR2" role="doc-biblioref">Wickham et al. 2021a</a>)</span>, di antaranya untuk:</p>
+<p>Artikel ini akan fokus pada pemanfaatan paket <code>dplyr</code> <span class="citation">(<a href="referensi.html#ref-DPLYR" role="doc-biblioref">Wickham et al. 2021b</a>)</span>. Paket yang dikembangkan oleh Hadley Wickham dan tim ini dipandang sebagai <em>“grammar”</em> yang di dalamnya tersedia sejumlah <em>“verb”</em> untuk menyesaikan berbagai pekerjaan terkait manipulasi data <span class="citation">(<a href="referensi.html#ref-DPLYR2" role="doc-biblioref">Wickham et al. 2021a</a>)</span>, di antaranya untuk:</p>
 <ul>
 <li>memilih kolom,</li>
 <li>menyeleksi baris berdasarkan kriteria tertentu,</li>
@@ -318,7 +327,7 @@ div.csl-indent {
 </div>
 <div id="studi-kasus-data-movielens" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Studi Kasus: Data MovieLens</h2>
-<p>Untuk mengeksplorasi dasar-dasar manipulasi data dengan <code>dplyr</code>, kita akan menggunakan data <strong>MoviLens</strong> <span class="citation">(<a href="data-wrangling-dengan-tidyverse.html#ref-MOVIELENS" role="doc-biblioref">Harper and Konstan 2015</a>)</span>, yang bisa diperoleh dari paket <code>dslabs</code>. Data set ini berisi rating dari <em>movie</em>/film dari website <a href="https://movielens.org/">MovieLens</a> yang dikumpulkan dan dikelola oleh GroupLens, kelompok riset di <a href="https://twin-cities.umn.edu/">Universitas Minnesota</a></p>
+<p>Untuk mengeksplorasi dasar-dasar manipulasi data dengan <code>dplyr</code>, kita akan menggunakan data <strong>MoviLens</strong> <span class="citation">(<a href="referensi.html#ref-MOVIELENS" role="doc-biblioref">Harper and Konstan 2015</a>)</span>, yang bisa diperoleh dari paket <code>dslabs</code>. Data set ini berisi rating dari <em>movie</em>/film dari website <a href="https://movielens.org/">MovieLens</a> yang dikumpulkan dan dikelola oleh GroupLens, kelompok riset di <a href="https://twin-cities.umn.edu/">Universitas Minnesota</a></p>
 <div id="persiapan" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Persiapan</h3>
 <p>Instalasi paket-paket yang diperlukan, yaitu <code>tidyverse</code> (atau cukup <code>dplyr</code>) dan <code>dslabs</code>. Instalasi paket ini sifatnya opsional. Maksudnya apabila paket tersebut sudah terinstal maka tidak perlu melakukan instalasi lagi.</p>
@@ -424,7 +433,7 @@ Kita sudah mempunyai data <code>movilens</code>, yang merupakan sebuah <em>data 
 </div>
 <div id="operator-pipe" class="section level3" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Operator <em>pipe</em> <code>%&gt;%</code></h3>
-<p>Sebelum membahas <code>dplyr</code> lebih lanjut, mari berkenalan dengan operator <em>pipe</em> <code>%&gt;%</code>. <em>Pipe</em> merupakan operator yang berasal dari paket <code>magrittr</code> <span class="citation">(<a href="data-wrangling-dengan-tidyverse.html#ref-MAGRITTR" role="doc-biblioref">Bache and Wickham 2020</a>)</span>, yang dalam <code>tidyverse</code> dimuat secara otomatis.</p>
+<p>Sebelum membahas <code>dplyr</code> lebih lanjut, mari berkenalan dengan operator <em>pipe</em> <code>%&gt;%</code>. <em>Pipe</em> merupakan operator yang berasal dari paket <code>magrittr</code> <span class="citation">(<a href="referensi.html#ref-MAGRITTR" role="doc-biblioref">Bache and Wickham 2020</a>)</span>, yang dalam <code>tidyverse</code> dimuat secara otomatis.</p>
 <p>Perhatikan perintah berikut ini.</p>
 <div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="data-wrangling-dengan-tidyverse.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nama_fungsi</span>(nama_object)</span></code></pre></div>
 <p>apabila ditulis dengan <em>pipe</em>, akan menjadi</p>
@@ -784,7 +793,7 @@ Kita sudah mempunyai data <code>movilens</code>, yang merupakan sebuah <em>data 
 ## 10  1923 Our Hospitality                                                    4.5 
 ## # ... with 94 more rows</code></pre>
 <p>Dari hasil eksplorasi di atas, paket <code>dplyr</code> yang merupakan salah satu bagian inti dari paket <code>tidyverse</code> merupakan alat yang bisa diandalkan untuk manipulasi <em>dataframe</em> dalam R. Meskipun demikian, untuk keperluan yang lebih komplek, <code>dplyr</code> membutuhkan fungsi-fungsi yang tersedia di paket lain, baik itu paket bawaan seperti <code>base</code> dan <code>utils</code>, maupun paket lain. Misalnya untuk mengolah data <em>string/text</em> bisa menggunakan paket <code>stringr</code>, data berformat tanggal dan waktu bisa menggunakan paket <code>lubridate</code>. Sementara untuk melakukan <em>pivoting</em> atau <em>un-pivoting</em> bisa menggunakan paket <code>tidyr</code>.</p>
-<p>Contoh-contoh lain dalam menggunakan <code>dplyr</code> dapat dipelajari di buku <em>R for Data Science</em> <span class="citation">(<a href="data-wrangling-dengan-tidyverse.html#ref-RDS" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
+<p>Contoh-contoh lain dalam menggunakan <code>dplyr</code> dapat dipelajari di buku <em>R for Data Science</em> <span class="citation">(<a href="referensi.html#ref-RDS" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
 </div>
 </div>
 <div id="joinmerge-dataframe" class="section level2" number="5.4">
@@ -975,36 +984,7 @@ Kita sudah mempunyai data <code>movilens</code>, yang merupakan sebuah <em>data 
 ## 10     5     3 Solar.R  149  
 ## # ... with 602 more rows</code></pre>
 <p>Contoh diatas mengubah tabel menjadi long, kolom Ozone hinggal Temp menjadi kolom variabel yang nilai-nilainya ditempatkan pada kolom value.</p>
-</div>
-</div>
-<div id="referensi" class="section level2 unnumbered">
-<h2>Referensi</h2>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-MAGRITTR" class="csl-entry">
-Bache, Stefan Milton, and Hadley Wickham. 2020. <em>Magrittr: A Forward-Pipe Operator for r</em>. <a href="https://CRAN.R-project.org/package=magrittr">https://CRAN.R-project.org/package=magrittr</a>.
-</div>
-<div id="ref-MOVIELENS" class="csl-entry">
-Harper, F. Maxwell, and Joseph A. Konstan. 2015. <span>“The MovieLens Datasets: History and Context.”</span> <em>ACM Trans. Interact. Intell. Syst.</em> 5 (4). <a href="https://doi.org/10.1145/2827872">https://doi.org/10.1145/2827872</a>.
-</div>
-<div id="ref-HBR" class="csl-entry">
-Stobierski, Tim. 2021. <span>“Data Wrangling: What It Is &amp; Why It’s Important.”</span> Harvard Business School Online. <a href="https://online.hbs.edu/blog/post/data-wrangling">https://online.hbs.edu/blog/post/data-wrangling</a>.
-</div>
-<div id="ref-OHI" class="csl-entry">
-The OHI Team. 2019. <span>“Introduction to Open Data Science.”</span> Ocean Health Index. <a href="https://ohi-science.org/data-science-training/">https://ohi-science.org/data-science-training/</a>.
-</div>
-<div id="ref-TIDYVERSE" class="csl-entry">
-Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
-</div>
-<div id="ref-DPLYR2" class="csl-entry">
-Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2021a. <span>“A Grammar of Data Manipulation: Dplyr.”</span> RStudio. <a href="https://dplyr.tidyverse.org/">https://dplyr.tidyverse.org/</a>.
-</div>
-<div id="ref-DPLYR" class="csl-entry">
-———. 2021b. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
-</div>
-<div id="ref-RDS" class="csl-entry">
-Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 1st ed. Paperback; O’Reilly Media. <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.
-</div>
 </div>
 </div>
 </div>
@@ -1013,8 +993,8 @@ Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Ti
           </div>
         </div>
       </div>
-<a href="data-wrangling.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="data-wrangling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linux-shell.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

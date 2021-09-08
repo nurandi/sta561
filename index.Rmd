@@ -1,9 +1,9 @@
 --- 
-title: "STA561 Komputasi Statistika"
+title: "STA561 Pemrograman Statistika"
 author: "Nur Andi Setiabudi"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-description: Catatan Latihan dan Kuliah STA561 Komputasi Statistika.
+description: Catatan Latihan dan Kuliah STA561 Pemrograman Statistika
 github-repo: nurandi/sta561
 documentclass: book
 bibliography:
