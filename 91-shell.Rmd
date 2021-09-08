@@ -1,0 +1,113 @@
+# Linux Shell
+
+## Apa itu Shell?
+
+Shell adalah istilah untuk *commnd-line interface* antara user dan sistem operasi. Tampilan ini biasa dikenal dengan TUI (Text User Interfaces). Shell biasa digunakan mode interaktif, yaitu langsung kita ketikan perintah pada "terminal" dan enter, maka shell akan memberikan response berupa hasil atau response lainnya. Shell juga dapat digunakan dalam mode non interaktif *(batch)*. Kita simpan perintah-perintah ke dalam file, dan kemudian shell membaca dan mengeksekusi setiap baris command/perintah yang ada dalam file tersebut.
+
+Shell dapat berfungsi sebagai interpreter sekaligus bahasa pemrograman. Sebagai interpreter, artinya shell sebagai penyedia *utility* yang dilengkapi banyak sekali *command* bawaan, seperti `cd`, `rm`, `mkdir` dan lain-lain. Meskipun tujuan utamanya bukan sebagai bahasa pemrograman, shell juga dilengkapi dengan *variable*, *control flow* dan lain-lain.
+
+Setiap sistem operasi mempunyai shell masing-masing, seperti:
+
+* Mac OS X = bash
+* Windows = cmd.exe
+* Linux = bash
+
+Untuk kesempatan ini, kita akan praktik dasar-dasar shell yang bisa digunakan di sistem operasi berbasis UNIX (seperti Linux, Mac OS dan lain-lain). Sebetulnya, UNIX tidak cuma mempunyai **bash** atau *Bourne Again Shell*, tetapi ada shell lain yang bisa digunakan seperti *Bourne shell/sh*, *Korn shell/ksh*, *POSIX shell/sh*.
+
+Bagi pengguna Windows, dapat menggunakan [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (WSL).
+
+
+## Perintah Dasar Shell
+
+
+### Direktori
+
+* Melihat working directory: `pwd`
+
+```{bash}
+pwd
+```
+
+* Membuat directory baru: `mkdir`
+
+```{bash}
+mkdir test
+```
+
+* Pindah ke directory lain: `cd`
+
+```{bash}
+cd test
+```
+
+### File
+
+* Membuat file baru: `touch`
+
+```{bash}
+touch myfile.txt
+```
+
+* Menulis pada file
+
+```{bash}
+echo "hello!" >> myfile.txt
+```
+
+* Menampilkan list file dan folder: `ls`
+
+```{bash}
+ls
+```
+
+```{bash}
+# List file dalam format lebih lengkap
+ls -l
+```
+
+```{bash}
+# List file termasuk hidden file
+ls -a
+```
+
+* Memindahkan dan mengubah nama file: `mv`
+
+```{bash}
+mv myfile.txt fileku.txt
+```
+
+* Menyalin file: `cp`
+
+```{bash}
+cp fileku.txt myfile.txt
+```
+
+* Tampilkan list file: `ls`
+
+```{bash}
+ls
+```
+
+* Menghitung jumlah baris: `wc`
+
+```{bash}
+wc myfile.txt
+```
+
+* Menampilkan isi file: `cat`
+
+```{bash}
+cat myfile.txt
+```
+
+* Menghapus file: `rm`
+
+```{bash}
+rm myfile.txt fileku.txt
+```
+
+* Menghapus directory: `rm -r`
+
+```{bash}
+rm -r test
+```
