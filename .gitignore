@@ -31,6 +31,11 @@ _bookdown_files
 _bookdown_files/
 _bookdown_files/*
 
+# data
+/data/
+data/
+data/*
+
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
