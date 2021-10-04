@@ -604,74 +604,92 @@ Sehingga diperoleh fungsi inverse <span class="math inline">\(F^{-1}(u) = u^{1/3
 <span id="cb478-8"><a href="pembangkitan-bilangan-acak.html#cb478-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(vals, <span class="at">breaks=</span><span class="dv">30</span>, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">main=</span><span class="st">&quot;Beta(2,2). Sample vs true Density&quot;</span>)</span>
 <span id="cb478-9"><a href="pembangkitan-bilangan-acak.html#cb478-9" aria-hidden="true" tabindex="-1"></a>xs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">len=</span><span class="dv">100</span>)</span>
 <span id="cb478-10"><a href="pembangkitan-bilangan-acak.html#cb478-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xs, <span class="fu">dbeta</span>(xs,<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-228-1.png" width="672" />
-Contoh lain, membuat sebaran “segitiga”</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="pembangkitan-bilangan-acak.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://users.phhp.ufl.edu/rlp176/Courses/PHC6089/R_notes/simulations.html</span></span>
-<span id="cb479-2"><a href="pembangkitan-bilangan-acak.html#cb479-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb479-3"><a href="pembangkitan-bilangan-acak.html#cb479-3" aria-hidden="true" tabindex="-1"></a>triangle.pdf <span class="ot">=</span> <span class="cf">function</span>(x){</span>
-<span id="cb479-4"><a href="pembangkitan-bilangan-acak.html#cb479-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>((<span class="dv">0</span> <span class="sc">&lt;</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> <span class="dv">1</span>), x, </span>
-<span id="cb479-5"><a href="pembangkitan-bilangan-acak.html#cb479-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">ifelse</span>((<span class="dv">1</span> <span class="sc">&lt;=</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> <span class="dv">2</span>), <span class="dv">2</span> <span class="sc">-</span> x, <span class="dv">0</span>)) </span>
-<span id="cb479-6"><a href="pembangkitan-bilangan-acak.html#cb479-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="pembangkitan-bilangan-acak.html#cb480-1" aria-hidden="true" tabindex="-1"></a>accept_reject <span class="ot">=</span> <span class="cf">function</span>(fx, <span class="at">n =</span> <span class="dv">100</span>) {</span>
-<span id="cb480-2"><a href="pembangkitan-bilangan-acak.html#cb480-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#simulates a sample of size n from the pdf fx using the accept reject algorithm</span></span>
-<span id="cb480-3"><a href="pembangkitan-bilangan-acak.html#cb480-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">numeric</span>(n)</span>
-<span id="cb480-4"><a href="pembangkitan-bilangan-acak.html#cb480-4" aria-hidden="true" tabindex="-1"></a>  count <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb480-5"><a href="pembangkitan-bilangan-acak.html#cb480-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb480-6"><a href="pembangkitan-bilangan-acak.html#cb480-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span>(count <span class="sc">&lt;</span> n) {</span>
-<span id="cb480-7"><a href="pembangkitan-bilangan-acak.html#cb480-7" aria-hidden="true" tabindex="-1"></a>    temp <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>)</span>
-<span id="cb480-8"><a href="pembangkitan-bilangan-acak.html#cb480-8" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>)</span>
-<span id="cb480-9"><a href="pembangkitan-bilangan-acak.html#cb480-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="fu">fx</span>(temp)) {</span>
-<span id="cb480-10"><a href="pembangkitan-bilangan-acak.html#cb480-10" aria-hidden="true" tabindex="-1"></a>      count <span class="ot">=</span> count <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb480-11"><a href="pembangkitan-bilangan-acak.html#cb480-11" aria-hidden="true" tabindex="-1"></a>      x[count] <span class="ot">&lt;-</span> temp</span>
-<span id="cb480-12"><a href="pembangkitan-bilangan-acak.html#cb480-12" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb480-13"><a href="pembangkitan-bilangan-acak.html#cb480-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb480-14"><a href="pembangkitan-bilangan-acak.html#cb480-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb480-15"><a href="pembangkitan-bilangan-acak.html#cb480-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
-<span id="cb480-16"><a href="pembangkitan-bilangan-acak.html#cb480-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb480-17"><a href="pembangkitan-bilangan-acak.html#cb480-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb480-18"><a href="pembangkitan-bilangan-acak.html#cb480-18" aria-hidden="true" tabindex="-1"></a>data.sample <span class="ot">=</span> <span class="fu">accept_reject</span>(triangle.pdf, <span class="dv">10000</span>)</span>
-<span id="cb480-19"><a href="pembangkitan-bilangan-acak.html#cb480-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb480-20"><a href="pembangkitan-bilangan-acak.html#cb480-20" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data.sample, <span class="at">breaks=</span><span class="dv">30</span>, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">main=</span><span class="st">&quot;Segitiga. Sample vs True Density&quot;</span>)</span>
-<span id="cb480-21"><a href="pembangkitan-bilangan-acak.html#cb480-21" aria-hidden="true" tabindex="-1"></a>xs <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">2.5</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
-<span id="cb480-22"><a href="pembangkitan-bilangan-acak.html#cb480-22" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xs, <span class="fu">triangle.pdf</span>(xs), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
+<p>Contoh lain, membuat sebaran “segitiga”</p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="pembangkitan-bilangan-acak.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="co"># triangle function</span></span>
+<span id="cb479-2"><a href="pembangkitan-bilangan-acak.html#cb479-2" aria-hidden="true" tabindex="-1"></a>f  <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb479-3"><a href="pembangkitan-bilangan-acak.html#cb479-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>((<span class="dv">0</span> <span class="sc">&lt;</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> <span class="dv">1</span>), x, </span>
+<span id="cb479-4"><a href="pembangkitan-bilangan-acak.html#cb479-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">ifelse</span>((<span class="dv">1</span> <span class="sc">&lt;=</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> <span class="dv">2</span>), <span class="dv">2</span> <span class="sc">-</span> x, <span class="dv">0</span>)) </span>
+<span id="cb479-5"><a href="pembangkitan-bilangan-acak.html#cb479-5" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb479-6"><a href="pembangkitan-bilangan-acak.html#cb479-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb479-7"><a href="pembangkitan-bilangan-acak.html#cb479-7" aria-hidden="true" tabindex="-1"></a>g  <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">/</span>x             <span class="co"># g(x) = 1 but in vectorized version</span></span>
+<span id="cb479-8"><a href="pembangkitan-bilangan-acak.html#cb479-8" aria-hidden="true" tabindex="-1"></a>rg <span class="ot">&lt;-</span> <span class="cf">function</span>(n) <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">2</span>) <span class="co"># uniform, in this case. limit x from 0 to 2</span></span>
+<span id="cb479-9"><a href="pembangkitan-bilangan-acak.html#cb479-9" aria-hidden="true" tabindex="-1"></a>c  <span class="ot">&lt;-</span> <span class="dv">2</span>                          <span class="co"># c=2 since f(x) &lt;= 2 g(x)</span></span>
+<span id="cb479-10"><a href="pembangkitan-bilangan-acak.html#cb479-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb479-11"><a href="pembangkitan-bilangan-acak.html#cb479-11" aria-hidden="true" tabindex="-1"></a>vals <span class="ot">&lt;-</span> <span class="fu">accept.reject</span>(f, c, g, rg, <span class="dv">10000</span>) </span>
+<span id="cb479-12"><a href="pembangkitan-bilangan-acak.html#cb479-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb479-13"><a href="pembangkitan-bilangan-acak.html#cb479-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking if it went well</span></span>
+<span id="cb479-14"><a href="pembangkitan-bilangan-acak.html#cb479-14" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(vals, <span class="at">breaks=</span><span class="dv">30</span>, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">main=</span><span class="st">&quot;Sample vs true Density&quot;</span>)</span>
+<span id="cb479-15"><a href="pembangkitan-bilangan-acak.html#cb479-15" aria-hidden="true" tabindex="-1"></a>xs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="at">len=</span><span class="dv">100</span>)</span>
+<span id="cb479-16"><a href="pembangkitan-bilangan-acak.html#cb479-16" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xs, <span class="fu">f</span>(xs), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<p>Dengan cara lain:</p>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="pembangkitan-bilangan-acak.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://users.phhp.ufl.edu/rlp176/Courses/PHC6089/R_notes/simulations.html</span></span>
+<span id="cb480-2"><a href="pembangkitan-bilangan-acak.html#cb480-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb480-3"><a href="pembangkitan-bilangan-acak.html#cb480-3" aria-hidden="true" tabindex="-1"></a>triangle.pdf <span class="ot">=</span> <span class="cf">function</span>(x){</span>
+<span id="cb480-4"><a href="pembangkitan-bilangan-acak.html#cb480-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>((<span class="dv">0</span> <span class="sc">&lt;</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> <span class="dv">1</span>), x, </span>
+<span id="cb480-5"><a href="pembangkitan-bilangan-acak.html#cb480-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">ifelse</span>((<span class="dv">1</span> <span class="sc">&lt;=</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> <span class="dv">2</span>), <span class="dv">2</span> <span class="sc">-</span> x, <span class="dv">0</span>)) </span>
+<span id="cb480-6"><a href="pembangkitan-bilangan-acak.html#cb480-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="pembangkitan-bilangan-acak.html#cb481-1" aria-hidden="true" tabindex="-1"></a>accept_reject <span class="ot">=</span> <span class="cf">function</span>(fx, <span class="at">n =</span> <span class="dv">100</span>) {</span>
+<span id="cb481-2"><a href="pembangkitan-bilangan-acak.html#cb481-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#simulates a sample of size n from the pdf fx using the accept reject algorithm</span></span>
+<span id="cb481-3"><a href="pembangkitan-bilangan-acak.html#cb481-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb481-4"><a href="pembangkitan-bilangan-acak.html#cb481-4" aria-hidden="true" tabindex="-1"></a>  count <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb481-5"><a href="pembangkitan-bilangan-acak.html#cb481-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb481-6"><a href="pembangkitan-bilangan-acak.html#cb481-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span>(count <span class="sc">&lt;</span> n) {</span>
+<span id="cb481-7"><a href="pembangkitan-bilangan-acak.html#cb481-7" aria-hidden="true" tabindex="-1"></a>    temp <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>)</span>
+<span id="cb481-8"><a href="pembangkitan-bilangan-acak.html#cb481-8" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>)</span>
+<span id="cb481-9"><a href="pembangkitan-bilangan-acak.html#cb481-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="fu">fx</span>(temp)) {</span>
+<span id="cb481-10"><a href="pembangkitan-bilangan-acak.html#cb481-10" aria-hidden="true" tabindex="-1"></a>      count <span class="ot">=</span> count <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb481-11"><a href="pembangkitan-bilangan-acak.html#cb481-11" aria-hidden="true" tabindex="-1"></a>      x[count] <span class="ot">&lt;-</span> temp</span>
+<span id="cb481-12"><a href="pembangkitan-bilangan-acak.html#cb481-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb481-13"><a href="pembangkitan-bilangan-acak.html#cb481-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb481-14"><a href="pembangkitan-bilangan-acak.html#cb481-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb481-15"><a href="pembangkitan-bilangan-acak.html#cb481-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
+<span id="cb481-16"><a href="pembangkitan-bilangan-acak.html#cb481-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb481-17"><a href="pembangkitan-bilangan-acak.html#cb481-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb481-18"><a href="pembangkitan-bilangan-acak.html#cb481-18" aria-hidden="true" tabindex="-1"></a>data.sample <span class="ot">=</span> <span class="fu">accept_reject</span>(triangle.pdf, <span class="dv">10000</span>)</span>
+<span id="cb481-19"><a href="pembangkitan-bilangan-acak.html#cb481-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb481-20"><a href="pembangkitan-bilangan-acak.html#cb481-20" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data.sample, <span class="at">breaks=</span><span class="dv">30</span>, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">main=</span><span class="st">&quot;Segitiga. Sample vs True Density&quot;</span>)</span>
+<span id="cb481-21"><a href="pembangkitan-bilangan-acak.html#cb481-21" aria-hidden="true" tabindex="-1"></a>xs <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">2.5</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb481-22"><a href="pembangkitan-bilangan-acak.html#cb481-22" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xs, <span class="fu">triangle.pdf</span>(xs), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
 <p>Referensi: <span class="citation">(<a href="referensi.html#ref-JOAON" role="doc-biblioref">Neto 2014</a>)</span></p>
 </div>
 </div>
 <div id="membangkitkan-bilangan-acak-untuk-regresi" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Membangkitkan Bilangan Acak untuk Regresi</h2>
 <p>Bangkitkan bilangan acak untuk membangun persamaan regresi linier sederhana antara <span class="math inline">\(X\)</span> terhadap <span class="math inline">\(Y\)</span>, dengan <span class="math inline">\(b_0 = 1, b_1 = 1\)</span>.</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="pembangkitan-bilangan-acak.html#cb481-1" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb481-2"><a href="pembangkitan-bilangan-acak.html#cb481-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb481-3"><a href="pembangkitan-bilangan-acak.html#cb481-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb481-4"><a href="pembangkitan-bilangan-acak.html#cb481-4" aria-hidden="true" tabindex="-1"></a>b0hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb481-5"><a href="pembangkitan-bilangan-acak.html#cb481-5" aria-hidden="true" tabindex="-1"></a>b1hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb481-6"><a href="pembangkitan-bilangan-acak.html#cb481-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb481-7"><a href="pembangkitan-bilangan-acak.html#cb481-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
-<span id="cb481-8"><a href="pembangkitan-bilangan-acak.html#cb481-8" aria-hidden="true" tabindex="-1"></a>  eps <span class="ot">&lt;-</span> <span class="fu">rnorm</span> (<span class="dv">10</span>)</span>
-<span id="cb481-9"><a href="pembangkitan-bilangan-acak.html#cb481-9" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">runif</span> (<span class="dv">10</span> ,<span class="dv">5</span> ,<span class="dv">10</span>)</span>
-<span id="cb481-10"><a href="pembangkitan-bilangan-acak.html#cb481-10" aria-hidden="true" tabindex="-1"></a>  Y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span>X <span class="sc">+</span> eps</span>
-<span id="cb481-11"><a href="pembangkitan-bilangan-acak.html#cb481-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb481-12"><a href="pembangkitan-bilangan-acak.html#cb481-12" aria-hidden="true" tabindex="-1"></a>  obj <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X)</span>
-<span id="cb481-13"><a href="pembangkitan-bilangan-acak.html#cb481-13" aria-hidden="true" tabindex="-1"></a>  b0hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b0hat, obj<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span>
-<span id="cb481-14"><a href="pembangkitan-bilangan-acak.html#cb481-14" aria-hidden="true" tabindex="-1"></a>  b1hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b1hat, obj<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
-<span id="cb481-15"><a href="pembangkitan-bilangan-acak.html#cb481-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb481-16"><a href="pembangkitan-bilangan-acak.html#cb481-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb481-17"><a href="pembangkitan-bilangan-acak.html#cb481-17" aria-hidden="true" tabindex="-1"></a>hasil <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="fu">mean</span>(b0hat), <span class="fu">sd</span>(b0hat), <span class="fu">mean</span>(b1hat) , <span class="fu">sd</span>(b1hat)), <span class="at">nrow =</span><span class="dv">2</span>, <span class="at">ncol =</span><span class="dv">2</span>)</span>
-<span id="cb481-18"><a href="pembangkitan-bilangan-acak.html#cb481-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(hasil) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>,<span class="st">&quot;sd&quot;</span>)</span>
-<span id="cb481-19"><a href="pembangkitan-bilangan-acak.html#cb481-19" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(hasil) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;b0&quot;</span>, <span class="st">&quot;b1&quot;</span>)</span>
-<span id="cb481-20"><a href="pembangkitan-bilangan-acak.html#cb481-20" aria-hidden="true" tabindex="-1"></a>hasil</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="pembangkitan-bilangan-acak.html#cb482-1" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb482-2"><a href="pembangkitan-bilangan-acak.html#cb482-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb482-3"><a href="pembangkitan-bilangan-acak.html#cb482-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb482-4"><a href="pembangkitan-bilangan-acak.html#cb482-4" aria-hidden="true" tabindex="-1"></a>b0hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb482-5"><a href="pembangkitan-bilangan-acak.html#cb482-5" aria-hidden="true" tabindex="-1"></a>b1hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb482-6"><a href="pembangkitan-bilangan-acak.html#cb482-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb482-7"><a href="pembangkitan-bilangan-acak.html#cb482-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
+<span id="cb482-8"><a href="pembangkitan-bilangan-acak.html#cb482-8" aria-hidden="true" tabindex="-1"></a>  eps <span class="ot">&lt;-</span> <span class="fu">rnorm</span> (<span class="dv">10</span>)</span>
+<span id="cb482-9"><a href="pembangkitan-bilangan-acak.html#cb482-9" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">runif</span> (<span class="dv">10</span> ,<span class="dv">5</span> ,<span class="dv">10</span>)</span>
+<span id="cb482-10"><a href="pembangkitan-bilangan-acak.html#cb482-10" aria-hidden="true" tabindex="-1"></a>  Y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span>X <span class="sc">+</span> eps</span>
+<span id="cb482-11"><a href="pembangkitan-bilangan-acak.html#cb482-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb482-12"><a href="pembangkitan-bilangan-acak.html#cb482-12" aria-hidden="true" tabindex="-1"></a>  obj <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X)</span>
+<span id="cb482-13"><a href="pembangkitan-bilangan-acak.html#cb482-13" aria-hidden="true" tabindex="-1"></a>  b0hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b0hat, obj<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span>
+<span id="cb482-14"><a href="pembangkitan-bilangan-acak.html#cb482-14" aria-hidden="true" tabindex="-1"></a>  b1hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b1hat, obj<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
+<span id="cb482-15"><a href="pembangkitan-bilangan-acak.html#cb482-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb482-16"><a href="pembangkitan-bilangan-acak.html#cb482-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb482-17"><a href="pembangkitan-bilangan-acak.html#cb482-17" aria-hidden="true" tabindex="-1"></a>hasil <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="fu">mean</span>(b0hat), <span class="fu">sd</span>(b0hat), <span class="fu">mean</span>(b1hat) , <span class="fu">sd</span>(b1hat)), <span class="at">nrow =</span><span class="dv">2</span>, <span class="at">ncol =</span><span class="dv">2</span>)</span>
+<span id="cb482-18"><a href="pembangkitan-bilangan-acak.html#cb482-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(hasil) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>,<span class="st">&quot;sd&quot;</span>)</span>
+<span id="cb482-19"><a href="pembangkitan-bilangan-acak.html#cb482-19" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(hasil) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;b0&quot;</span>, <span class="st">&quot;b1&quot;</span>)</span>
+<span id="cb482-20"><a href="pembangkitan-bilangan-acak.html#cb482-20" aria-hidden="true" tabindex="-1"></a>hasil</span></code></pre></div>
 <pre><code>##            b0        b1
-## mean 1.453250 0.9448713
-## sd   1.951779 0.2502127</code></pre>
+## mean 1.069179 0.9936142
+## sd   1.927543 0.2600527</code></pre>
 <p>Bangkitkan bilangan acak untuk membangun persamaan regresi linier berganda antara <span class="math inline">\(X_1\)</span> dan <span class="math inline">\(X_2\)</span> terhadap <span class="math inline">\(Y\)</span>, sehingga diperoleh <span class="math inline">\(b_0 = 10, b_1 = 2.3, b_2 = 0.7\)</span>.</p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="pembangkitan-bilangan-acak.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb483-2"><a href="pembangkitan-bilangan-acak.html#cb483-2" aria-hidden="true" tabindex="-1"></a>X1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25</span>,<span class="dv">10</span>,<span class="dv">25</span>)</span>
-<span id="cb483-3"><a href="pembangkitan-bilangan-acak.html#cb483-3" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25</span>,<span class="dv">90</span>,<span class="dv">200</span>)</span>
-<span id="cb483-4"><a href="pembangkitan-bilangan-acak.html#cb483-4" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">+</span> <span class="fl">2.3</span><span class="sc">*</span>X1 <span class="sc">+</span> <span class="fl">0.7</span><span class="sc">*</span>X2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">25</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb483-5"><a href="pembangkitan-bilangan-acak.html#cb483-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb483-6"><a href="pembangkitan-bilangan-acak.html#cb483-6" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X1<span class="sc">+</span>X2)</span>
-<span id="cb483-7"><a href="pembangkitan-bilangan-acak.html#cb483-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="pembangkitan-bilangan-acak.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb484-2"><a href="pembangkitan-bilangan-acak.html#cb484-2" aria-hidden="true" tabindex="-1"></a>X1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25</span>,<span class="dv">10</span>,<span class="dv">25</span>)</span>
+<span id="cb484-3"><a href="pembangkitan-bilangan-acak.html#cb484-3" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25</span>,<span class="dv">90</span>,<span class="dv">200</span>)</span>
+<span id="cb484-4"><a href="pembangkitan-bilangan-acak.html#cb484-4" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">+</span> <span class="fl">2.3</span><span class="sc">*</span>X1 <span class="sc">+</span> <span class="fl">0.7</span><span class="sc">*</span>X2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">25</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb484-5"><a href="pembangkitan-bilangan-acak.html#cb484-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb484-6"><a href="pembangkitan-bilangan-acak.html#cb484-6" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X1<span class="sc">+</span>X2)</span>
+<span id="cb484-7"><a href="pembangkitan-bilangan-acak.html#cb484-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Y ~ X1 + X2)
@@ -692,38 +710,38 @@ Contoh lain, membuat sebaran “segitiga”</p>
 ## Multiple R-squared:  0.998,  Adjusted R-squared:  0.9978 
 ## F-statistic:  5509 on 2 and 22 DF,  p-value: &lt; 0.00000000000000022</code></pre>
 <p>Bangkitkan bilangan acak untuk membangun persamaan regresi linier berganda antara <span class="math inline">\(X_1\)</span> dan <span class="math inline">\(X_2\)</span> terhadap <span class="math inline">\(Y\)</span>, sehingga diperoleh <span class="math inline">\(b_0 = 1, b_1 = 1, b_2 = 1\)</span>.</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="pembangkitan-bilangan-acak.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb485-2"><a href="pembangkitan-bilangan-acak.html#cb485-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb485-3"><a href="pembangkitan-bilangan-acak.html#cb485-3" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb485-4"><a href="pembangkitan-bilangan-acak.html#cb485-4" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb485-5"><a href="pembangkitan-bilangan-acak.html#cb485-5" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb485-6"><a href="pembangkitan-bilangan-acak.html#cb485-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb485-7"><a href="pembangkitan-bilangan-acak.html#cb485-7" aria-hidden="true" tabindex="-1"></a>b0hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb485-8"><a href="pembangkitan-bilangan-acak.html#cb485-8" aria-hidden="true" tabindex="-1"></a>b1hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb485-9"><a href="pembangkitan-bilangan-acak.html#cb485-9" aria-hidden="true" tabindex="-1"></a>b2hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb485-10"><a href="pembangkitan-bilangan-acak.html#cb485-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb485-11"><a href="pembangkitan-bilangan-acak.html#cb485-11" aria-hidden="true" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span> ,<span class="fl">0.9</span> ,<span class="fl">0.9</span> ,<span class="dv">1</span>),</span>
-<span id="cb485-12"><a href="pembangkitan-bilangan-acak.html#cb485-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">nrow =</span><span class="dv">2</span> , <span class="at">ncol =</span><span class="dv">2</span>)</span>
-<span id="cb485-13"><a href="pembangkitan-bilangan-acak.html#cb485-13" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span> ,<span class="dv">1</span>)</span>
-<span id="cb485-14"><a href="pembangkitan-bilangan-acak.html#cb485-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb485-15"><a href="pembangkitan-bilangan-acak.html#cb485-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
-<span id="cb485-16"><a href="pembangkitan-bilangan-acak.html#cb485-16" aria-hidden="true" tabindex="-1"></a>  eps <span class="ot">&lt;-</span> <span class="fu">rnorm</span> (<span class="dv">10</span>)</span>
-<span id="cb485-17"><a href="pembangkitan-bilangan-acak.html#cb485-17" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span> (<span class="dv">10</span>, mu, Sigma )</span>
-<span id="cb485-18"><a href="pembangkitan-bilangan-acak.html#cb485-18" aria-hidden="true" tabindex="-1"></a>  Y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span>X [,<span class="dv">1</span>] <span class="sc">*</span> b2<span class="sc">*</span>X [,<span class="dv">2</span>] <span class="sc">+</span> eps</span>
-<span id="cb485-19"><a href="pembangkitan-bilangan-acak.html#cb485-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb485-20"><a href="pembangkitan-bilangan-acak.html#cb485-20" aria-hidden="true" tabindex="-1"></a>  obj <span class="ot">&lt;-</span> <span class="fu">lm</span>( Y<span class="sc">~</span>X )</span>
-<span id="cb485-21"><a href="pembangkitan-bilangan-acak.html#cb485-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb485-22"><a href="pembangkitan-bilangan-acak.html#cb485-22" aria-hidden="true" tabindex="-1"></a>  b0hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b0hat, obj<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span>
-<span id="cb485-23"><a href="pembangkitan-bilangan-acak.html#cb485-23" aria-hidden="true" tabindex="-1"></a>  b1hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b1hat, obj<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
-<span id="cb485-24"><a href="pembangkitan-bilangan-acak.html#cb485-24" aria-hidden="true" tabindex="-1"></a>  b2hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b2hat, obj<span class="sc">$</span>coefficients[<span class="dv">3</span>])</span>
-<span id="cb485-25"><a href="pembangkitan-bilangan-acak.html#cb485-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb485-26"><a href="pembangkitan-bilangan-acak.html#cb485-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb485-27"><a href="pembangkitan-bilangan-acak.html#cb485-27" aria-hidden="true" tabindex="-1"></a>hasil<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fu">mean</span>(b0hat), <span class="fu">sd</span>(b0hat), <span class="fu">mean</span>(b1hat), <span class="fu">sd</span>(b1hat), <span class="fu">mean</span>(b2hat), <span class="fu">sd</span>(b2hat)),</span>
-<span id="cb485-28"><a href="pembangkitan-bilangan-acak.html#cb485-28" aria-hidden="true" tabindex="-1"></a>               <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb485-29"><a href="pembangkitan-bilangan-acak.html#cb485-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(hasil) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>,<span class="st">&quot;sd&quot;</span>)</span>
-<span id="cb485-30"><a href="pembangkitan-bilangan-acak.html#cb485-30" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(hasil) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;b0&quot;</span>, <span class="st">&quot;b1&quot;</span>, <span class="st">&quot;b2&quot;</span>)</span>
-<span id="cb485-31"><a href="pembangkitan-bilangan-acak.html#cb485-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb485-32"><a href="pembangkitan-bilangan-acak.html#cb485-32" aria-hidden="true" tabindex="-1"></a>hasil</span></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="pembangkitan-bilangan-acak.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb486-2"><a href="pembangkitan-bilangan-acak.html#cb486-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb486-3"><a href="pembangkitan-bilangan-acak.html#cb486-3" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb486-4"><a href="pembangkitan-bilangan-acak.html#cb486-4" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb486-5"><a href="pembangkitan-bilangan-acak.html#cb486-5" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb486-6"><a href="pembangkitan-bilangan-acak.html#cb486-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb486-7"><a href="pembangkitan-bilangan-acak.html#cb486-7" aria-hidden="true" tabindex="-1"></a>b0hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb486-8"><a href="pembangkitan-bilangan-acak.html#cb486-8" aria-hidden="true" tabindex="-1"></a>b1hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb486-9"><a href="pembangkitan-bilangan-acak.html#cb486-9" aria-hidden="true" tabindex="-1"></a>b2hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb486-10"><a href="pembangkitan-bilangan-acak.html#cb486-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb486-11"><a href="pembangkitan-bilangan-acak.html#cb486-11" aria-hidden="true" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span> ,<span class="fl">0.9</span> ,<span class="fl">0.9</span> ,<span class="dv">1</span>),</span>
+<span id="cb486-12"><a href="pembangkitan-bilangan-acak.html#cb486-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">nrow =</span><span class="dv">2</span> , <span class="at">ncol =</span><span class="dv">2</span>)</span>
+<span id="cb486-13"><a href="pembangkitan-bilangan-acak.html#cb486-13" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span> ,<span class="dv">1</span>)</span>
+<span id="cb486-14"><a href="pembangkitan-bilangan-acak.html#cb486-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb486-15"><a href="pembangkitan-bilangan-acak.html#cb486-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
+<span id="cb486-16"><a href="pembangkitan-bilangan-acak.html#cb486-16" aria-hidden="true" tabindex="-1"></a>  eps <span class="ot">&lt;-</span> <span class="fu">rnorm</span> (<span class="dv">10</span>)</span>
+<span id="cb486-17"><a href="pembangkitan-bilangan-acak.html#cb486-17" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span> (<span class="dv">10</span>, mu, Sigma )</span>
+<span id="cb486-18"><a href="pembangkitan-bilangan-acak.html#cb486-18" aria-hidden="true" tabindex="-1"></a>  Y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span>X [,<span class="dv">1</span>] <span class="sc">*</span> b2<span class="sc">*</span>X [,<span class="dv">2</span>] <span class="sc">+</span> eps</span>
+<span id="cb486-19"><a href="pembangkitan-bilangan-acak.html#cb486-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb486-20"><a href="pembangkitan-bilangan-acak.html#cb486-20" aria-hidden="true" tabindex="-1"></a>  obj <span class="ot">&lt;-</span> <span class="fu">lm</span>( Y<span class="sc">~</span>X )</span>
+<span id="cb486-21"><a href="pembangkitan-bilangan-acak.html#cb486-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb486-22"><a href="pembangkitan-bilangan-acak.html#cb486-22" aria-hidden="true" tabindex="-1"></a>  b0hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b0hat, obj<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span>
+<span id="cb486-23"><a href="pembangkitan-bilangan-acak.html#cb486-23" aria-hidden="true" tabindex="-1"></a>  b1hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b1hat, obj<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
+<span id="cb486-24"><a href="pembangkitan-bilangan-acak.html#cb486-24" aria-hidden="true" tabindex="-1"></a>  b2hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b2hat, obj<span class="sc">$</span>coefficients[<span class="dv">3</span>])</span>
+<span id="cb486-25"><a href="pembangkitan-bilangan-acak.html#cb486-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb486-26"><a href="pembangkitan-bilangan-acak.html#cb486-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb486-27"><a href="pembangkitan-bilangan-acak.html#cb486-27" aria-hidden="true" tabindex="-1"></a>hasil<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fu">mean</span>(b0hat), <span class="fu">sd</span>(b0hat), <span class="fu">mean</span>(b1hat), <span class="fu">sd</span>(b1hat), <span class="fu">mean</span>(b2hat), <span class="fu">sd</span>(b2hat)),</span>
+<span id="cb486-28"><a href="pembangkitan-bilangan-acak.html#cb486-28" aria-hidden="true" tabindex="-1"></a>               <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb486-29"><a href="pembangkitan-bilangan-acak.html#cb486-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(hasil) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>,<span class="st">&quot;sd&quot;</span>)</span>
+<span id="cb486-30"><a href="pembangkitan-bilangan-acak.html#cb486-30" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(hasil) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;b0&quot;</span>, <span class="st">&quot;b1&quot;</span>, <span class="st">&quot;b2&quot;</span>)</span>
+<span id="cb486-31"><a href="pembangkitan-bilangan-acak.html#cb486-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb486-32"><a href="pembangkitan-bilangan-acak.html#cb486-32" aria-hidden="true" tabindex="-1"></a>hasil</span></code></pre></div>
 <pre><code>##             b0        b1       b2
 ## mean 0.6721352 0.8529024 1.138359
 ## sd   1.2919187 1.5528197 1.597078</code></pre>

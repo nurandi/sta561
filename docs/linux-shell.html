@@ -361,38 +361,37 @@ div.csl-indent {
 <ul>
 <li>Melihat working directory: <code>pwd</code></li>
 </ul>
-<div class="sourceCode" id="cb487"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb487-1"><a href="linux-shell.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb488-1"><a href="linux-shell.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div>
 <pre><code>## /mnt/d/SSD21/Bookdown/sta561</code></pre>
 <ul>
 <li>Membuat directory baru: <code>mkdir</code></li>
 </ul>
-<div class="sourceCode" id="cb489"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb489-1"><a href="linux-shell.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> test</span></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb490-1"><a href="linux-shell.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> test</span></code></pre></div>
 <ul>
 <li>Pindah ke directory lain: <code>cd</code></li>
 </ul>
-<div class="sourceCode" id="cb490"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb490-1"><a href="linux-shell.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> test</span></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb491-1"><a href="linux-shell.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> test</span></code></pre></div>
 </div>
 <div id="file" class="section level3" number="8.2.2">
 <h3><span class="header-section-number">8.2.2</span> File</h3>
 <ul>
 <li>Membuat file baru: <code>touch</code></li>
 </ul>
-<div class="sourceCode" id="cb491"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb491-1"><a href="linux-shell.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> myfile.txt</span></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb492-1"><a href="linux-shell.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> myfile.txt</span></code></pre></div>
 <ul>
 <li>Menulis pada file</li>
 </ul>
-<div class="sourceCode" id="cb492"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb492-1"><a href="linux-shell.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;hello!&quot;</span> <span class="op">&gt;&gt;</span> myfile.txt</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb493-1"><a href="linux-shell.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;hello!&quot;</span> <span class="op">&gt;&gt;</span> myfile.txt</span></code></pre></div>
 <ul>
 <li>Menampilkan list file dan folder: <code>ls</code></li>
 </ul>
-<div class="sourceCode" id="cb493"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb493-1"><a href="linux-shell.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb494-1"><a href="linux-shell.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div>
 <pre><code>## 01-what-r.Rmd
 ## 02-r-dasar.Rmd
 ## 03-operasi-dasar-r.Rmd
 ## 04-data-wrangling-1.Rmd
 ## 05-data-wrangling-2.Rmd
 ## 06-visualisasi-data.Rmd
-## 07-simulation - Copy.Rmd
 ## 07-simulation.Rmd
 ## 91-shell.Rmd
 ## 99-referensi.Rmd
@@ -414,29 +413,28 @@ div.csl-indent {
 ## sta561.Rproj
 ## sta561_cache
 ## test</code></pre>
-<div class="sourceCode" id="cb495"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb495-1"><a href="linux-shell.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List file dalam format lebih lengkap</span></span>
-<span id="cb495-2"><a href="linux-shell.html#cb495-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div>
-<pre><code>## total 264
+<div class="sourceCode" id="cb496"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb496-1"><a href="linux-shell.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List file dalam format lebih lengkap</span></span>
+<span id="cb496-2"><a href="linux-shell.html#cb496-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div>
+<pre><code>## total 256
 ## -rwxrwxrwx 1 nurandi nurandi  3243 Sep  6 03:16 01-what-r.Rmd
 ## -rwxrwxrwx 1 nurandi nurandi 15860 Sep  7 18:15 02-r-dasar.Rmd
 ## -rwxrwxrwx 1 nurandi nurandi  8636 Sep  6 16:13 03-operasi-dasar-r.Rmd
 ## -rwxrwxrwx 1 nurandi nurandi  5398 Oct  4 14:18 04-data-wrangling-1.Rmd
 ## -rwxrwxrwx 1 nurandi nurandi 18459 Sep  8 20:30 05-data-wrangling-2.Rmd
 ## -rwxrwxrwx 1 nurandi nurandi 17032 Sep 18 18:50 06-visualisasi-data.Rmd
-## -rwxrwxrwx 1 nurandi nurandi  9460 Oct  4 13:37 07-simulation - Copy.Rmd
-## -rwxrwxrwx 1 nurandi nurandi  9467 Oct  4 14:27 07-simulation.Rmd
+## -rwxrwxrwx 1 nurandi nurandi 10052 Oct  4 17:14 07-simulation.Rmd
 ## -rwxrwxrwx 1 nurandi nurandi  2585 Sep  8 20:45 91-shell.Rmd
 ## -rwxrwxrwx 1 nurandi nurandi    21 Sep  8 20:47 99-referensi.Rmd
 ## -rwxrwxrwx 1 nurandi nurandi   125 Sep  8 21:44 README.md
 ## -rwxrwxrwx 1 nurandi nurandi   384 Oct  4 13:50 _bookdown.yml
-## drwxrwxrwx 1 nurandi nurandi   512 Oct  4 15:16 _bookdown_files
+## drwxrwxrwx 1 nurandi nurandi   512 Oct  4 17:14 _bookdown_files
 ## -rwxrwxrwx 1 nurandi nurandi   466 Sep  8 20:30 _output.yml
 ## drwxrwxrwx 1 nurandi nurandi   512 Sep 18 12:23 data
-## drwxrwxrwx 1 nurandi nurandi   512 Oct  4 15:16 docs
+## drwxrwxrwx 1 nurandi nurandi   512 Oct  4 17:14 docs
 ## drwxrwxrwx 1 nurandi nurandi   512 Sep 18 11:57 img
 ## -rwxrwxrwx 1 nurandi nurandi   507 Sep 17 21:32 index.Rmd
-## -rwxrwxrwx 1 nurandi nurandi     7 Oct  4 15:18 myfile.txt
-## -rwxrwxrwx 1 nurandi nurandi 81834 Oct  4 15:16 nur_andi_sta561.Rmd
+## -rwxrwxrwx 1 nurandi nurandi     7 Oct  4 17:16 myfile.txt
+## -rwxrwxrwx 1 nurandi nurandi 82419 Oct  4 17:14 nur_andi_sta561.Rmd
 ## -rwxrwxrwx 1 nurandi nurandi 62749 Oct  4 13:48 nur_andi_sta561.log
 ## drwxrwxrwx 1 nurandi nurandi   512 Sep  6 16:33 nur_andi_sta561_cache
 ## drwxrwxrwx 1 nurandi nurandi   512 Sep 18 14:47 nur_andi_sta561_files
@@ -444,9 +442,9 @@ div.csl-indent {
 ## drwxrwxrwx 1 nurandi nurandi   512 Sep  6 12:35 series_cache
 ## -rwxrwxrwx 1 nurandi nurandi   240 Oct  4 15:16 sta561.Rproj
 ## drwxrwxrwx 1 nurandi nurandi   512 Sep  6 16:32 sta561_cache
-## drwxrwxrwx 1 nurandi nurandi   512 Oct  4 15:18 test</code></pre>
-<div class="sourceCode" id="cb497"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb497-1"><a href="linux-shell.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List file termasuk hidden file</span></span>
-<span id="cb497-2"><a href="linux-shell.html#cb497-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span></span></code></pre></div>
+## drwxrwxrwx 1 nurandi nurandi   512 Oct  4 17:16 test</code></pre>
+<div class="sourceCode" id="cb498"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb498-1"><a href="linux-shell.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List file termasuk hidden file</span></span>
+<span id="cb498-2"><a href="linux-shell.html#cb498-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span></span></code></pre></div>
 <pre><code>## .
 ## ..
 ## .Rhistory
@@ -459,7 +457,6 @@ div.csl-indent {
 ## 04-data-wrangling-1.Rmd
 ## 05-data-wrangling-2.Rmd
 ## 06-visualisasi-data.Rmd
-## 07-simulation - Copy.Rmd
 ## 07-simulation.Rmd
 ## 91-shell.Rmd
 ## 99-referensi.Rmd
@@ -484,22 +481,21 @@ div.csl-indent {
 <ul>
 <li>Memindahkan dan mengubah nama file: <code>mv</code></li>
 </ul>
-<div class="sourceCode" id="cb499"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb499-1"><a href="linux-shell.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> myfile.txt fileku.txt</span></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb500-1"><a href="linux-shell.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> myfile.txt fileku.txt</span></code></pre></div>
 <ul>
 <li>Menyalin file: <code>cp</code></li>
 </ul>
-<div class="sourceCode" id="cb500"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb500-1"><a href="linux-shell.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> fileku.txt myfile.txt</span></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb501-1"><a href="linux-shell.html#cb501-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> fileku.txt myfile.txt</span></code></pre></div>
 <ul>
 <li>Tampilkan list file: <code>ls</code></li>
 </ul>
-<div class="sourceCode" id="cb501"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb501-1"><a href="linux-shell.html#cb501-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb502-1"><a href="linux-shell.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div>
 <pre><code>## 01-what-r.Rmd
 ## 02-r-dasar.Rmd
 ## 03-operasi-dasar-r.Rmd
 ## 04-data-wrangling-1.Rmd
 ## 05-data-wrangling-2.Rmd
 ## 06-visualisasi-data.Rmd
-## 07-simulation - Copy.Rmd
 ## 07-simulation.Rmd
 ## 91-shell.Rmd
 ## 99-referensi.Rmd
@@ -525,21 +521,21 @@ div.csl-indent {
 <ul>
 <li>Menghitung jumlah baris: <code>wc</code></li>
 </ul>
-<div class="sourceCode" id="cb503"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb503-1"><a href="linux-shell.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> myfile.txt</span></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb504-1"><a href="linux-shell.html#cb504-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> myfile.txt</span></code></pre></div>
 <pre><code>## 1 1 7 myfile.txt</code></pre>
 <ul>
 <li>Menampilkan isi file: <code>cat</code></li>
 </ul>
-<div class="sourceCode" id="cb505"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb505-1"><a href="linux-shell.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> myfile.txt</span></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb506-1"><a href="linux-shell.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> myfile.txt</span></code></pre></div>
 <pre><code>## hello!</code></pre>
 <ul>
 <li>Menghapus file: <code>rm</code></li>
 </ul>
-<div class="sourceCode" id="cb507"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb507-1"><a href="linux-shell.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> myfile.txt fileku.txt</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb508-1"><a href="linux-shell.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> myfile.txt fileku.txt</span></code></pre></div>
 <ul>
 <li>Menghapus directory: <code>rm -r</code></li>
 </ul>
-<div class="sourceCode" id="cb508"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb508-1"><a href="linux-shell.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> test</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb509-1"><a href="linux-shell.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> test</span></code></pre></div>
 
 </div>
 </div>
