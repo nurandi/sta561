@@ -28,9 +28,12 @@ read.csv("data/salary-information-for-local-authorities.csv") %>%
   saveRDS("data/salary.rds")
 ```
 
-```{r}
+```{r, include=FALSE}
 library(dplyr)
+```
 
+
+```{r}
 Salary <- readRDS("data/salary.rds")
 glimpse(Salary)
 ```
@@ -264,7 +267,7 @@ hist(Salary$Total.Compensation)
 
 Buatlah *scatter plot* seperti gambar berikut
 
-![plot-trend](img/plot-trend.png)
+![](img/plot-trend.png)
 
 ```{r}
 # data awal
@@ -320,7 +323,7 @@ curve(dchisq(x,df=4), col=2, lty=2, lwd=2, add=TRUE)
 Buatlah grafik seperti berikut
 
 
-![plot-2x2.png](img/plot-2x2.png)
+![](img/plot-2x2.png)
 
 ```{r}
 a1 <- 1:25
@@ -349,7 +352,7 @@ text(a1,a2,labels=paste("w",1:25,sep=""),
 
 Buat empat grafil dalam satu windows, dengan format berikut:
 
-![graph-grid](img/graph-grid.jpeg)
+![](img/graph-grid.jpeg)
 ```{r}
 yb <- rnorm(100,5,1)
 xb <- 1:100
