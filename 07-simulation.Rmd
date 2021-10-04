@@ -245,7 +245,30 @@ hist(vals, breaks=30, freq=FALSE, main="Beta(2,2). Sample vs true Density")
 xs <- seq(0, 1, len=100)
 lines(xs, dbeta(xs,2,2), col="red", lwd=2)
 ```
+
 Contoh lain, membuat sebaran "segitiga"
+
+```{r}
+# triangle function
+f  <- function(x){
+  ifelse((0 < x) & (x < 1), x, 
+         ifelse((1 <= x) & (x < 2), 2 - x, 0)) 
+} 
+
+g  <- function(x) x/x             # g(x) = 1 but in vectorized version
+rg <- function(n) runif(n, 0, 2) # uniform, in this case. limit x from 0 to 2
+c  <- 2                          # c=2 since f(x) <= 2 g(x)
+
+vals <- accept.reject(f, c, g, rg, 10000) 
+
+# Checking if it went well
+hist(vals, breaks=30, freq=FALSE, main="Sample vs true Density")
+xs <- seq(0, 2, len=100)
+lines(xs, f(xs), col="red", lwd=2)
+
+```
+
+Dengan cara lain:
 
 ```{r}
 # https://users.phhp.ufl.edu/rlp176/Courses/PHC6089/R_notes/simulations.html
