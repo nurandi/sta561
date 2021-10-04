@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Bagian 7 Pembangkitan Bilangan Acak | STA561 Pemrograman Statistika</title>
+  <meta name="description" content="Catatan Latihan dan Kuliah STA561 Pemrograman Statistika" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Bagian 7 Pembangkitan Bilangan Acak | STA561 Pemrograman Statistika" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Catatan Latihan dan Kuliah STA561 Pemrograman Statistika" />
+  <meta name="github-repo" content="nurandi/sta561" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Bagian 7 Pembangkitan Bilangan Acak | STA561 Pemrograman Statistika" />
+  
+  <meta name="twitter:description" content="Catatan Latihan dan Kuliah STA561 Pemrograman Statistika" />
+  
+
+<meta name="author" content="Nur Andi Setiabudi" />
+
+
+<meta name="date" content="2021-10-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="visualisasi-data.html"/>
+<link rel="next" href="linux-shell.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="lib/css/style.css" type="text/css" />
+<link rel="stylesheet" href="lib/css/lesson.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Catatan STA561</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="pengenalan-r.html"><a href="pengenalan-r.html"><i class="fa fa-check"></i><b>1</b> Pengenalan R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="pengenalan-r.html"><a href="pengenalan-r.html#apa-itu-r"><i class="fa fa-check"></i><b>1.1</b> Apa itu R?</a></li>
+<li class="chapter" data-level="1.2" data-path="pengenalan-r.html"><a href="pengenalan-r.html#fitur-dasar-r"><i class="fa fa-check"></i><b>1.2</b> Fitur Dasar R</a></li>
+<li class="chapter" data-level="1.3" data-path="pengenalan-r.html"><a href="pengenalan-r.html#sistem-r"><i class="fa fa-check"></i><b>1.3</b> Sistem R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html"><i class="fa fa-check"></i><b>2</b> Pemrograman R Dasar</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#input"><i class="fa fa-check"></i><b>2.1</b> Input</a></li>
+<li class="chapter" data-level="2.2" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#assigment"><i class="fa fa-check"></i><b>2.2</b> Assigment</a></li>
+<li class="chapter" data-level="2.3" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#penamaan-objek"><i class="fa fa-check"></i><b>2.3</b> Penamaan Objek</a></li>
+<li class="chapter" data-level="2.4" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working Directory</a></li>
+<li class="chapter" data-level="2.5" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#objek-data"><i class="fa fa-check"></i><b>2.5</b> Objek Data</a></li>
+<li class="chapter" data-level="2.6" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#tipe-objek-data"><i class="fa fa-check"></i><b>2.6</b> Tipe Objek Data</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#vector"><i class="fa fa-check"></i><b>2.6.1</b> Vector</a></li>
+<li class="chapter" data-level="2.6.2" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#factor"><i class="fa fa-check"></i><b>2.6.2</b> Factor</a></li>
+<li class="chapter" data-level="2.6.3" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#matriks"><i class="fa fa-check"></i><b>2.6.3</b> Matriks</a></li>
+<li class="chapter" data-level="2.6.4" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#array"><i class="fa fa-check"></i><b>2.6.4</b> Array</a></li>
+<li class="chapter" data-level="2.6.5" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#dataframe"><i class="fa fa-check"></i><b>2.6.5</b> Dataframe</a></li>
+<li class="chapter" data-level="2.6.6" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#list"><i class="fa fa-check"></i><b>2.6.6</b> List</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#missing-value"><i class="fa fa-check"></i><b>2.7</b> Missing value</a></li>
+<li class="chapter" data-level="2.8" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#penamaan-elemen"><i class="fa fa-check"></i><b>2.8</b> Penamaan Elemen</a></li>
+<li class="chapter" data-level="2.9" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#struktur-kendali"><i class="fa fa-check"></i><b>2.9</b> Struktur Kendali</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#percabangan"><i class="fa fa-check"></i><b>2.9.1</b> Percabangan</a></li>
+<li class="chapter" data-level="2.9.2" data-path="pemrograman-r-dasar.html"><a href="pemrograman-r-dasar.html#loop"><i class="fa fa-check"></i><b>2.9.2</b> Loop</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html"><i class="fa fa-check"></i><b>3</b> Operasi Dasar R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen"><i class="fa fa-check"></i><b>3.1</b> Akses Elemen</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen-vector"><i class="fa fa-check"></i><b>3.1.1</b> Akses elemen vector</a></li>
+<li class="chapter" data-level="3.1.2" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen-matriks"><i class="fa fa-check"></i><b>3.1.2</b> Akses elemen matriks</a></li>
+<li class="chapter" data-level="3.1.3" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen-list"><i class="fa fa-check"></i><b>3.1.3</b> Akses elemen list</a></li>
+<li class="chapter" data-level="3.1.4" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#akses-elemen-dataframe"><i class="fa fa-check"></i><b>3.1.4</b> Akses elemen dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#operasi-aritmatika-dasar"><i class="fa fa-check"></i><b>3.2</b> Operasi aritmatika dasar</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#menampilkan-atribut"><i class="fa fa-check"></i><b>3.2.1</b> Menampilkan atribut</a></li>
+<li class="chapter" data-level="3.2.2" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#operasi-pada-vector"><i class="fa fa-check"></i><b>3.2.2</b> Operasi pada vector</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#operasi-pada-matriks"><i class="fa fa-check"></i><b>3.3</b> Operasi pada matriks</a></li>
+<li class="chapter" data-level="3.4" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#latihan"><i class="fa fa-check"></i><b>3.4</b> Latihan</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#latihan-1"><i class="fa fa-check"></i><b>3.4.1</b> Latihan 1</a></li>
+<li class="chapter" data-level="3.4.2" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#latihan-2"><i class="fa fa-check"></i><b>3.4.2</b> Latihan 2</a></li>
+<li class="chapter" data-level="3.4.3" data-path="operasi-dasar-r.html"><a href="operasi-dasar-r.html#latihan-3"><i class="fa fa-check"></i><b>3.4.3</b> Latihan 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>4</b> Data Wrangling</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-wrangling.html"><a href="data-wrangling.html#inspeksi-dataframe"><i class="fa fa-check"></i><b>4.1</b> Inspeksi dataframe</a></li>
+<li class="chapter" data-level="4.2" data-path="data-wrangling.html"><a href="data-wrangling.html#mengakses-elemen"><i class="fa fa-check"></i><b>4.2</b> Mengakses elemen</a></li>
+<li class="chapter" data-level="4.3" data-path="data-wrangling.html"><a href="data-wrangling.html#mengubah-data"><i class="fa fa-check"></i><b>4.3</b> Mengubah data</a></li>
+<li class="chapter" data-level="4.4" data-path="data-wrangling.html"><a href="data-wrangling.html#mengurutkan-baris"><i class="fa fa-check"></i><b>4.4</b> Mengurutkan baris</a></li>
+<li class="chapter" data-level="4.5" data-path="data-wrangling.html"><a href="data-wrangling.html#menggabungkan-dataframe"><i class="fa fa-check"></i><b>4.5</b> Menggabungkan dataframe</a></li>
+<li class="chapter" data-level="4.6" data-path="data-wrangling.html"><a href="data-wrangling.html#agregasi-data"><i class="fa fa-check"></i><b>4.6</b> Agregasi data</a></li>
+<li class="chapter" data-level="4.7" data-path="data-wrangling.html"><a href="data-wrangling.html#reshaping-dataframe"><i class="fa fa-check"></i><b>4.7</b> Reshaping dataframe</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="data-wrangling.html"><a href="data-wrangling.html#long-to-wide"><i class="fa fa-check"></i><b>4.7.1</b> Long to wide</a></li>
+<li class="chapter" data-level="4.7.2" data-path="data-wrangling.html"><a href="data-wrangling.html#wide-to-long"><i class="fa fa-check"></i><b>4.7.2</b> Wide to long</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling dengan <code>tidyverse</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#data-wrangling-1"><i class="fa fa-check"></i><b>5.1</b> Data Wrangling</a></li>
+<li class="chapter" data-level="5.2" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#r-tidyverse-dan-dplyr"><i class="fa fa-check"></i><b>5.2</b> R, <code>tidyverse</code> dan <code>dplyr</code></a></li>
+<li class="chapter" data-level="5.3" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#studi-kasus-data-movielens"><i class="fa fa-check"></i><b>5.3</b> Studi Kasus: Data MovieLens</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#persiapan"><i class="fa fa-check"></i><b>5.3.1</b> Persiapan</a></li>
+<li class="chapter" data-level="5.3.2" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#operator-pipe"><i class="fa fa-check"></i><b>5.3.2</b> Operator <em>pipe</em> <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="5.3.3" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#dplyrs-verbs"><i class="fa fa-check"></i><b>5.3.3</b> <code>dplyr</code><em>’s verbs</em></a></li>
+<li class="chapter" data-level="5.3.4" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#memilih-kolom-select"><i class="fa fa-check"></i><b>5.3.4</b> Memilih kolom: <code>select()</code></a></li>
+<li class="chapter" data-level="5.3.5" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#menyeleksi-baris-filter"><i class="fa fa-check"></i><b>5.3.5</b> Menyeleksi baris: <code>filter()</code></a></li>
+<li class="chapter" data-level="5.3.6" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#menambah-kolom-mutate"><i class="fa fa-check"></i><b>5.3.6</b> Menambah kolom: <code>mutate()</code></a></li>
+<li class="chapter" data-level="5.3.7" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#meringkas-data-summarise"><i class="fa fa-check"></i><b>5.3.7</b> Meringkas data: <code>summarise()</code></a></li>
+<li class="chapter" data-level="5.3.8" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#mengurutkan-baris-arrange"><i class="fa fa-check"></i><b>5.3.8</b> Mengurutkan baris: <code>arrange()</code></a></li>
+<li class="chapter" data-level="5.3.9" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#gabungan-beberapa-fungsi-sekaligus"><i class="fa fa-check"></i><b>5.3.9</b> Gabungan beberapa fungsi sekaligus</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#joinmerge-dataframe"><i class="fa fa-check"></i><b>5.4</b> Join/Merge Dataframe</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#inner_joinxy"><i class="fa fa-check"></i><b>5.4.1</b> <code>inner_join(x,y)</code></a></li>
+<li class="chapter" data-level="5.4.2" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#semi_joinxy"><i class="fa fa-check"></i><b>5.4.2</b> <code>semi_join(x,y)</code></a></li>
+<li class="chapter" data-level="5.4.3" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#left_joinxy"><i class="fa fa-check"></i><b>5.4.3</b> <code>left_join(x,y)</code></a></li>
+<li class="chapter" data-level="5.4.4" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#right_joinxy"><i class="fa fa-check"></i><b>5.4.4</b> <code>right_join(x,y)</code></a></li>
+<li class="chapter" data-level="5.4.5" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#full_joinxy"><i class="fa fa-check"></i><b>5.4.5</b> <code>full_join(x,y)</code></a></li>
+<li class="chapter" data-level="5.4.6" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#anti_joinxy"><i class="fa fa-check"></i><b>5.4.6</b> <code>anti_join(x,y)</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#reshaping-dataframe-1"><i class="fa fa-check"></i><b>5.5</b> Reshaping Dataframe</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#long-ke-wide"><i class="fa fa-check"></i><b>5.5.1</b> Long ke wide</a></li>
+<li class="chapter" data-level="5.5.2" data-path="data-wrangling-dengan-tidyverse.html"><a href="data-wrangling-dengan-tidyverse.html#wide-ke-long"><i class="fa fa-check"></i><b>5.5.2</b> Wide ke long</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="visualisasi-data.html"><a href="visualisasi-data.html"><i class="fa fa-check"></i><b>6</b> Visualisasi Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="visualisasi-data.html"><a href="visualisasi-data.html#grafik-r-dasar"><i class="fa fa-check"></i><b>6.1</b> Grafik R dasar</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="visualisasi-data.html"><a href="visualisasi-data.html#histogram"><i class="fa fa-check"></i><b>6.1.1</b> Histogram</a></li>
+<li class="chapter" data-level="6.1.2" data-path="visualisasi-data.html"><a href="visualisasi-data.html#bar-plot"><i class="fa fa-check"></i><b>6.1.2</b> Bar plot</a></li>
+<li class="chapter" data-level="6.1.3" data-path="visualisasi-data.html"><a href="visualisasi-data.html#scatter-plot"><i class="fa fa-check"></i><b>6.1.3</b> Scatter plot</a></li>
+<li class="chapter" data-level="6.1.4" data-path="visualisasi-data.html"><a href="visualisasi-data.html#line-plot"><i class="fa fa-check"></i><b>6.1.4</b> Line plot</a></li>
+<li class="chapter" data-level="6.1.5" data-path="visualisasi-data.html"><a href="visualisasi-data.html#pie-chart"><i class="fa fa-check"></i><b>6.1.5</b> Pie chart</a></li>
+<li class="chapter" data-level="6.1.6" data-path="visualisasi-data.html"><a href="visualisasi-data.html#boxplot"><i class="fa fa-check"></i><b>6.1.6</b> Boxplot</a></li>
+<li class="chapter" data-level="6.1.7" data-path="visualisasi-data.html"><a href="visualisasi-data.html#layout"><i class="fa fa-check"></i><b>6.1.7</b> Layout</a></li>
+<li class="chapter" data-level="6.1.8" data-path="visualisasi-data.html"><a href="visualisasi-data.html#latihanresponsi"><i class="fa fa-check"></i><b>6.1.8</b> Latihan/Responsi</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="visualisasi-data.html"><a href="visualisasi-data.html#ggplot2"><i class="fa fa-check"></i><b>6.2</b> <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="visualisasi-data.html"><a href="visualisasi-data.html#histogram-1"><i class="fa fa-check"></i><b>6.2.1</b> Histogram</a></li>
+<li class="chapter" data-level="6.2.2" data-path="visualisasi-data.html"><a href="visualisasi-data.html#scatterplot"><i class="fa fa-check"></i><b>6.2.2</b> Scatterplot</a></li>
+<li class="chapter" data-level="6.2.3" data-path="visualisasi-data.html"><a href="visualisasi-data.html#barplot"><i class="fa fa-check"></i><b>6.2.3</b> Barplot</a></li>
+<li class="chapter" data-level="6.2.4" data-path="visualisasi-data.html"><a href="visualisasi-data.html#pie-chart-1"><i class="fa fa-check"></i><b>6.2.4</b> Pie chart</a></li>
+<li class="chapter" data-level="6.2.5" data-path="visualisasi-data.html"><a href="visualisasi-data.html#line-plot-1"><i class="fa fa-check"></i><b>6.2.5</b> Line plot</a></li>
+<li class="chapter" data-level="6.2.6" data-path="visualisasi-data.html"><a href="visualisasi-data.html#boxplot-1"><i class="fa fa-check"></i><b>6.2.6</b> Boxplot</a></li>
+<li class="chapter" data-level="6.2.7" data-path="visualisasi-data.html"><a href="visualisasi-data.html#layout-1"><i class="fa fa-check"></i><b>6.2.7</b> Layout</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="visualisasi-data.html"><a href="visualisasi-data.html#visualisasi-data-spasial"><i class="fa fa-check"></i><b>6.3</b> Visualisasi data spasial</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="visualisasi-data.html"><a href="visualisasi-data.html#membaca-data"><i class="fa fa-check"></i><b>6.3.1</b> Membaca data</a></li>
+<li class="chapter" data-level="6.3.2" data-path="visualisasi-data.html"><a href="visualisasi-data.html#peta-statis"><i class="fa fa-check"></i><b>6.3.2</b> Peta Statis</a></li>
+<li class="chapter" data-level="6.3.3" data-path="visualisasi-data.html"><a href="visualisasi-data.html#peta-interaktif"><i class="fa fa-check"></i><b>6.3.3</b> Peta Interaktif</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="pembangkitan-bilangan-acak.html"><a href="pembangkitan-bilangan-acak.html"><i class="fa fa-check"></i><b>7</b> Pembangkitan Bilangan Acak</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="pembangkitan-bilangan-acak.html"><a href="pembangkitan-bilangan-acak.html#fungsi-peluang-suatu-sebaran"><i class="fa fa-check"></i><b>7.1</b> Fungsi Peluang Suatu Sebaran</a></li>
+<li class="chapter" data-level="7.2" data-path="pembangkitan-bilangan-acak.html"><a href="pembangkitan-bilangan-acak.html#teknik-pembangkitan-bilangan-acak"><i class="fa fa-check"></i><b>7.2</b> Teknik Pembangkitan Bilangan Acak</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="pembangkitan-bilangan-acak.html"><a href="pembangkitan-bilangan-acak.html#the-inverse-transform-method"><i class="fa fa-check"></i><b>7.2.1</b> The Inverse Transform Method</a></li>
+<li class="chapter" data-level="7.2.2" data-path="pembangkitan-bilangan-acak.html"><a href="pembangkitan-bilangan-acak.html#acceptance-rejection-method"><i class="fa fa-check"></i><b>7.2.2</b> Acceptance-Rejection Method</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="pembangkitan-bilangan-acak.html"><a href="pembangkitan-bilangan-acak.html#membangkitkan-bilangan-acak-untuk-regresi"><i class="fa fa-check"></i><b>7.3</b> Membangkitkan Bilangan Acak untuk Regresi</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="linux-shell.html"><a href="linux-shell.html"><i class="fa fa-check"></i><b>8</b> Linux Shell</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="linux-shell.html"><a href="linux-shell.html#apa-itu-shell"><i class="fa fa-check"></i><b>8.1</b> Apa itu Shell?</a></li>
+<li class="chapter" data-level="8.2" data-path="linux-shell.html"><a href="linux-shell.html#perintah-dasar-shell"><i class="fa fa-check"></i><b>8.2</b> Perintah Dasar Shell</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="linux-shell.html"><a href="linux-shell.html#direktori"><i class="fa fa-check"></i><b>8.2.1</b> Direktori</a></li>
+<li class="chapter" data-level="8.2.2" data-path="linux-shell.html"><a href="linux-shell.html#file"><i class="fa fa-check"></i><b>8.2.2</b> File</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referensi.html"><a href="referensi.html"><i class="fa fa-check"></i>Referensi</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA561 Pemrograman Statistika</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pembangkitan-bilangan-acak" class="section level1" number="7">
+<h1><span class="header-section-number">Bagian 7</span> Pembangkitan Bilangan Acak</h1>
+<p>Simulasi atau pembangkitan bilangan adalah salah satu topik penting dalam statistika maupun bidang lain. Sangat sering kita ingin menerapkan prosedur statistika yang memerlukan pembangkitan atau pengambilan contoh angka acak.</p>
+<div id="fungsi-peluang-suatu-sebaran" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Fungsi Peluang Suatu Sebaran</h2>
+<p>R dilengkapi dengan sekumpulan fungsi untuk membangkitkan bilangan acak yang memungkinkan kita untuk mensimulasikan sebaran peluang yang umum digunakan seperti Normal, Poisson, dan binomial dan lain-lain. Beberapa contoh fungsi untuk membangkitkan data yang berasal dari sebaran tertentu antara lain <span class="citation">(<a href="referensi.html#ref-ROGER" role="doc-biblioref">Peng 2020</a>)</span>:</p>
+<ul>
+<li><code>rnorm</code>: menghasilkan angka acak dengan rata-rata dan simpangan baku yang diberikan</li>
+<li><code>dnorm</code>: mengevaluasi kepekatan peluang normal (dengan rata-rata dan simpangan baku yang diberikan) pada suatu titik (atau vektor titik)</li>
+<li><code>pnorm</code>: mengevaluasi fungsi sebaran kumulatif untuk sebaran Normal</li>
+<li><code>rpois</code>: menghasilkan anka acak yang menyebar Poisson dengan tingkat tertentu</li>
+</ul>
+<p>Dalam R, fungsi yang berhubungan dengan simulasi mengenai sebaran disusun dengan format <code>&lt;awalan&gt;&lt;sebaran&gt;</code>. <code>&lt;awalan&gt;</code> berupa satu huruf sebagai berikut:</p>
+<ul>
+<li><code>d</code> untuk kepekatan peluang</li>
+<li><code>r</code> untuk membangkitkan peubah acak</li>
+<li><code>p</code> untuk sebaran kumulatif</li>
+<li><code>q</code> untuk fungsi <em>quantile</em> atau <em>inverse</em></li>
+</ul>
+<p>Sedangkan <code>&lt;sebaran&gt;</code> adalah nama sebaran (atau singkatannya) seperti <code>norm</code>, <code>pois</code>, <code>unif</code> dan lain lain. Selengkapnya di tabel berikut</p>
+<table>
+<thead>
+<tr class="header">
+<th>Distribution</th>
+<th>R name</th>
+<th>Arguments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>beta</td>
+<td><code>beta</code></td>
+<td>shape1, shape2, ncp</td>
+</tr>
+<tr class="even">
+<td>binomial</td>
+<td><code>binom</code></td>
+<td>size, prob</td>
+</tr>
+<tr class="odd">
+<td>Chauchy</td>
+<td><code>cauchy</code></td>
+<td>location, scale</td>
+</tr>
+<tr class="even">
+<td>chi-squared</td>
+<td><code>chisq</code></td>
+<td>df, ncp</td>
+</tr>
+<tr class="odd">
+<td>exponential</td>
+<td><code>exp</code></td>
+<td>rate</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td><code>f</code></td>
+<td>df1, df2, ncp</td>
+</tr>
+<tr class="odd">
+<td>gamma</td>
+<td><code>gamma</code></td>
+<td>shape, scale</td>
+</tr>
+<tr class="even">
+<td>geometric</td>
+<td><code>geom</code></td>
+<td>prob</td>
+</tr>
+<tr class="odd">
+<td>hypergeometric</td>
+<td><code>hyper</code></td>
+<td>m, n, k</td>
+</tr>
+<tr class="even">
+<td>log-normal</td>
+<td><code>lnorm</code></td>
+<td>meanlog, sdlog</td>
+</tr>
+<tr class="odd">
+<td>uniform</td>
+<td><code>unif</code></td>
+<td>min, max</td>
+</tr>
+<tr class="even">
+<td>neg binomial</td>
+<td><code>nbinom</code></td>
+<td>size, prob</td>
+</tr>
+<tr class="odd">
+<td>normal</td>
+<td><code>norm</code></td>
+<td>mean, sd</td>
+</tr>
+<tr class="even">
+<td>Poisson</td>
+<td><code>pois</code></td>
+<td>lambda</td>
+</tr>
+<tr class="odd">
+<td>Student’s t</td>
+<td><code>t</code></td>
+<td>df, ncp</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="teknik-pembangkitan-bilangan-acak" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Teknik Pembangkitan Bilangan Acak</h2>
+<p>Teknik umum dalam pembangkitan bilangan acak antara lain
+1. Inverse-transform method
+2. Acceptance-rejection method
+3. Direct Transformation</p>
+<div id="the-inverse-transform-method" class="section level3" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> The Inverse Transform Method</h3>
+<p>Untuk membangkitkan contoh acak <span class="math inline">\(X\)</span> dengan sebaran tertentu:</p>
+<ul>
+<li>Tentukan fungsi sebaran kumulatif <span class="math inline">\(F(x)\)</span> dari sebaran yang diinginkan</li>
+<li>Hitung inverse dari <span class="math inline">\(F\)</span> atau <span class="math inline">\(F^{-1}(x)\)</span></li>
+<li>Bangkitkan contoh acak <span class="math inline">\(u_1, u_2, u_3, ..., u_n\)</span> yang menyebar <span class="math inline">\(Seragam(0,1)\)</span></li>
+<li>Hitung <span class="math inline">\(x_1 = F^{-1}(u_1)\)</span>, <span class="math inline">\(x_2 = F^{-1}(u_2)\)</span>, <span class="math inline">\(x_3 = F^{-1}(u_3)\)</span>, …, <span class="math inline">\(x_n = F^{-1}(u_n)\)</span></li>
+</ul>
+<p><span class="math inline">\(x_1, x_2, x_3\)</span> merupakan contoh acak yang saling bebas dari peubah acak <span class="math inline">\(X\)</span>.</p>
+<p>Contoh membangkitkan sebaran eksponensial.</p>
+<p>Misal <span class="math inline">\(X \sim Eksponensial(\lambda)\)</span></p>
+<ul>
+<li>Fungsi sebaran kumulatif</li>
+</ul>
+<p><span class="math display">\[
+F(X) = 1 - e^{-{\lambda}x}; \quad x \ge 0
+\]</span></p>
+<ul>
+<li>Fungsi inverse</li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+1 - e^{-{\lambda}x} &amp;= u \\
+e^{-{\lambda}x} &amp;= 1 - u \\
+{-{\lambda}x} &amp;= ln(1-u) \\
+x &amp;= -\frac{1}{\lambda}ln(1-u) \\
+\end{aligned}
+\]</span>
+Sehingga, <span class="math inline">\(F^{-1}(u) = -ln(1-u)/\lambda\)</span></p>
+<ul>
+<li>Bangkitkan contoh acak <span class="math inline">\(Seragam(0,1)\)</span></li>
+<li>Terapkan fungsi inverse untuk contoh acak yang telah dibangkitkan tersebut</li>
+</ul>
+<p>Kode R</p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="pembangkitan-bilangan-acak.html#cb470-1" aria-hidden="true" tabindex="-1"></a>inv.exp <span class="ot">&lt;-</span> <span class="cf">function</span>(u, lambda){</span>
+<span id="cb470-2"><a href="pembangkitan-bilangan-acak.html#cb470-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span><span class="sc">-</span>u)<span class="sc">/</span>lambda</span>
+<span id="cb470-3"><a href="pembangkitan-bilangan-acak.html#cb470-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb470-4"><a href="pembangkitan-bilangan-acak.html#cb470-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb470-5"><a href="pembangkitan-bilangan-acak.html#cb470-5" aria-hidden="true" tabindex="-1"></a>rand.exp <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">lambda =</span> <span class="dv">1</span>){</span>
+<span id="cb470-6"><a href="pembangkitan-bilangan-acak.html#cb470-6" aria-hidden="true" tabindex="-1"></a>  u <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
+<span id="cb470-7"><a href="pembangkitan-bilangan-acak.html#cb470-7" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">inv.exp</span>(u, lambda)</span>
+<span id="cb470-8"><a href="pembangkitan-bilangan-acak.html#cb470-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
+<span id="cb470-9"><a href="pembangkitan-bilangan-acak.html#cb470-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="pembangkitan-bilangan-acak.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb471-2"><a href="pembangkitan-bilangan-acak.html#cb471-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rand.exp</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">lambda =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##  [1] 0.16954209 0.77630468 0.26295011 1.07286505 1.41061464 0.02331342
+##  [7] 0.37549990 1.11475582 0.40085086 0.30496835</code></pre>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="pembangkitan-bilangan-acak.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb473-2"><a href="pembangkitan-bilangan-acak.html#cb473-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rand.exp</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">lambda =</span> <span class="dv">2</span>)</span>
+<span id="cb473-3"><a href="pembangkitan-bilangan-acak.html#cb473-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb473-4"><a href="pembangkitan-bilangan-acak.html#cb473-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(X, <span class="at">freq=</span>F, <span class="at">breaks =</span><span class="dv">20</span>, <span class="at">xlab=</span><span class="st">&#39;X&#39;</span>, <span class="at">main=</span><span class="st">&#39;Contoh Acak Eksponensial&#39;</span>)</span>
+<span id="cb473-5"><a href="pembangkitan-bilangan-acak.html#cb473-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dexp</span>(x, <span class="at">rate=</span><span class="dv">2</span>) , <span class="dv">0</span>, <span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="at">add =</span> T)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
+<p>Contoh lain</p>
+<p>Bangkitkan contoh acak dengan sebaran yang mempunyai fungsi kepekatan peluang</p>
+<p><span class="math display">\[
+f(x) = 3x^2, \quad 0 \lt x \lt 1
+\]</span></p>
+<p>Fungsi sebaran kumulatif</p>
+<p><span class="math display">\[
+F(x) = \int_0^x f_x(t)\,dt = x^3
+\]</span>
+Sehingga diperoleh fungsi inverse <span class="math inline">\(F^{-1}(u) = u^{1/3}\)</span></p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="pembangkitan-bilangan-acak.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="co"># http://www.di.fc.ul.pt/~jpn/r/ECS/index.html</span></span>
+<span id="cb474-2"><a href="pembangkitan-bilangan-acak.html#cb474-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb474-3"><a href="pembangkitan-bilangan-acak.html#cb474-3" aria-hidden="true" tabindex="-1"></a>inv.f <span class="ot">&lt;-</span> <span class="cf">function</span>(u){</span>
+<span id="cb474-4"><a href="pembangkitan-bilangan-acak.html#cb474-4" aria-hidden="true" tabindex="-1"></a>  u<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb474-5"><a href="pembangkitan-bilangan-acak.html#cb474-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb474-6"><a href="pembangkitan-bilangan-acak.html#cb474-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb474-7"><a href="pembangkitan-bilangan-acak.html#cb474-7" aria-hidden="true" tabindex="-1"></a>inv.transform <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">1</span>, inv.f){</span>
+<span id="cb474-8"><a href="pembangkitan-bilangan-acak.html#cb474-8" aria-hidden="true" tabindex="-1"></a>  u <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
+<span id="cb474-9"><a href="pembangkitan-bilangan-acak.html#cb474-9" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">inv.f</span>(u)</span>
+<span id="cb474-10"><a href="pembangkitan-bilangan-acak.html#cb474-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
+<span id="cb474-11"><a href="pembangkitan-bilangan-acak.html#cb474-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="pembangkitan-bilangan-acak.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb475-2"><a href="pembangkitan-bilangan-acak.html#cb475-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">inv.transform</span>(<span class="at">n =</span> <span class="dv">10000</span>, inv.f)</span>
+<span id="cb475-3"><a href="pembangkitan-bilangan-acak.html#cb475-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb475-4"><a href="pembangkitan-bilangan-acak.html#cb475-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(X, <span class="at">freq=</span>F, <span class="at">breaks =</span><span class="dv">20</span>, <span class="at">main=</span><span class="st">&quot;f(x)=&quot;</span> <span class="sc">~</span><span class="dv">3</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span><span class="sc">~</span><span class="st">&quot;. Sample vs Density&quot;</span>)</span>
+<span id="cb475-5"><a href="pembangkitan-bilangan-acak.html#cb475-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="dv">3</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="at">add =</span> T, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<p>Referensi: <span class="citation">(<a href="referensi.html#ref-MATTB" role="doc-biblioref">Bonakdarpour 2016</a>)</span> dan <span class="citation">(<a href="referensi.html#ref-MANUELE" role="doc-biblioref">Leonelli 2021</a>)</span></p>
+</div>
+<div id="acceptance-rejection-method" class="section level3" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Acceptance-Rejection Method</h3>
+<p>Algoritma untuk membangkitkan peubah acak <span class="math inline">\(X \sim f(x)\)</span> di mana <span class="math inline">\(0 &lt; x &lt; x_1\)</span> :</p>
+<ol style="list-style-type: decimal">
+<li>Bangkitkan <span class="math inline">\(x \sim U(x_0, x_1)\)</span></li>
+<li>Tentukan <span class="math inline">\(c\)</span> sehingga <span class="math inline">\(f(x) \le c\)</span> untuk <span class="math inline">\(0 &lt; x &lt; x_1\)</span></li>
+<li>Bangkitkan <span class="math inline">\(y_1 \sim U(0, c)\)</span></li>
+<li>Tentukan <span class="math inline">\(y_2 = f(x)\)</span></li>
+<li>Jika <span class="math inline">\(y_1 \le y_2\)</span>, terima <span class="math inline">\(x\)</span></li>
+</ol>
+<p>Latihan</p>
+<p>Bangkitkan bilangan acak yang memiliki <em>fkp</em> <span class="math inline">\(f_Y(y) = 3y^2; \quad 0 &lt; y &lt; 1\)</span> dengan menggunakan *acceptance-rejection method</p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="pembangkitan-bilangan-acak.html#cb476-1" aria-hidden="true" tabindex="-1"></a>ar <span class="ot">&lt;-</span> <span class="cf">function</span>(n,x0,x1,f) {</span>
+<span id="cb476-2"><a href="pembangkitan-bilangan-acak.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  xx <span class="ot">&lt;-</span> <span class="fu">seq</span>(x0,x1,<span class="at">length=</span><span class="dv">10000</span>)</span>
+<span id="cb476-3"><a href="pembangkitan-bilangan-acak.html#cb476-3" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">f</span>(xx))</span>
+<span id="cb476-4"><a href="pembangkitan-bilangan-acak.html#cb476-4" aria-hidden="true" tabindex="-1"></a>  terima <span class="ot">&lt;-</span> <span class="dv">0</span>; iterasi <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb476-5"><a href="pembangkitan-bilangan-acak.html#cb476-5" aria-hidden="true" tabindex="-1"></a>  hasil <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb476-6"><a href="pembangkitan-bilangan-acak.html#cb476-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb476-7"><a href="pembangkitan-bilangan-acak.html#cb476-7" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(terima<span class="sc">&lt;</span>n) {</span>
+<span id="cb476-8"><a href="pembangkitan-bilangan-acak.html#cb476-8" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>,x0,x1)</span>
+<span id="cb476-9"><a href="pembangkitan-bilangan-acak.html#cb476-9" aria-hidden="true" tabindex="-1"></a>  y1<span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,c)</span>
+<span id="cb476-10"><a href="pembangkitan-bilangan-acak.html#cb476-10" aria-hidden="true" tabindex="-1"></a>  y2<span class="ot">&lt;-</span> <span class="fu">f</span>(x)</span>
+<span id="cb476-11"><a href="pembangkitan-bilangan-acak.html#cb476-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb476-12"><a href="pembangkitan-bilangan-acak.html#cb476-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(y1<span class="sc">&lt;=</span>y2) {</span>
+<span id="cb476-13"><a href="pembangkitan-bilangan-acak.html#cb476-13" aria-hidden="true" tabindex="-1"></a>  terima <span class="ot">&lt;-</span> terima<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb476-14"><a href="pembangkitan-bilangan-acak.html#cb476-14" aria-hidden="true" tabindex="-1"></a>  hasil[terima]<span class="ot">&lt;-</span>x }</span>
+<span id="cb476-15"><a href="pembangkitan-bilangan-acak.html#cb476-15" aria-hidden="true" tabindex="-1"></a>  iterasi <span class="ot">&lt;-</span> iterasi<span class="sc">+</span><span class="dv">1</span> }</span>
+<span id="cb476-16"><a href="pembangkitan-bilangan-acak.html#cb476-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">hasil=</span>hasil,<span class="at">iterasi=</span>iterasi)</span>
+<span id="cb476-17"><a href="pembangkitan-bilangan-acak.html#cb476-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb476-18"><a href="pembangkitan-bilangan-acak.html#cb476-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb476-19"><a href="pembangkitan-bilangan-acak.html#cb476-19" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb476-20"><a href="pembangkitan-bilangan-acak.html#cb476-20" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {<span class="dv">3</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>}</span>
+<span id="cb476-21"><a href="pembangkitan-bilangan-acak.html#cb476-21" aria-hidden="true" tabindex="-1"></a>yyy <span class="ot">&lt;-</span> <span class="fu">ar</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">1</span>,f)</span>
+<span id="cb476-22"><a href="pembangkitan-bilangan-acak.html#cb476-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb476-23"><a href="pembangkitan-bilangan-acak.html#cb476-23" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb476-24"><a href="pembangkitan-bilangan-acak.html#cb476-24" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(yyy<span class="sc">$</span>hasil,</span>
+<span id="cb476-25"><a href="pembangkitan-bilangan-acak.html#cb476-25" aria-hidden="true" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;f(x)=&quot;</span><span class="sc">~</span><span class="dv">3</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span><span class="sc">~</span><span class="st">&quot; Sample vs Density&quot;</span>, <span class="at">prob=</span>T)</span>
+<span id="cb476-26"><a href="pembangkitan-bilangan-acak.html#cb476-26" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)</span>
+<span id="cb476-27"><a href="pembangkitan-bilangan-acak.html#cb476-27" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">f</span>(x), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
+<p>Contoh lain</p>
+<p>Bangkitkan peubah acak yang menyebar <span class="math inline">\(Beta(2,2)\)</span></p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="pembangkitan-bilangan-acak.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="co"># http://www.di.fc.ul.pt/~jpn/r/ECS/index.html</span></span>
+<span id="cb477-2"><a href="pembangkitan-bilangan-acak.html#cb477-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb477-3"><a href="pembangkitan-bilangan-acak.html#cb477-3" aria-hidden="true" tabindex="-1"></a>accept.reject <span class="ot">&lt;-</span> <span class="cf">function</span>(f, c, g, rg, n) { </span>
+<span id="cb477-4"><a href="pembangkitan-bilangan-acak.html#cb477-4" aria-hidden="true" tabindex="-1"></a>  n.accepts     <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb477-5"><a href="pembangkitan-bilangan-acak.html#cb477-5" aria-hidden="true" tabindex="-1"></a>  result.sample <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n)</span>
+<span id="cb477-6"><a href="pembangkitan-bilangan-acak.html#cb477-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb477-7"><a href="pembangkitan-bilangan-acak.html#cb477-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (n.accepts <span class="sc">&lt;</span> n) {</span>
+<span id="cb477-8"><a href="pembangkitan-bilangan-acak.html#cb477-8" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">rg</span>(<span class="dv">1</span>)               <span class="co"># step 1</span></span>
+<span id="cb477-9"><a href="pembangkitan-bilangan-acak.html#cb477-9" aria-hidden="true" tabindex="-1"></a>    u <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)        <span class="co"># step 2</span></span>
+<span id="cb477-10"><a href="pembangkitan-bilangan-acak.html#cb477-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (u <span class="sc">&lt;</span> <span class="fu">f</span>(y)<span class="sc">/</span>(c<span class="sc">*</span><span class="fu">g</span>(y))) { <span class="co"># step 3 (accept)</span></span>
+<span id="cb477-11"><a href="pembangkitan-bilangan-acak.html#cb477-11" aria-hidden="true" tabindex="-1"></a>      n.accepts <span class="ot">&lt;-</span> n.accepts<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb477-12"><a href="pembangkitan-bilangan-acak.html#cb477-12" aria-hidden="true" tabindex="-1"></a>      result.sample[n.accepts] <span class="ot">=</span> y</span>
+<span id="cb477-13"><a href="pembangkitan-bilangan-acak.html#cb477-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb477-14"><a href="pembangkitan-bilangan-acak.html#cb477-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb477-15"><a href="pembangkitan-bilangan-acak.html#cb477-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb477-16"><a href="pembangkitan-bilangan-acak.html#cb477-16" aria-hidden="true" tabindex="-1"></a>  result.sample</span>
+<span id="cb477-17"><a href="pembangkitan-bilangan-acak.html#cb477-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="pembangkitan-bilangan-acak.html#cb478-1" aria-hidden="true" tabindex="-1"></a>f  <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">6</span><span class="sc">*</span>x<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>x)     <span class="co"># pdf of Beta(2,2), maximum density is 1.5</span></span>
+<span id="cb478-2"><a href="pembangkitan-bilangan-acak.html#cb478-2" aria-hidden="true" tabindex="-1"></a>g  <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">/</span>x           <span class="co"># g(x) = 1 but in vectorized version</span></span>
+<span id="cb478-3"><a href="pembangkitan-bilangan-acak.html#cb478-3" aria-hidden="true" tabindex="-1"></a>rg <span class="ot">&lt;-</span> <span class="cf">function</span>(n) <span class="fu">runif</span>(n,<span class="dv">0</span>,<span class="dv">1</span>)  <span class="co"># uniform, in this case</span></span>
+<span id="cb478-4"><a href="pembangkitan-bilangan-acak.html#cb478-4" aria-hidden="true" tabindex="-1"></a>c  <span class="ot">&lt;-</span> <span class="dv">2</span>                         <span class="co"># c=2 since f(x) &lt;= 2 g(x)</span></span>
+<span id="cb478-5"><a href="pembangkitan-bilangan-acak.html#cb478-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb478-6"><a href="pembangkitan-bilangan-acak.html#cb478-6" aria-hidden="true" tabindex="-1"></a>vals <span class="ot">&lt;-</span> <span class="fu">accept.reject</span>(f, c, g, rg, <span class="dv">10000</span>) </span>
+<span id="cb478-7"><a href="pembangkitan-bilangan-acak.html#cb478-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb478-8"><a href="pembangkitan-bilangan-acak.html#cb478-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(vals, <span class="at">breaks=</span><span class="dv">30</span>, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">main=</span><span class="st">&quot;Beta(2,2). Sample vs true Density&quot;</span>)</span>
+<span id="cb478-9"><a href="pembangkitan-bilangan-acak.html#cb478-9" aria-hidden="true" tabindex="-1"></a>xs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">len=</span><span class="dv">100</span>)</span>
+<span id="cb478-10"><a href="pembangkitan-bilangan-acak.html#cb478-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xs, <span class="fu">dbeta</span>(xs,<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-228-1.png" width="672" />
+Contoh lain, membuat sebaran “segitiga”</p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="pembangkitan-bilangan-acak.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://users.phhp.ufl.edu/rlp176/Courses/PHC6089/R_notes/simulations.html</span></span>
+<span id="cb479-2"><a href="pembangkitan-bilangan-acak.html#cb479-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb479-3"><a href="pembangkitan-bilangan-acak.html#cb479-3" aria-hidden="true" tabindex="-1"></a>triangle.pdf <span class="ot">=</span> <span class="cf">function</span>(x){</span>
+<span id="cb479-4"><a href="pembangkitan-bilangan-acak.html#cb479-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>((<span class="dv">0</span> <span class="sc">&lt;</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> <span class="dv">1</span>), x, </span>
+<span id="cb479-5"><a href="pembangkitan-bilangan-acak.html#cb479-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">ifelse</span>((<span class="dv">1</span> <span class="sc">&lt;=</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> <span class="dv">2</span>), <span class="dv">2</span> <span class="sc">-</span> x, <span class="dv">0</span>)) </span>
+<span id="cb479-6"><a href="pembangkitan-bilangan-acak.html#cb479-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="pembangkitan-bilangan-acak.html#cb480-1" aria-hidden="true" tabindex="-1"></a>accept_reject <span class="ot">=</span> <span class="cf">function</span>(fx, <span class="at">n =</span> <span class="dv">100</span>) {</span>
+<span id="cb480-2"><a href="pembangkitan-bilangan-acak.html#cb480-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#simulates a sample of size n from the pdf fx using the accept reject algorithm</span></span>
+<span id="cb480-3"><a href="pembangkitan-bilangan-acak.html#cb480-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb480-4"><a href="pembangkitan-bilangan-acak.html#cb480-4" aria-hidden="true" tabindex="-1"></a>  count <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb480-5"><a href="pembangkitan-bilangan-acak.html#cb480-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb480-6"><a href="pembangkitan-bilangan-acak.html#cb480-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span>(count <span class="sc">&lt;</span> n) {</span>
+<span id="cb480-7"><a href="pembangkitan-bilangan-acak.html#cb480-7" aria-hidden="true" tabindex="-1"></a>    temp <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>)</span>
+<span id="cb480-8"><a href="pembangkitan-bilangan-acak.html#cb480-8" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>)</span>
+<span id="cb480-9"><a href="pembangkitan-bilangan-acak.html#cb480-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="fu">fx</span>(temp)) {</span>
+<span id="cb480-10"><a href="pembangkitan-bilangan-acak.html#cb480-10" aria-hidden="true" tabindex="-1"></a>      count <span class="ot">=</span> count <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb480-11"><a href="pembangkitan-bilangan-acak.html#cb480-11" aria-hidden="true" tabindex="-1"></a>      x[count] <span class="ot">&lt;-</span> temp</span>
+<span id="cb480-12"><a href="pembangkitan-bilangan-acak.html#cb480-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb480-13"><a href="pembangkitan-bilangan-acak.html#cb480-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb480-14"><a href="pembangkitan-bilangan-acak.html#cb480-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb480-15"><a href="pembangkitan-bilangan-acak.html#cb480-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
+<span id="cb480-16"><a href="pembangkitan-bilangan-acak.html#cb480-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb480-17"><a href="pembangkitan-bilangan-acak.html#cb480-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb480-18"><a href="pembangkitan-bilangan-acak.html#cb480-18" aria-hidden="true" tabindex="-1"></a>data.sample <span class="ot">=</span> <span class="fu">accept_reject</span>(triangle.pdf, <span class="dv">10000</span>)</span>
+<span id="cb480-19"><a href="pembangkitan-bilangan-acak.html#cb480-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb480-20"><a href="pembangkitan-bilangan-acak.html#cb480-20" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data.sample, <span class="at">breaks=</span><span class="dv">30</span>, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">main=</span><span class="st">&quot;Segitiga. Sample vs True Density&quot;</span>)</span>
+<span id="cb480-21"><a href="pembangkitan-bilangan-acak.html#cb480-21" aria-hidden="true" tabindex="-1"></a>xs <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">2.5</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb480-22"><a href="pembangkitan-bilangan-acak.html#cb480-22" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xs, <span class="fu">triangle.pdf</span>(xs), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<p>Referensi: <span class="citation">(<a href="referensi.html#ref-JOAON" role="doc-biblioref">Neto 2014</a>)</span></p>
+</div>
+</div>
+<div id="membangkitkan-bilangan-acak-untuk-regresi" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Membangkitkan Bilangan Acak untuk Regresi</h2>
+<p>Bangkitkan bilangan acak untuk membangun persamaan regresi linier sederhana antara <span class="math inline">\(X\)</span> terhadap <span class="math inline">\(Y\)</span>, dengan <span class="math inline">\(b_0 = 1, b_1 = 1\)</span>.</p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="pembangkitan-bilangan-acak.html#cb481-1" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb481-2"><a href="pembangkitan-bilangan-acak.html#cb481-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb481-3"><a href="pembangkitan-bilangan-acak.html#cb481-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb481-4"><a href="pembangkitan-bilangan-acak.html#cb481-4" aria-hidden="true" tabindex="-1"></a>b0hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb481-5"><a href="pembangkitan-bilangan-acak.html#cb481-5" aria-hidden="true" tabindex="-1"></a>b1hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb481-6"><a href="pembangkitan-bilangan-acak.html#cb481-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb481-7"><a href="pembangkitan-bilangan-acak.html#cb481-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
+<span id="cb481-8"><a href="pembangkitan-bilangan-acak.html#cb481-8" aria-hidden="true" tabindex="-1"></a>  eps <span class="ot">&lt;-</span> <span class="fu">rnorm</span> (<span class="dv">10</span>)</span>
+<span id="cb481-9"><a href="pembangkitan-bilangan-acak.html#cb481-9" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">runif</span> (<span class="dv">10</span> ,<span class="dv">5</span> ,<span class="dv">10</span>)</span>
+<span id="cb481-10"><a href="pembangkitan-bilangan-acak.html#cb481-10" aria-hidden="true" tabindex="-1"></a>  Y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span>X <span class="sc">+</span> eps</span>
+<span id="cb481-11"><a href="pembangkitan-bilangan-acak.html#cb481-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb481-12"><a href="pembangkitan-bilangan-acak.html#cb481-12" aria-hidden="true" tabindex="-1"></a>  obj <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X)</span>
+<span id="cb481-13"><a href="pembangkitan-bilangan-acak.html#cb481-13" aria-hidden="true" tabindex="-1"></a>  b0hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b0hat, obj<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span>
+<span id="cb481-14"><a href="pembangkitan-bilangan-acak.html#cb481-14" aria-hidden="true" tabindex="-1"></a>  b1hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b1hat, obj<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
+<span id="cb481-15"><a href="pembangkitan-bilangan-acak.html#cb481-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb481-16"><a href="pembangkitan-bilangan-acak.html#cb481-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb481-17"><a href="pembangkitan-bilangan-acak.html#cb481-17" aria-hidden="true" tabindex="-1"></a>hasil <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="fu">mean</span>(b0hat), <span class="fu">sd</span>(b0hat), <span class="fu">mean</span>(b1hat) , <span class="fu">sd</span>(b1hat)), <span class="at">nrow =</span><span class="dv">2</span>, <span class="at">ncol =</span><span class="dv">2</span>)</span>
+<span id="cb481-18"><a href="pembangkitan-bilangan-acak.html#cb481-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(hasil) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>,<span class="st">&quot;sd&quot;</span>)</span>
+<span id="cb481-19"><a href="pembangkitan-bilangan-acak.html#cb481-19" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(hasil) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;b0&quot;</span>, <span class="st">&quot;b1&quot;</span>)</span>
+<span id="cb481-20"><a href="pembangkitan-bilangan-acak.html#cb481-20" aria-hidden="true" tabindex="-1"></a>hasil</span></code></pre></div>
+<pre><code>##            b0        b1
+## mean 1.453250 0.9448713
+## sd   1.951779 0.2502127</code></pre>
+<p>Bangkitkan bilangan acak untuk membangun persamaan regresi linier berganda antara <span class="math inline">\(X_1\)</span> dan <span class="math inline">\(X_2\)</span> terhadap <span class="math inline">\(Y\)</span>, sehingga diperoleh <span class="math inline">\(b_0 = 10, b_1 = 2.3, b_2 = 0.7\)</span>.</p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="pembangkitan-bilangan-acak.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb483-2"><a href="pembangkitan-bilangan-acak.html#cb483-2" aria-hidden="true" tabindex="-1"></a>X1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25</span>,<span class="dv">10</span>,<span class="dv">25</span>)</span>
+<span id="cb483-3"><a href="pembangkitan-bilangan-acak.html#cb483-3" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25</span>,<span class="dv">90</span>,<span class="dv">200</span>)</span>
+<span id="cb483-4"><a href="pembangkitan-bilangan-acak.html#cb483-4" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">+</span> <span class="fl">2.3</span><span class="sc">*</span>X1 <span class="sc">+</span> <span class="fl">0.7</span><span class="sc">*</span>X2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">25</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb483-5"><a href="pembangkitan-bilangan-acak.html#cb483-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb483-6"><a href="pembangkitan-bilangan-acak.html#cb483-6" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X1<span class="sc">+</span>X2)</span>
+<span id="cb483-7"><a href="pembangkitan-bilangan-acak.html#cb483-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Y ~ X1 + X2)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.64768 -0.51104 -0.05084  0.56224  2.28118 
+## 
+## Coefficients:
+##             Estimate Std. Error t value             Pr(&gt;|t|)    
+## (Intercept) 8.819021   1.489143   5.922           0.00000584 ***
+## X1          2.347724   0.045223  51.914 &lt; 0.0000000000000002 ***
+## X2          0.702732   0.006784 103.594 &lt; 0.0000000000000002 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.9363 on 22 degrees of freedom
+## Multiple R-squared:  0.998,  Adjusted R-squared:  0.9978 
+## F-statistic:  5509 on 2 and 22 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+<p>Bangkitkan bilangan acak untuk membangun persamaan regresi linier berganda antara <span class="math inline">\(X_1\)</span> dan <span class="math inline">\(X_2\)</span> terhadap <span class="math inline">\(Y\)</span>, sehingga diperoleh <span class="math inline">\(b_0 = 1, b_1 = 1, b_2 = 1\)</span>.</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="pembangkitan-bilangan-acak.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb485-2"><a href="pembangkitan-bilangan-acak.html#cb485-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb485-3"><a href="pembangkitan-bilangan-acak.html#cb485-3" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb485-4"><a href="pembangkitan-bilangan-acak.html#cb485-4" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb485-5"><a href="pembangkitan-bilangan-acak.html#cb485-5" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb485-6"><a href="pembangkitan-bilangan-acak.html#cb485-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb485-7"><a href="pembangkitan-bilangan-acak.html#cb485-7" aria-hidden="true" tabindex="-1"></a>b0hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb485-8"><a href="pembangkitan-bilangan-acak.html#cb485-8" aria-hidden="true" tabindex="-1"></a>b1hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb485-9"><a href="pembangkitan-bilangan-acak.html#cb485-9" aria-hidden="true" tabindex="-1"></a>b2hat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb485-10"><a href="pembangkitan-bilangan-acak.html#cb485-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb485-11"><a href="pembangkitan-bilangan-acak.html#cb485-11" aria-hidden="true" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span> ,<span class="fl">0.9</span> ,<span class="fl">0.9</span> ,<span class="dv">1</span>),</span>
+<span id="cb485-12"><a href="pembangkitan-bilangan-acak.html#cb485-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">nrow =</span><span class="dv">2</span> , <span class="at">ncol =</span><span class="dv">2</span>)</span>
+<span id="cb485-13"><a href="pembangkitan-bilangan-acak.html#cb485-13" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span> ,<span class="dv">1</span>)</span>
+<span id="cb485-14"><a href="pembangkitan-bilangan-acak.html#cb485-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb485-15"><a href="pembangkitan-bilangan-acak.html#cb485-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
+<span id="cb485-16"><a href="pembangkitan-bilangan-acak.html#cb485-16" aria-hidden="true" tabindex="-1"></a>  eps <span class="ot">&lt;-</span> <span class="fu">rnorm</span> (<span class="dv">10</span>)</span>
+<span id="cb485-17"><a href="pembangkitan-bilangan-acak.html#cb485-17" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span> (<span class="dv">10</span>, mu, Sigma )</span>
+<span id="cb485-18"><a href="pembangkitan-bilangan-acak.html#cb485-18" aria-hidden="true" tabindex="-1"></a>  Y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span>X [,<span class="dv">1</span>] <span class="sc">*</span> b2<span class="sc">*</span>X [,<span class="dv">2</span>] <span class="sc">+</span> eps</span>
+<span id="cb485-19"><a href="pembangkitan-bilangan-acak.html#cb485-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb485-20"><a href="pembangkitan-bilangan-acak.html#cb485-20" aria-hidden="true" tabindex="-1"></a>  obj <span class="ot">&lt;-</span> <span class="fu">lm</span>( Y<span class="sc">~</span>X )</span>
+<span id="cb485-21"><a href="pembangkitan-bilangan-acak.html#cb485-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb485-22"><a href="pembangkitan-bilangan-acak.html#cb485-22" aria-hidden="true" tabindex="-1"></a>  b0hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b0hat, obj<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span>
+<span id="cb485-23"><a href="pembangkitan-bilangan-acak.html#cb485-23" aria-hidden="true" tabindex="-1"></a>  b1hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b1hat, obj<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
+<span id="cb485-24"><a href="pembangkitan-bilangan-acak.html#cb485-24" aria-hidden="true" tabindex="-1"></a>  b2hat <span class="ot">&lt;-</span> <span class="fu">c</span>(b2hat, obj<span class="sc">$</span>coefficients[<span class="dv">3</span>])</span>
+<span id="cb485-25"><a href="pembangkitan-bilangan-acak.html#cb485-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb485-26"><a href="pembangkitan-bilangan-acak.html#cb485-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb485-27"><a href="pembangkitan-bilangan-acak.html#cb485-27" aria-hidden="true" tabindex="-1"></a>hasil<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fu">mean</span>(b0hat), <span class="fu">sd</span>(b0hat), <span class="fu">mean</span>(b1hat), <span class="fu">sd</span>(b1hat), <span class="fu">mean</span>(b2hat), <span class="fu">sd</span>(b2hat)),</span>
+<span id="cb485-28"><a href="pembangkitan-bilangan-acak.html#cb485-28" aria-hidden="true" tabindex="-1"></a>               <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb485-29"><a href="pembangkitan-bilangan-acak.html#cb485-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(hasil) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>,<span class="st">&quot;sd&quot;</span>)</span>
+<span id="cb485-30"><a href="pembangkitan-bilangan-acak.html#cb485-30" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(hasil) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;b0&quot;</span>, <span class="st">&quot;b1&quot;</span>, <span class="st">&quot;b2&quot;</span>)</span>
+<span id="cb485-31"><a href="pembangkitan-bilangan-acak.html#cb485-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb485-32"><a href="pembangkitan-bilangan-acak.html#cb485-32" aria-hidden="true" tabindex="-1"></a>hasil</span></code></pre></div>
+<pre><code>##             b0        b1       b2
+## mean 0.6721352 0.8529024 1.138359
+## sd   1.2919187 1.5528197 1.597078</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="visualisasi-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linux-shell.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/nurandi/sta561/edit/main/07-simulation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["nur_andi_sta561.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

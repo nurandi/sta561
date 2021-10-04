@@ -24,7 +24,7 @@
 <meta name="author" content="Nur Andi Setiabudi" />
 
 
-<meta name="date" content="2021-09-18" />
+<meta name="date" content="2021-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="data-wrangling-dengan-tidyverse.html"/>
-<link rel="next" href="linux-shell.html"/>
+<link rel="next" href="pembangkitan-bilangan-acak.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -299,13 +299,23 @@ div.csl-indent {
 <li class="chapter" data-level="6.3.3" data-path="visualisasi-data.html"><a href="visualisasi-data.html#peta-interaktif"><i class="fa fa-check"></i><b>6.3.3</b> Peta Interaktif</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="linux-shell.html"><a href="linux-shell.html"><i class="fa fa-check"></i><b>7</b> Linux Shell</a>
+<li class="chapter" data-level="7" data-path="pembangkitan-bilangan-acak.html"><a href="pembangkitan-bilangan-acak.html"><i class="fa fa-check"></i><b>7</b> Pembangkitan Bilangan Acak</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="linux-shell.html"><a href="linux-shell.html#apa-itu-shell"><i class="fa fa-check"></i><b>7.1</b> Apa itu Shell?</a></li>
-<li class="chapter" data-level="7.2" data-path="linux-shell.html"><a href="linux-shell.html#perintah-dasar-shell"><i class="fa fa-check"></i><b>7.2</b> Perintah Dasar Shell</a>
+<li class="chapter" data-level="7.1" data-path="pembangkitan-bilangan-acak.html"><a href="pembangkitan-bilangan-acak.html#fungsi-peluang-suatu-sebaran"><i class="fa fa-check"></i><b>7.1</b> Fungsi Peluang Suatu Sebaran</a></li>
+<li class="chapter" data-level="7.2" data-path="pembangkitan-bilangan-acak.html"><a href="pembangkitan-bilangan-acak.html#teknik-pembangkitan-bilangan-acak"><i class="fa fa-check"></i><b>7.2</b> Teknik Pembangkitan Bilangan Acak</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="linux-shell.html"><a href="linux-shell.html#direktori"><i class="fa fa-check"></i><b>7.2.1</b> Direktori</a></li>
-<li class="chapter" data-level="7.2.2" data-path="linux-shell.html"><a href="linux-shell.html#file"><i class="fa fa-check"></i><b>7.2.2</b> File</a></li>
+<li class="chapter" data-level="7.2.1" data-path="pembangkitan-bilangan-acak.html"><a href="pembangkitan-bilangan-acak.html#the-inverse-transform-method"><i class="fa fa-check"></i><b>7.2.1</b> The Inverse Transform Method</a></li>
+<li class="chapter" data-level="7.2.2" data-path="pembangkitan-bilangan-acak.html"><a href="pembangkitan-bilangan-acak.html#acceptance-rejection-method"><i class="fa fa-check"></i><b>7.2.2</b> Acceptance-Rejection Method</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="pembangkitan-bilangan-acak.html"><a href="pembangkitan-bilangan-acak.html#membangkitkan-bilangan-acak-untuk-regresi"><i class="fa fa-check"></i><b>7.3</b> Membangkitkan Bilangan Acak untuk Regresi</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="linux-shell.html"><a href="linux-shell.html"><i class="fa fa-check"></i><b>8</b> Linux Shell</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="linux-shell.html"><a href="linux-shell.html#apa-itu-shell"><i class="fa fa-check"></i><b>8.1</b> Apa itu Shell?</a></li>
+<li class="chapter" data-level="8.2" data-path="linux-shell.html"><a href="linux-shell.html#perintah-dasar-shell"><i class="fa fa-check"></i><b>8.2</b> Perintah Dasar Shell</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="linux-shell.html"><a href="linux-shell.html#direktori"><i class="fa fa-check"></i><b>8.2.1</b> Direktori</a></li>
+<li class="chapter" data-level="8.2.2" data-path="linux-shell.html"><a href="linux-shell.html#file"><i class="fa fa-check"></i><b>8.2.2</b> File</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referensi.html"><a href="referensi.html"><i class="fa fa-check"></i>Referensi</a></li>
@@ -348,10 +358,8 @@ div.csl-indent {
 <span id="cb393-13"><a href="visualisasi-data.html#cb393-13" aria-hidden="true" tabindex="-1"></a>         Other.Allowances, Total.Compensation, Paid.By.Another.Entity,</span>
 <span id="cb393-14"><a href="visualisasi-data.html#cb393-14" aria-hidden="true" tabindex="-1"></a>         Paid.by.State.or.Local.Government ) <span class="sc">%&gt;%</span></span>
 <span id="cb393-15"><a href="visualisasi-data.html#cb393-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(<span class="st">&quot;data/salary.rds&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="visualisasi-data.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb394-2"><a href="visualisasi-data.html#cb394-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb394-3"><a href="visualisasi-data.html#cb394-3" aria-hidden="true" tabindex="-1"></a>Salary <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/salary.rds&quot;</span>)</span>
-<span id="cb394-4"><a href="visualisasi-data.html#cb394-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Salary)</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="visualisasi-data.html#cb394-1" aria-hidden="true" tabindex="-1"></a>Salary <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/salary.rds&quot;</span>)</span>
+<span id="cb394-2"><a href="visualisasi-data.html#cb394-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Salary)</span></code></pre></div>
 <pre><code>## Rows: 444,894
 ## Columns: 13
 ## $ Authority.Name                    &lt;chr&gt; &quot;Albany County Airport Authority&quot;, &quot;~
@@ -373,13 +381,13 @@ div.csl-indent {
 <h3><span class="header-section-number">6.1.1</span> Histogram</h3>
 <p>Membuat histogram dapat dilakukan dengan fungsi <code>hist()</code></p>
 <div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="visualisasi-data.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Salary<span class="sc">$</span>Actual.Salary.Paid)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="visualisasi-data.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Salary<span class="sc">$</span>Actual.Salary.Paid, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="visualisasi-data.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Salary<span class="sc">$</span>Actual.Salary.Paid, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">breaks =</span> <span class="dv">50</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="visualisasi-data.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Salary<span class="sc">$</span>Actual.Salary.Paid, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="visualisasi-data.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(Salary<span class="sc">$</span>Actual.Salary.Paid, <span class="at">bw =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="visualisasi-data.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Salary<span class="sc">$</span>Actual.Salary.Paid, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">breaks =</span> <span class="dv">50</span>)</span></code></pre></div>
 <p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="visualisasi-data.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(Salary<span class="sc">$</span>Actual.Salary.Paid, <span class="at">bw =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
 </div>
 <div id="bar-plot" class="section level3" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Bar plot</h3>
@@ -391,94 +399,94 @@ div.csl-indent {
 ##      Technical 
 ##          91135</code></pre>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="visualisasi-data.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(counts)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="visualisasi-data.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(counts, <span class="at">cex.names=</span>.<span class="dv">8</span>)</span></code></pre></div>
 <p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="visualisasi-data.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(counts, <span class="at">cex.names=</span>.<span class="dv">8</span>)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
 <div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="visualisasi-data.html#cb404-1" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">table</span>(Salary<span class="sc">$</span>Pay.Type, Salary<span class="sc">$</span>Employee.Group)</span>
 <span id="cb404-2"><a href="visualisasi-data.html#cb404-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(counts, <span class="at">cex.names=</span>.<span class="dv">8</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
 <div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="visualisasi-data.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(counts,</span>
 <span id="cb405-2"><a href="visualisasi-data.html#cb405-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#ffd166&quot;</span>,<span class="st">&quot;#06d6a0&quot;</span>), <span class="co">#custom colors</span></span>
 <span id="cb405-3"><a href="visualisasi-data.html#cb405-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">rownames</span>(counts),</span>
 <span id="cb405-4"><a href="visualisasi-data.html#cb405-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex.names=</span>.<span class="dv">8</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
 <div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="visualisasi-data.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(counts,</span>
 <span id="cb406-2"><a href="visualisasi-data.html#cb406-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#ffd166&quot;</span>,<span class="st">&quot;#06d6a0&quot;</span>),</span>
 <span id="cb406-3"><a href="visualisasi-data.html#cb406-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">rownames</span>(counts),</span>
 <span id="cb406-4"><a href="visualisasi-data.html#cb406-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb406-5"><a href="visualisasi-data.html#cb406-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex.names=</span>.<span class="dv">8</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
 </div>
 <div id="scatter-plot" class="section level3" number="6.1.3">
 <h3><span class="header-section-number">6.1.3</span> Scatter plot</h3>
 <div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="visualisasi-data.html#cb407-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>pi, <span class="at">to =</span> <span class="dv">2</span><span class="sc">*</span>pi, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
 <span id="cb407-2"><a href="visualisasi-data.html#cb407-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sin</span>(x)</span>
 <span id="cb407-3"><a href="visualisasi-data.html#cb407-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="visualisasi-data.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
 <p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="visualisasi-data.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="visualisasi-data.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
 <p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="visualisasi-data.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
 <div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="visualisasi-data.html#cb410-1" aria-hidden="true" tabindex="-1"></a>Salary100 <span class="ot">&lt;-</span> Salary[<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,]</span>
 <span id="cb410-2"><a href="visualisasi-data.html#cb410-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Salary100<span class="sc">$</span>Base.Annualized.Salary, Salary100<span class="sc">$</span>Total.Compensation)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="visualisasi-data.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Salary100<span class="sc">$</span>Base.Annualized.Salary, Salary100<span class="sc">$</span>Total.Compensation, <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
 <p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="visualisasi-data.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Salary100<span class="sc">$</span>Base.Annualized.Salary, Salary100<span class="sc">$</span>Total.Compensation, <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
 <div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="visualisasi-data.html#cb412-1" aria-hidden="true" tabindex="-1"></a>Salary100<span class="sc">$</span>Employee.Group <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(Salary100<span class="sc">$</span>Employee.Group)</span>
 <span id="cb412-2"><a href="visualisasi-data.html#cb412-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Salary100<span class="sc">$</span>Base.Annualized.Salary, Salary100<span class="sc">$</span>Total.Compensation, </span>
 <span id="cb412-3"><a href="visualisasi-data.html#cb412-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> Salary100<span class="sc">$</span>Employee.Group, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
 <div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="visualisasi-data.html#cb413-1" aria-hidden="true" tabindex="-1"></a>Salary100<span class="sc">$</span>Employee.Group <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(Salary100<span class="sc">$</span>Employee.Group)</span>
 <span id="cb413-2"><a href="visualisasi-data.html#cb413-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Salary100<span class="sc">$</span>Base.Annualized.Salary, Salary100<span class="sc">$</span>Total.Compensation, </span>
 <span id="cb413-3"><a href="visualisasi-data.html#cb413-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> Salary100<span class="sc">$</span>Employee.Group, <span class="at">pch =</span> <span class="dv">16</span>)</span>
 <span id="cb413-4"><a href="visualisasi-data.html#cb413-4" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">200000</span>, <span class="at">legend =</span> <span class="fu">levels</span>(Salary100<span class="sc">$</span>Employee.Group), <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
 <div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="visualisasi-data.html#cb414-1" aria-hidden="true" tabindex="-1"></a>mean.Total.Compensation <span class="ot">&lt;-</span> <span class="fu">mean</span>(Salary100<span class="sc">$</span>Total.Compensation)</span>
 <span id="cb414-2"><a href="visualisasi-data.html#cb414-2" aria-hidden="true" tabindex="-1"></a>mean.Base.Annualized.Salary <span class="ot">&lt;-</span> <span class="fu">mean</span>(Salary100<span class="sc">$</span>Base.Annualized.Salary)</span>
 <span id="cb414-3"><a href="visualisasi-data.html#cb414-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Salary100<span class="sc">$</span>Base.Annualized.Salary, Salary100<span class="sc">$</span>Total.Compensation, <span class="at">pch =</span> <span class="dv">19</span>)</span>
 <span id="cb414-4"><a href="visualisasi-data.html#cb414-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(mean.Base.Annualized.Salary, mean.Total.Compensation , <span class="at">pch =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="visualisasi-data.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="sc">~</span> Total.Compensation <span class="sc">+</span> Base.Annualized.Salary <span class="sc">+</span> Actual.Salary.Paid <span class="sc">+</span> Other.Allowances, <span class="at">data =</span> Salary100)</span></code></pre></div>
 <p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="visualisasi-data.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="sc">~</span> Total.Compensation <span class="sc">+</span> Base.Annualized.Salary <span class="sc">+</span> Actual.Salary.Paid <span class="sc">+</span> Other.Allowances, <span class="at">data =</span> Salary100)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
 </div>
 <div id="line-plot" class="section level3" number="6.1.4">
 <h3><span class="header-section-number">6.1.4</span> Line plot</h3>
 <div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="visualisasi-data.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
 <span id="cb416-2"><a href="visualisasi-data.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">sin</span>(x))</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
 <div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="visualisasi-data.html#cb417-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span></span>
 <span id="cb417-2"><a href="visualisasi-data.html#cb417-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">40</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
 <span id="cb417-3"><a href="visualisasi-data.html#cb417-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">&quot;o&quot;</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
 <div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="visualisasi-data.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Salary100<span class="sc">$</span>Base.Annualized.Salary, Salary100<span class="sc">$</span>Total.Compensation, <span class="at">pch =</span> <span class="dv">19</span>)</span>
 <span id="cb418-2"><a href="visualisasi-data.html#cb418-2" aria-hidden="true" tabindex="-1"></a><span class="co"># regression line (y~x)</span></span>
 <span id="cb418-3"><a href="visualisasi-data.html#cb418-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(Total.Compensation<span class="sc">~</span>Base.Annualized.Salary, <span class="at">data =</span> Salary100), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>) </span>
 <span id="cb418-4"><a href="visualisasi-data.html#cb418-4" aria-hidden="true" tabindex="-1"></a><span class="co"># lowess line (x,y)</span></span>
 <span id="cb418-5"><a href="visualisasi-data.html#cb418-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">lowess</span>(Salary100<span class="sc">$</span>Base.Annualized.Salary,Salary100<span class="sc">$</span>Total.Compensation), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) </span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
 </div>
 <div id="pie-chart" class="section level3" number="6.1.5">
 <h3><span class="header-section-number">6.1.5</span> Pie chart</h3>
 <div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="visualisasi-data.html#cb419-1" aria-hidden="true" tabindex="-1"></a>tbl.Employee <span class="ot">&lt;-</span> <span class="fu">table</span>(Salary<span class="sc">$</span>Employee.Group)</span>
 <span id="cb419-2"><a href="visualisasi-data.html#cb419-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(tbl.Employee)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
 <div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="visualisasi-data.html#cb420-1" aria-hidden="true" tabindex="-1"></a>mytable <span class="ot">&lt;-</span> <span class="fu">table</span>(iris<span class="sc">$</span>Species)</span>
 <span id="cb420-2"><a href="visualisasi-data.html#cb420-2" aria-hidden="true" tabindex="-1"></a>lbls <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">names</span>(mytable), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, mytable, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
 <span id="cb420-3"><a href="visualisasi-data.html#cb420-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(mytable, <span class="at">labels =</span> lbls,</span>
 <span id="cb420-4"><a href="visualisasi-data.html#cb420-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">main=</span><span class="st">&quot;Pie Chart of Species</span><span class="sc">\n</span><span class="st"> (with sample sizes)&quot;</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
 </div>
 <div id="boxplot" class="section level3" number="6.1.6">
 <h3><span class="header-section-number">6.1.6</span> Boxplot</h3>
 <div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="visualisasi-data.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Salary<span class="sc">$</span>Actual.Salary.Paid)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="visualisasi-data.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Actual.Salary.Paid <span class="sc">~</span> Employee.Group, <span class="at">data =</span> Salary, <span class="at">cex.axis=</span>.<span class="dv">8</span>)</span></code></pre></div>
 <p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="visualisasi-data.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Actual.Salary.Paid <span class="sc">~</span> Employee.Group, <span class="at">data =</span> Salary, <span class="at">cex.axis=</span>.<span class="dv">8</span>)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
 <div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="visualisasi-data.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Actual.Salary.Paid <span class="sc">~</span> Employee.Group, <span class="at">data =</span> Salary,</span>
 <span id="cb423-2"><a href="visualisasi-data.html#cb423-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">notch =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb423-3"><a href="visualisasi-data.html#cb423-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="fu">length</span>(<span class="fu">unique</span>(Salary<span class="sc">$</span>Employee.Group)),<span class="st">&#39;Set2&#39;</span>),</span>
 <span id="cb423-4"><a href="visualisasi-data.html#cb423-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex.axis=</span>.<span class="dv">8</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
 </div>
 <div id="layout" class="section level3" number="6.1.7">
 <h3><span class="header-section-number">6.1.7</span> Layout</h3>
@@ -501,7 +509,7 @@ div.csl-indent {
 <span id="cb424-17"><a href="visualisasi-data.html#cb424-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">las =</span> <span class="dv">2</span>, </span>
 <span id="cb424-18"><a href="visualisasi-data.html#cb424-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex.names =</span> <span class="fl">0.65</span>,</span>
 <span id="cb424-19"><a href="visualisasi-data.html#cb424-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Barplot of Employee Group&quot;</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 <div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="visualisasi-data.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="at">cex.main =</span> <span class="fl">0.75</span>)</span>
 <span id="cb425-2"><a href="visualisasi-data.html#cb425-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb425-3"><a href="visualisasi-data.html#cb425-3" aria-hidden="true" tabindex="-1"></a><span class="do">## plot 1</span></span>
@@ -513,12 +521,12 @@ div.csl-indent {
 <span id="cb425-9"><a href="visualisasi-data.html#cb425-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">las =</span> <span class="dv">2</span>, </span>
 <span id="cb425-10"><a href="visualisasi-data.html#cb425-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex.names =</span> <span class="fl">0.65</span>,</span>
 <span id="cb425-11"><a href="visualisasi-data.html#cb425-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Barplot of Employee Group&quot;</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 <div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="visualisasi-data.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dv">2</span>, <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb426-2"><a href="visualisasi-data.html#cb426-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Salary<span class="sc">$</span>Actual.Salary.Paid, <span class="at">breaks =</span> <span class="dv">50</span>)</span>
 <span id="cb426-3"><a href="visualisasi-data.html#cb426-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Salary<span class="sc">$</span>Base.Annualized.Salary)</span>
 <span id="cb426-4"><a href="visualisasi-data.html#cb426-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Salary<span class="sc">$</span>Total.Compensation)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 <div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="visualisasi-data.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">cex.main =</span> <span class="fl">0.7</span>)</span>
 <span id="cb427-2"><a href="visualisasi-data.html#cb427-2" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dv">2</span>, <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb427-3"><a href="visualisasi-data.html#cb427-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>)) <span class="co"># column 2 is 1/3 the width of the column 1</span></span>
@@ -526,17 +534,14 @@ div.csl-indent {
 <span id="cb427-5"><a href="visualisasi-data.html#cb427-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Salary<span class="sc">$</span>Actual.Salary.Paid, <span class="at">breaks =</span> <span class="dv">50</span>)</span>
 <span id="cb427-6"><a href="visualisasi-data.html#cb427-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Salary<span class="sc">$</span>Base.Annualized.Salary)</span>
 <span id="cb427-7"><a href="visualisasi-data.html#cb427-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Salary<span class="sc">$</span>Total.Compensation)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
 </div>
 <div id="latihanresponsi" class="section level3" number="6.1.8">
 <h3><span class="header-section-number">6.1.8</span> Latihan/Responsi</h3>
 <div id="latihan-1-1" class="section level4" number="6.1.8.1">
 <h4><span class="header-section-number">6.1.8.1</span> Latihan 1</h4>
 <p>Buatlah <em>scatter plot</em> seperti gambar berikut</p>
-<div class="figure">
-<img src="img/plot-trend.png" alt="" />
-<p class="caption">plot-trend</p>
-</div>
+<p><img src="img/plot-trend.png" /></p>
 <div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="visualisasi-data.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data awal</span></span>
 <span id="cb428-2"><a href="visualisasi-data.html#cb428-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span></span>
 <span id="cb428-3"><a href="visualisasi-data.html#cb428-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">40</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
@@ -571,7 +576,7 @@ div.csl-indent {
 <span id="cb428-32"><a href="visualisasi-data.html#cb428-32" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span><span class="dv">29</span>,<span class="at">y=</span><span class="fl">3.3</span>, <span class="at">labels=</span><span class="st">&quot;Titik potong&quot;</span>, <span class="at">cex=</span><span class="fl">0.7</span>)</span>
 <span id="cb428-33"><a href="visualisasi-data.html#cb428-33" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span><span class="dv">3</span>,<span class="at">y=</span><span class="fl">7.3</span>, <span class="at">labels=</span><span class="st">&quot;Data awal&quot;</span>, <span class="at">cex=</span><span class="fl">0.7</span>)</span>
 <span id="cb428-34"><a href="visualisasi-data.html#cb428-34" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span><span class="dv">46</span>,<span class="at">y=</span><span class="fl">7.3</span>, <span class="at">labels=</span><span class="st">&quot;Data baru&quot;</span>, <span class="at">cex=</span><span class="fl">0.7</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
 </div>
 <div id="latihan-2-1" class="section level4" number="6.1.8.2">
 <h4><span class="header-section-number">6.1.8.2</span> Latihan 2</h4>
@@ -580,15 +585,12 @@ div.csl-indent {
 <span id="cb429-2"><a href="visualisasi-data.html#cb429-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.2</span>),</span>
 <span id="cb429-3"><a href="visualisasi-data.html#cb429-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histogram of Random Variable ~ Chi-Squared(4)&quot;</span>)</span>
 <span id="cb429-4"><a href="visualisasi-data.html#cb429-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x,<span class="at">df=</span><span class="dv">4</span>), <span class="at">col=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
 </div>
 <div id="latihan-3-1" class="section level4" number="6.1.8.3">
 <h4><span class="header-section-number">6.1.8.3</span> Latihan 3</h4>
 <p>Buatlah grafik seperti berikut</p>
-<div class="figure">
-<img src="img/plot-2x2.png" alt="" />
-<p class="caption">plot-2x2.png</p>
-</div>
+<p><img src="img/plot-2x2.png" /></p>
 <div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="visualisasi-data.html#cb430-1" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span></span>
 <span id="cb430-2"><a href="visualisasi-data.html#cb430-2" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>,<span class="dv">4</span>,<span class="dv">2</span>)</span>
 <span id="cb430-3"><a href="visualisasi-data.html#cb430-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -608,15 +610,12 @@ div.csl-indent {
 <span id="cb430-17"><a href="visualisasi-data.html#cb430-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(a1,a2,<span class="at">type=</span><span class="st">&quot;n&quot;</span>,<span class="at">main=</span><span class="st">&quot;W&quot;</span>)</span>
 <span id="cb430-18"><a href="visualisasi-data.html#cb430-18" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(a1,a2,<span class="at">labels=</span><span class="fu">paste</span>(<span class="st">&quot;w&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),</span>
 <span id="cb430-19"><a href="visualisasi-data.html#cb430-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">rainbow</span>(<span class="dv">25</span>),<span class="at">cex=</span><span class="fl">0.8</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
 </div>
 <div id="latihan-4" class="section level4" number="6.1.8.4">
 <h4><span class="header-section-number">6.1.8.4</span> Latihan 4</h4>
 <p>Buat empat grafil dalam satu windows, dengan format berikut:</p>
-<div class="figure">
-<img src="img/graph-grid.jpeg" alt="" />
-<p class="caption">graph-grid</p>
-</div>
+<p><img src="img/graph-grid.jpeg" /></p>
 <div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="visualisasi-data.html#cb431-1" aria-hidden="true" tabindex="-1"></a>yb <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
 <span id="cb431-2"><a href="visualisasi-data.html#cb431-2" aria-hidden="true" tabindex="-1"></a>xb <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span></span>
 <span id="cb431-3"><a href="visualisasi-data.html#cb431-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -635,7 +634,7 @@ div.csl-indent {
 <span id="cb431-16"><a href="visualisasi-data.html#cb431-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb431-17"><a href="visualisasi-data.html#cb431-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xb, yb, <span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb431-18"><a href="visualisasi-data.html#cb431-18" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Line Plot Bilangan Acak Normal&quot;</span>,<span class="at">cex.main=</span><span class="fl">0.7</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
 </div>
 </div>
 </div>
@@ -646,52 +645,52 @@ div.csl-indent {
 <h3><span class="header-section-number">6.2.1</span> Histogram</h3>
 <div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="visualisasi-data.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Total.Compensation)) <span class="sc">+</span></span>
 <span id="cb433-2"><a href="visualisasi-data.html#cb433-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>()</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
 <div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="visualisasi-data.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Total.Compensation)) <span class="sc">+</span></span>
 <span id="cb434-2"><a href="visualisasi-data.html#cb434-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">10000</span>, <span class="at">colour=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;white&quot;</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="visualisasi-data.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Total.Compensation)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code></pre></div>
 <p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="visualisasi-data.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Total.Compensation)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
 <div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="visualisasi-data.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Total.Compensation)) <span class="sc">+</span> </span>
 <span id="cb436-2"><a href="visualisasi-data.html#cb436-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..),</span>
 <span id="cb436-3"><a href="visualisasi-data.html#cb436-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">binwidth=</span><span class="dv">10000</span>,</span>
 <span id="cb436-4"><a href="visualisasi-data.html#cb436-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">colour=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
 <span id="cb436-5"><a href="visualisasi-data.html#cb436-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">fill=</span><span class="st">&quot;#FF6666&quot;</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
 <div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="visualisasi-data.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Total.Compensation, <span class="at">fill=</span>Pay.Type)) <span class="sc">+</span></span>
 <span id="cb437-2"><a href="visualisasi-data.html#cb437-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">10000</span>, <span class="at">alpha=</span>.<span class="dv">5</span>, <span class="at">position=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
 <div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="visualisasi-data.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Total.Compensation)) <span class="sc">+</span> </span>
 <span id="cb438-2"><a href="visualisasi-data.html#cb438-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">10000</span>, <span class="at">colour=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb438-3"><a href="visualisasi-data.html#cb438-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(Pay.Type <span class="sc">~</span> .)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
 </div>
 <div id="scatterplot" class="section level3" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Scatterplot</h3>
 <div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="visualisasi-data.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary100, <span class="fu">aes</span>(<span class="at">x=</span>Base.Annualized.Salary, <span class="at">y=</span>Total.Compensation)) <span class="sc">+</span></span>
 <span id="cb439-2"><a href="visualisasi-data.html#cb439-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">1</span>) <span class="co"># hollow circles</span></span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
 <div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="visualisasi-data.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary100, <span class="fu">aes</span>(<span class="at">x=</span>Base.Annualized.Salary, <span class="at">y=</span>Total.Compensation, <span class="at">color =</span> Employee.Group)) <span class="sc">+</span></span>
 <span id="cb440-2"><a href="visualisasi-data.html#cb440-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">1</span>) <span class="co"># hollow circles</span></span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
 </div>
 <div id="barplot" class="section level3" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> Barplot</h3>
 <div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="visualisasi-data.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Employee.Group)) <span class="sc">+</span></span>
 <span id="cb441-2"><a href="visualisasi-data.html#cb441-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;count&quot;</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 <div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="visualisasi-data.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Employee.Group, <span class="at">fill=</span>Employee.Group)) <span class="sc">+</span></span>
 <span id="cb442-2"><a href="visualisasi-data.html#cb442-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;count&quot;</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
 <div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="visualisasi-data.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Employee.Group, <span class="at">fill=</span>Pay.Type)) <span class="sc">+</span></span>
 <span id="cb443-2"><a href="visualisasi-data.html#cb443-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;count&quot;</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
 <div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="visualisasi-data.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Employee.Group, <span class="at">fill=</span>Pay.Type)) <span class="sc">+</span></span>
 <span id="cb444-2"><a href="visualisasi-data.html#cb444-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;count&quot;</span>, <span class="at">position=</span><span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-196-1.png" width="672" /></p>
 <div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="visualisasi-data.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Employee.Group, <span class="at">fill=</span>Pay.Type)) <span class="sc">+</span></span>
 <span id="cb445-2"><a href="visualisasi-data.html#cb445-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;count&quot;</span>, <span class="at">position=</span><span class="fu">position_dodge</span>())</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-196-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
 </div>
 <div id="pie-chart-1" class="section level3" number="6.2.4">
 <h3><span class="header-section-number">6.2.4</span> Pie chart</h3>
@@ -706,14 +705,14 @@ div.csl-indent {
 <span id="cb446-9"><a href="visualisasi-data.html#cb446-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
 <span id="cb446-10"><a href="visualisasi-data.html#cb446-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
 <span id="cb446-11"><a href="visualisasi-data.html#cb446-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
 <div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="visualisasi-data.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Total.Employee, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> Total.Employee, <span class="at">fill =</span> Employee.Group)) <span class="sc">+</span></span>
 <span id="cb447-2"><a href="visualisasi-data.html#cb447-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
 <span id="cb447-3"><a href="visualisasi-data.html#cb447-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>, <span class="at">start =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
 <span id="cb447-4"><a href="visualisasi-data.html#cb447-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> lab.ypos, <span class="at">label =</span> Employee.Group), <span class="at">color =</span> <span class="st">&quot;white&quot;</span>)<span class="sc">+</span></span>
 <span id="cb447-5"><a href="visualisasi-data.html#cb447-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()<span class="sc">+</span></span>
 <span id="cb447-6"><a href="visualisasi-data.html#cb447-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">0.5</span>, <span class="fl">2.5</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
 </div>
 <div id="line-plot-1" class="section level3" number="6.2.5">
 <h3><span class="header-section-number">6.2.5</span> Line plot</h3>
@@ -723,7 +722,7 @@ div.csl-indent {
 <span id="cb448-4"><a href="visualisasi-data.html#cb448-4" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb448-5"><a href="visualisasi-data.html#cb448-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary.by.Year, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(Fiscal.Year), <span class="at">group=</span><span class="dv">1</span>, <span class="at">y=</span>Actual.Salary)) <span class="sc">+</span></span>
 <span id="cb448-6"><a href="visualisasi-data.html#cb448-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
 <div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="visualisasi-data.html#cb449-1" aria-hidden="true" tabindex="-1"></a>Salary.by.Year <span class="ot">&lt;-</span> Salary <span class="sc">%&gt;%</span> </span>
 <span id="cb449-2"><a href="visualisasi-data.html#cb449-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Fiscal.Year, Employee.Group) <span class="sc">%&gt;%</span></span>
 <span id="cb449-3"><a href="visualisasi-data.html#cb449-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Actual.Salary =</span> <span class="fu">mean</span>(Actual.Salary.Paid))</span>
@@ -731,20 +730,20 @@ div.csl-indent {
 <span id="cb449-5"><a href="visualisasi-data.html#cb449-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary.by.Year, </span>
 <span id="cb449-6"><a href="visualisasi-data.html#cb449-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(Fiscal.Year), <span class="at">y=</span>Actual.Salary, <span class="at">group=</span>Employee.Group, <span class="at">col=</span>Employee.Group)) <span class="sc">+</span></span>
 <span id="cb449-7"><a href="visualisasi-data.html#cb449-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
 <div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="visualisasi-data.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary.by.Year, </span>
 <span id="cb450-2"><a href="visualisasi-data.html#cb450-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(Fiscal.Year), <span class="at">y=</span>Actual.Salary, <span class="at">group=</span>Employee.Group, <span class="at">col=</span>Employee.Group)) <span class="sc">+</span> </span>
 <span id="cb450-3"><a href="visualisasi-data.html#cb450-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb450-4"><a href="visualisasi-data.html#cb450-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
 </div>
 <div id="boxplot-1" class="section level3" number="6.2.6">
 <h3><span class="header-section-number">6.2.6</span> Boxplot</h3>
 <div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="visualisasi-data.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Total.Compensation)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
 <div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="visualisasi-data.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">y=</span>Total.Compensation, <span class="at">fill =</span> Employee.Group)) <span class="sc">+</span> </span>
 <span id="cb452-2"><a href="visualisasi-data.html#cb452-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>
 </div>
 <div id="layout-1" class="section level3" number="6.2.7">
 <h3><span class="header-section-number">6.2.7</span> Layout</h3>
@@ -757,9 +756,9 @@ div.csl-indent {
 <span id="cb454-5"><a href="visualisasi-data.html#cb454-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
 <span id="cb454-6"><a href="visualisasi-data.html#cb454-6" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Salary, <span class="fu">aes</span>(<span class="at">x=</span>Total.Compensation)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code></pre></div>
 <div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="visualisasi-data.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, <span class="at">labels =</span> <span class="cn">NULL</span>)</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="visualisasi-data.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, p3, p4, <span class="at">labels =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="visualisasi-data.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, p3, p4, <span class="at">labels =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
 </div>
 </div>
 <div id="visualisasi-data-spasial" class="section level2" number="6.3">
@@ -849,7 +848,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="visualisasi-data.html#cb464-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span>  </span>
 <span id="cb464-2"><a href="visualisasi-data.html#cb464-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>mapBogor, <span class="fu">aes</span>(<span class="at">fill=</span>JumlahPenduduk))</span>
 <span id="cb464-3"><a href="visualisasi-data.html#cb464-3" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
 <div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="visualisasi-data.html#cb465-1" aria-hidden="true" tabindex="-1"></a>colorPalette <span class="ot">=</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">5</span>,<span class="st">&quot;YlGnBu&quot;</span>)</span>
 <span id="cb465-2"><a href="visualisasi-data.html#cb465-2" aria-hidden="true" tabindex="-1"></a>legendBreak <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">120</span>,<span class="dv">170</span>,<span class="dv">230</span>)<span class="sc">*</span><span class="dv">1000</span></span>
 <span id="cb465-3"><a href="visualisasi-data.html#cb465-3" aria-hidden="true" tabindex="-1"></a>yBreak <span class="ot">=</span> <span class="fu">seq</span>(<span class="fl">106.72</span>, <span class="fl">106.86</span>, <span class="at">by=</span><span class="fl">0.04</span>)</span>
@@ -864,7 +863,7 @@ div.csl-indent {
 <span id="cb465-12"><a href="visualisasi-data.html#cb465-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>),</span>
 <span id="cb465-13"><a href="visualisasi-data.html#cb465-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>, <span class="at">face=</span><span class="st">&#39;bold&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb465-14"><a href="visualisasi-data.html#cb465-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> yBreak) </span></code></pre></div>
-<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
+<p><img src="nur_andi_sta561_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
 </div>
 <div id="peta-interaktif" class="section level3" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Peta Interaktif</h3>
@@ -931,7 +930,7 @@ div.csl-indent {
         </div>
       </div>
 <a href="data-wrangling-dengan-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="linux-shell.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pembangkitan-bilangan-acak.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -985,6 +984,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
