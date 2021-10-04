@@ -92,7 +92,7 @@ Sehingga, $F^{-1}(u) = -ln(1-u)/\lambda$
 * Bangkitkan contoh acak $Seragam(0,1)$
 * Terapkan fungsi inverse untuk contoh acak yang telah dibangkitkan tersebut
 
-Kode R
+#### Contoh 1
 
 ```{r}
 inv.exp <- function(u, lambda){
@@ -118,7 +118,8 @@ hist(X, freq=F, breaks =20, xlab='X', main='Contoh Acak Eksponensial')
 curve(dexp(x, rate=2) , 0, 3, lwd=2, xlab = "", ylab = "", add = T)
 ```
 
-Contoh lain
+
+#### Contoh 2
 
 
 Bangkitkan contoh acak dengan sebaran yang mempunyai fungsi kepekatan peluang 
@@ -160,11 +161,9 @@ curve(3*x^2, 0, 1, lwd=2, xlab = "", ylab = "", add = T, col="red")
 Referensi: [@MATTB] dan [@MANUELE]
 
 
-
-
 ### Acceptance-Rejection Method
 
-Algoritma untuk membangkitkan peubah acak $X \sim f(x)$ di mana $0 < x < x_1$ :
+Algoritma untuk membangkitkan peubah acak $X \sim f(x)$ di mana $0 < x < x_1$ (dari responsi):
 
 1. Bangkitkan $x \sim U(x_0, x_1)$
 2. Tentukan $c$ sehingga $f(x) \le c$ untuk $0 < x < x_1$ 
@@ -172,7 +171,7 @@ Algoritma untuk membangkitkan peubah acak $X \sim f(x)$ di mana $0 < x < x_1$ :
 4. Tentukan $y_2 = f(x)$
 5. Jika $y_1 \le y_2$, terima $x$
 
-Latihan
+#### Latihan 1 (Responsi)
 
 Bangkitkan bilangan acak yang memiliki *fkp* $f_Y(y) = 3y^2; \quad 0 < y < 1$ dengan menggunakan *acceptance-rejection method
 
@@ -208,7 +207,15 @@ lines(x, f(x), lwd=2, col="red")
 
 ```
 
-Contoh lain
+#### Contoh 2
+
+Algoritma
+
+1. Carilah peubah acak $Y \sim g$ sehingga $f(t)/g(t) \le c$ untuk semua $t$ di mana $f(t) > 0$
+2. Bangkitkan bilangan acak $y$ dari sebaran dengan fungsi kepekatan/masa peluang $g$
+3. Bangkitkan bilangan acak $u$ dari sebaran $Seragam(0,1)$
+4. Jika $u < f(y)/(c.g(y))$, terima $y$ sebagai bilangan acak, selainnya tolak $y$ dan ulangi langkah 2-4
+
 
 Bangkitkan peubah acak yang menyebar $Beta(2,2)$
 
@@ -246,7 +253,9 @@ xs <- seq(0, 1, len=100)
 lines(xs, dbeta(xs,2,2), col="red", lwd=2)
 ```
 
-Contoh lain, membuat sebaran "segitiga"
+#### Contoh 3
+
+Membuat sebaran "segitiga"
 
 ```{r}
 # triangle function
@@ -308,7 +317,30 @@ lines(xs, triangle.pdf(xs), col="red", lwd=2)
 Referensi: [@JOAON]
 
 
+#### Contoh 4
+
+Misalnya akan dibangkitkan bilangan acak dengan fungsi kepekatan peluang
+
+$$
+f(x) = \frac{3}{2}x^3 + \frac{11}{8}x^2 + \frac{1}{6}x + \frac{1}{12}; \quad 0 \le x \le 1
+$$
+```{r}
+f  <- function(x) (3/2)*(x^3)+(11/8)*(x^2)+(1/6)*(x)+(1/12) 
+g  <- function(x) x/x             # g(x) = 1
+rg <- function(n) runif(n, 0, 1)  # uniform, in this case
+c  <- 4                           # 
+
+vals <- accept.reject(f, c, g, rg, 10000) 
+
+hist(vals, breaks=30, freq=FALSE, main="Beta(2,2). Sample vs true Density")
+xs <- seq(0, 1, len=100)
+lines(xs, f(xs), col="red", lwd=2)
+```
+
+
 ## Membangkitkan Bilangan Acak untuk Regresi
+
+#### Contoh 1
 
 Bangkitkan bilangan acak untuk membangun persamaan regresi linier sederhana antara $X$ terhadap $Y$, dengan $b_0 = 1, b_1 = 1$.
 
@@ -335,6 +367,8 @@ colnames(hasil) <- c("b0", "b1")
 hasil
 ```
 
+#### Contoh 2
+
 Bangkitkan bilangan acak untuk membangun persamaan regresi linier berganda antara $X_1$ dan $X_2$ terhadap $Y$, sehingga diperoleh $b_0 = 10, b_1 = 2.3, b_2 = 0.7$.
 
 ```{r}
@@ -346,6 +380,8 @@ Y <- 10 + 2.3*X1 + 0.7*X2 + rnorm(25,0,1)
 model <- lm(Y~X1+X2)
 summary(model)
 ```
+
+#### Contoh 3
 
 Bangkitkan bilangan acak untuk membangun persamaan regresi linier berganda antara $X_1$ dan $X_2$ terhadap $Y$, sehingga diperoleh $b_0 = 1, b_1 = 1, b_2 = 1$.
 
@@ -384,5 +420,92 @@ colnames(hasil) <- c("b0", "b1", "b2")
 
 hasil
 ```
+
+
+#### Contoh 4
+
+**Dari tugas kelompok**
+
+Bangkitkan peubah $X_1$, $X_2$, $X_3$ sebanyak 1.000 amatan berdasarkan model regresi
+linear berganda berikut ini:
+
+$$
+Y = 10 + 3X_1 + 5X_2 + 7X_3 + \varepsilon
+$$
+
+dengan mengasumsikan bahwa $\varepsilon \sim N(\mu = 0, \sigma^2 = 30)$
+dan antara peubah bebas terjadi **multikolinearitas**
+
+
+Terdapat beberapa tahapan dalam melakukan pembangkitan data:
+
+1. Mendefinisikan model regresi linier $Y = 10 + 3X_1 + 5X_2 + 7X_3 + \varepsilon$
+
+2. Membuat matriks ragam peragam yang menunjukan korlasi antar peubah $X$, di mana dalam simulasi ini nilai korelasi antar peubah adalah adalah 0.95 (korelasi tinggi sehingga terjadi multikolinearitas)
+
+3. Membangkitkan data sisaan $\varepsilon$ sebanyak 1.000 dengan mengasumsikan bahwa $\varepsilon \sim N(\mu = 0, \sigma^2 = 30)$
+
+4. Menentukan nilai tengah peubah bebas sebesar 1
+
+5. Membangkitkan peubah $X$ dan menghitung peubah $y$
+
+
+```{r}
+# membuat fungsi untuk membangkitkan bilangan acak multivariate normal
+# dengan korelasi tertentu
+rmvn.eigen <- function(n, mu, Sigma) {
+  d <- length(mu)
+  ev <- eigen(Sigma, symmetric = TRUE)
+  lambda <- ev$values
+  V <- ev$vectors
+  R <- V %*% diag(sqrt(lambda)) %*% t(V)
+  Z <- matrix(rnorm(n*d), nrow = n, ncol = d)
+  x <- Z %*% R + matrix(mu,n,d, byrow = T)
+  
+  return(x)
+}
+```
+
+```{r}
+# jumlah pengamatan
+n <- 1000
+# rataan peubah penjelas
+mu <- c(0,0,0)
+# matriks ragam-peragam
+Sigma <- matrix(c(1,    0.95, 0.95,
+                  0.95, 1   , 0.95,
+                  0.95, 0.95, 1  ), nrow = 3, ncol = 3)
+
+# membangkitkan bilangan (X dan sisaan)
+set.seed(5555)
+x <- rmvn.eigen(n, mu, Sigma)
+eps <- rnorm(n,0,sqrt(30))
+colnames(x) <- paste0("X", seq(length(mu)))
+```
+
+```{r}
+# menentukan beta, dan membangkitkan Y
+beta <- c(b0 = 10, b1 = 3, b2 = 5, b3 = 7)
+y <- round(beta[1] + (x %*% beta[-1]) + eps, 4)
+```
+
+**Periksa hasil**
+
+```{r}
+# matriks korelasi
+cor(x)
+```
+
+```{r}
+dataRegresi <- data.frame(y, x) 
+# analisis regresi
+reg <- lm(y ~., data = dataRegresi)
+reg
+```
+
+
+
+
+
 
 
