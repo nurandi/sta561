@@ -1,3 +1,8 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
 # Pembangkitan Bilangan Acak
 
 
@@ -124,9 +129,14 @@ curve(dexp(x, rate=2) , 0, 3, lwd=2, xlab = "", ylab = "", add = T)
 
 Bangkitkan contoh acak dengan sebaran yang mempunyai fungsi kepekatan peluang 
 
+
 $$
-f(x) = 3x^2, \quad 0 \lt x \lt 1
+f(x) = 3x^2, \quad 0 < x < 1
 $$
+
+
+
+
 
 Fungsi sebaran kumulatif
 
