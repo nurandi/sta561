@@ -13,6 +13,6 @@ bookdown::gitbook:
     edit: https://github.com/nurandi/sta561/edit/main/%s
     download: ["pdf"]
   split_bib: no
-bookdown::pdf_document2:
+bookdown::pdf_book:
   split_bib: no
   
