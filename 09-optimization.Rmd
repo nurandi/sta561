@@ -66,7 +66,7 @@ Untuk mendapatkan turunan dari suatu fungsi pada pemrograman R dapat menggunakan
 Contoh, akan dicari turunan dari fungsi berikut
 
 $$
-f(x) = Exp(x)^2
+f(x) = \mathrm{exp}(x)^2
 $$
 
 ```{r}
@@ -81,7 +81,7 @@ $$
 untuk nilai $x=2$
 
 ```{r}
-xturunan <- deriv (~x^2, "x")
+xturunan <- deriv(~x^2, "x")
 x<-2
 eval(xturunan)
 ```
@@ -93,20 +93,23 @@ eval(xturunan)
 Metode golden section search digunakan untuk mencari nilai minimum suatu fungsi yang dibatasi dari dua buah nilai, yaitu sebuah selang *a* dan *b*. Algoritma untuk teknik ini adalah sebagai berikut:
 
 * Mulai dengan selang [a,b] yang memuat minimum
-* Perkecil selang [a’, b’] yang memuat minimum
-* Berhenti sampai |b’ - a’| lebih kecil dari nilai toleransi
+* Perkecil selang $[a’, b’]$ yang memuat minimum
+* Berhenti sampai $|b’ - a’|$ lebih kecil dari nilai toleransi
 
-Pemilihan nilai a' dan b', adalah sebagai berikut
+Pemilihan nilai $a'$ dan $b'$, adalah sebagai berikut
 
 * Nilai antara [a,b] memiliki sifat golden ratio
 * Tentukan $x_1$ dan $x_2$
-   $x_1 = b-(b-a)/goldenratio$
-   $x_2 = a+(b-a)/goldenratio$
+
+     $x_1 = b-(b-a)/\mathrm{goldenratio}$ 
+     
+     $x_2 = a+(b-a)/\mathrm{goldenratio}$ 
+     
 * Hitung $f(x_1)$ dan $f(x_2)$
-* Jika $f(x_1) > f(x_2)$ maka $[a’, b’] = [x_1, b$
+* Jika $f(x_1) > f(x_2)$ maka $[a’, b’] = [x_1, b]$
 * Jika $f(x_1) < f(x_2)$ maka $[a’, b’] = [a, x_2]$
 
-Fungsi golder section
+Fungsi golden section
 
 ```{r}
 golden <- function (f, a, b, tol=0.0000001){
@@ -157,7 +160,7 @@ golden(f,3,5)
 ```
 
 $$
-f(x) = 2Sin(x) - \frac{x^2}{10}
+f(x) = 2\mathrm{sin}(x) - \frac{x^2}{10}
 $$
 Membuat fungsi $f(x)$
 
@@ -204,7 +207,7 @@ f(x) = 4x^2 - 3x - 7
 $$
 
 ```{r}
-fx <- expression (4*x^2-3*x-7)
+fx <- expression(4*x^2-3*x-7)
 newtonr(fx,3)
 ```
 
@@ -212,7 +215,7 @@ $$
 f(x) = e^{-x}+x^4
 $$
 ```{r}
-fx <- expression (exp(-x)+x^4)
+fx <- expression(exp(-x)+x^4)
 newtonr(fx)
 ```
 
@@ -222,7 +225,7 @@ $$
 
 
 ```{r}
-fx <- expression (x^2-x)
+fx <- expression(x^2-x)
 newtonr(fx)
 ```
 
@@ -326,9 +329,9 @@ Metode kuadrat terkecil pada regresi adalah mencari parameter $\beta$ sehingga j
 ```{r}
 f <- function (para,y,x){
   X <- cbind (1,x)
-  yhat <- X%*% as.matrix (para)
-  sisa2 <- sum ((y-yhat)^2) # kuadrat sisaan
-  return (sisa2) }
+  yhat <- X %*% as.matrix(para)
+  sisa2 <- sum((y-yhat)^2) # kuadrat sisaan
+  return(sisa2) }
 ```
 
 ```{r}
@@ -341,7 +344,7 @@ y <- 1+2*x1+3*x2+galat # untuk menduga nilai beta
 
 ```{r}
 hasil <- optim (c(1,1,1),f,y=y,x= cbind (x1,x2))
-hasil $par
+hasil$par
 ```
 
 ```{r}
