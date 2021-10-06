@@ -11,6 +11,8 @@ rmd_files: [
   "05-data-wrangling-2.Rmd",
   "06-visualisasi-data.Rmd",
   "07-simulation.Rmd",
+  "08-function-oop.Rmd",
+  "09-optimization.Rmd",
   "91-shell.Rmd",
   "99-referensi.Rmd"]
 delete_merged_file: true 

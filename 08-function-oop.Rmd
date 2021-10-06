@@ -1,0 +1,1057 @@
+# Pengembangan Fungsi
+
+Fungsi (function) adalah kode-kode yang disusun untuk melakukan tugas tertentu, seperti perhitungan matematis, pembacaan data, analisis statistik, dan lainnya
+
+## Membuat Fungsi
+
+Struktur fungsi adalah
+
+```{r, eval=FALSE}
+myfunction <- function(arg1, arg2, … ){
+  statements
+  return(object)
+}
+```
+
+**Fungsi 1** dengan output hanya nilai z saja.
+
+```{r}
+angka_acak1 = function(n,pw) {
+  x=runif(n)
+  y=runif(n)
+  z=(x+y)^pw
+  return(z)
+}
+# menggunakan fungsi  
+angka_acak1(10,2)
+```
+
+**Fungsi 2** dengan output berupa nilai x, y, dan z.
+
+```{r}
+# Membuat fungsi
+angka_acak2 = function(n,pw) {
+  x = runif(n)
+  y = runif(n)
+  z = (x+y)^pw
+  return(list(x=x,y=y,z=z))
+}
+
+# Menggunakan fungsi
+angka_acak2(10,2)
+```
+
+**Fungsi 3** dengan memberikan nilai default pada argumen berupa `n = 1` dan `pw = 2`, sehingga ketika fungsi tersebut dipanggil tanpa menuliskan argumen, akan dijalankan fungsi defaultnya.
+
+```{r}
+angka_acak3 = function(n=10,pw=2) {
+  x = runif(n)
+  y = runif(n)
+  z = (x+y)^pw
+  return(z)
+}
+
+angka_acak3()
+```
+
+**Fungsi 4** dituliskan tanpa menggunakan argumen. Ketika fungsi tersebut akan digunakan maka dilakukan assign nilai yang diperlukan di dalam fungsi tersebut.
+
+```{r}
+angka_acak4 = function() {
+  x = runif(n)
+  y = runif(n)
+  z = (x+y)^pw
+  return(z)
+}
+
+n <- 5; pw <- 3
+angka_acak4()
+```
+
+**Latihan 1** Menghitung median dari suatu vektor
+
+```{r}
+med <- function(vect) {
+  n <- length(vect)
+  vects <- sort(vect)
+  if(n%%2 == 1) {
+    m <- vects[(n+1)/2]
+    }
+  else {
+    m <- (vects[n/2]+vects[(n/2)+1])/2
+    }
+  return(m)
+}
+
+x1 <- c(1,5,3,7,3,4,2,7)
+med(x1)
+```
+
+**Latihan 2** Menghitung modus dari suatu vektor
+
+```{r}
+modus <- function(vect) {
+  v <- unique(vect)
+  f <- NULL
+  for(i in v) {
+    byk <- sum(vect==i)
+    f <- c(f,byk)
+  }
+  
+fmax <- max(f)
+vf <- cbind(v,f)
+mode <- vf[f==fmax,]
+return(mode)
+}
+
+modus(x1)
+```
+
+**Latihan 3** menduga parameter pada regresi berganda
+
+```{r}
+# Membuat fungsi
+p.est <- function(A) {
+  if(!is.matrix(A))
+    stop("input must be on matrix")
+  x1<-A[,-1]
+  y <-A[,1]
+  one<-rep(1,nrow(A))
+  x <-cbind(one,x1)
+  colnames(x)<-paste("x",1:ncol(x),sep="")
+  b.est<-as.vector(solve(t(x) %*% x) %*% (t(x) %*% y))
+  names(b.est)<-paste("b",0:(length(b.est)-1),sep="")
+  fitted.value<-as.vector(x%*%b.est)
+  error<-as.vector(y-fitted.value)
+  names(fitted.value)<-names(error)<-1:nrow(A)
+  list(beta.est=b.est,fit.val=fitted.value,error=error)
+}
+
+# Memasukkan data
+Pendapatan<-c(3.5,3.2,3.0,2.9,4.0,2.5,2.3)
+Biaya.Iklan<-c(3.1,3.4,3.0,3.2,3.9,2.8,2.2)
+Jumlah.Warung<-c(30,25,20,30,40,25,30)
+X<-cbind(Pendapatan,Biaya.Iklan,Jumlah.Warung)
+p.est(X)
+```
+
+## *Object Oriented Programming*
+
+Pemrograman berorientasi objek merupakan sebuah paradigma dalam pembuatan sebuah program. OOP menitikberatkan pada identifikasi objek-objek yang terlibat dalam sebuah program dan bagaimana objek-objek tersebut berinterakasi. Pada OOP, program yang dibangun akan dibagi-bagi menjadi objek-objek. OOP menyediakan *class* dan *object* sebagai alat dasar untuk meminimalisir dan mengatur kompleksitas dari program.
+
+### *Class* (kelas)
+
+Merupakan definisi statik (kerangka dasar) dari objek yang akan diciptakan.
+Suatu class dibagi menjadi:
+
+* *Property* : data atau *state* yang dimiliki oleh *class*. Contoh pada class Mobil, memiliki property: warna, Model, Produsen.
+* *Method* : *behavior* (perilaku) sebuah *class*. Bisa dikatakan sebagai aksi atau tindakan yang bisa dilakukan oleh suatu class. Contoh pada class Mobil, memiliki method: Start, Stop, Change Gear, Turn.
+
+
+### *Object*
+
+Objek adalah komponen yang diciptakan dari class *(instance of class)*. Satu class bisa menghasilkan banyak objek. Proses untuk membuat sebuah objek disebut instantiation. Setiap objek memiliki karakteristik dan fitur masing masing. Objek memiliki siklus creation, manipulation, dan destruction.
+
+Prinsip dasar dari OOP adalah abstraksi, enkapsulasi, inherintance (pewarisan), dan polymorphism.
+
+### OOP in R
+
+R telah mengimplementasikan pemrograman berorientasi objek. Semua dalam R adalah objek. Pengembangan awal objek di R menggunakan *Class System S3* yang tidak terlalu ketat. Pendefinisian yang ketat secara formal, R menggunakan *Class System S4*.
+
+Ilustrasi:
+
+Sebuah *class* `coords` dirancang untuk digunakan dengan menyimpan data koordinat titik pada dua buah vektor `X` dan `Y`. Metode pada class ini terdiri dari metode `print`, `length`, `bbox`, dan `plot`. Class lain dirancang sebagai turunan dari *class* coords dengan menambahkan data nilai  untuk setiap titik pada koordinat `X` dan `Y`. Metode pada *class* `vcoords` merupakan pewarisan dari *class* `coords` dan operasi-operasi aritmetik terhadap nilainya.
+
+
+## Object : Class System S3
+
+Contoh
+
+```{r}
+# List creation with its attributes x and y.
+pts <- list(x = round(rnorm(5),2),
+            y = round(rnorm(5),2))
+class(pts)
+```
+
+Menjadikan pts sebagai class baru:
+
+```{r}
+class(pts) <- "coords"
+class(pts)
+pts
+```
+
+### Konstruktor
+
+Fungsi Konstruktor untuk Membuat class `coords`
+
+```{r}
+coords <- function(x, y) {
+    if (!is.numeric(x) || !is.numeric(y) || !all(is.finite(x)) || !all(is.finite(y)))
+        stop("Titik koordinat tidak tepat!")
+    if (length(x) != length(y))
+        stop("Panjang koordinat berbeda")
+    pts <- list(x = x, y = y)
+    class(pts) = "coords"
+    pts
+}
+pts <- coords(x = round(rnorm(5), 2), y = round(rnorm(5), 2))
+pts
+```
+
+Fungsi Konstruktor untuk Membuat class `mobil`
+
+```{r}
+# Membuat list Mobil1
+Mobil1 <- list(Nama="Toyota",
+               Panjang=3.5,
+               Lebar=2,
+               Kecepatan=180)
+class(Mobil1)
+```
+
+```{r}
+Mobil <- function(Nama, Panjang, Lebar, Kecepatan) {
+  if(Panjang<2 || Lebar<1.5 || Kecepatan<80)
+    stop("atribut tidak sesuai")
+  Mobil <- list(Nama = Nama,
+                Panjang =Panjang,
+                Lebar = Lebar,
+                Kecepatan = Kecepatan)
+  class(Mobil) <- "mobil"
+  Mobil
+}
+
+Mobil3 <- Mobil("Daihatsu", 2.1, 1.9, 120)
+Mobil3
+```
+
+### Aksesor
+
+Akses pada class `coord` dengan menggunakan 2 fungsi
+
+```{r}
+xcoords <- function(obj) obj$x
+ycoords <- function(obj) obj$y
+xcoords(pts)
+ycoords(pts)
+```
+
+
+Akses pada class mobil menggunakan fungsi aksesor
+
+```{r}
+nama <- function(objek) objek$Nama
+kecepatan <- function(objek) objek$Kecepatan
+panjang <- function(objek) objek$Panjang
+lebar<- function(objek) objek$Lebar
+nama(Mobil1)
+```
+
+```{r}
+kecepatan(Mobil3)
+panjang(Mobil3)
+```
+
+### Fungsi Generik
+
+Fungsi generik bertindak untuk beralih memilih fungsi tertentu atau metode tertentu yang dijalankan sesuai dengan class-nya. Untuk mendefinisi ulang suatu fungsi generik digunakan syntax 
+
+```{r, eval=FALSE}
+method.class <-function() ekspresibaru
+```
+
+#### Print
+
+Untuk *class* `coords`
+
+```{r}
+print.coords <- function(obj) {
+    print(paste("(", format(xcoords(obj)), ", ", format(ycoords(obj)),
+        ")", sep = ""), quote = FALSE)
+}
+pts
+```
+
+Untuk *class* `mobil`
+
+```{r}
+print.mobil <- function(objek) {
+  print(cat("Nama : ", nama(objek),
+            "\n",
+            "Kecepatan : ", kecepatan(objek),
+            sep="",
+            "\n",
+            "Panjang:", panjang(objek),
+            "\n",
+            "Lebar:", lebar(objek),
+            "\n") )
+  }
+
+print.mobil(Mobil1)
+```
+
+
+#### Length
+
+```{r}
+length(pts)
+```
+
+Definisi ulang
+
+```{r}
+length.coords <- function(obj) length(xcoords(obj))
+length(pts)
+```
+
+### Membuat Fungsi Generik Baru
+
+Misal ingin membuat method `bbox` yang merupakan *boundary box*
+
+```{r}
+bbox <- function (obj)
+  UseMethod ("bbox") #menjadikan bbox sebagai fungsi generik
+
+bbox.coords <- function (obj){
+  matrix (c(range (xcoords(obj)),
+            range (ycoords(obj))),
+          nc=2, dimnames = list (
+            c("min", "max"),
+            c("x:", "y:")))
+  }
+bbox(pts)
+```
+
+Plot khusus untuk class `coords`
+
+```{r}
+plot.coords <- function (obj,bbox=FALSE,...){
+  if (bbox){
+    plot (xcoords(obj),ycoords(obj),...);
+    x <- c(bbox(obj)[1],bbox(obj)[2],bbox(obj)[2],bbox(obj)[1]);
+    y <- c(bbox(obj)[3],bbox(obj)[3],bbox(obj)[4],bbox(obj)[4]);
+    polygon (x,y)
+    } else {
+      plot (xcoords(obj),ycoords(obj),...)
+    }
+}
+```
+
+```{r}
+plot(pts)
+plot(pts, bbox=T, pch=19, col="red")
+```
+
+### Pewarisan *class*
+
+Sebagai ilustrasi jika diinginkan sebuah objek yang berisi lokasi (coords) dan terdapat nilai pada lokasi tersebut maka diperlukan class baru `vcoords` sebagai turunan dari `coords`
+
+Konstruktor untuk *class* `vcoords`
+
+```{r}
+vcoords <- function(x, y, v) {
+    if (!is.numeric(x) || !is.numeric(y) || !is.numeric(v) || !all(is.finite(x)) ||
+        !all(is.finite(y)))
+        stop("Titik  koordinat  tidak  tepat !")
+    if (length(x) != length(y) || length(x) != length(v))
+        stop("Panjang koordinat berbeda ")
+    pts <- list(x = x, y = y, v = v)
+    class(pts) = c("vcoords", "coords")
+    pts
+}
+nilai <- function(obj) obj$v
+```
+
+```{r}
+vpts <- vcoords(x = round(rnorm(5), 2), 
+                y = round(rnorm(5), 2), 
+                v = round(runif(5, 0, 100)))
+
+vpts
+```
+
+```{r}
+xcoords(vpts)
+ycoords(vpts)
+bbox(vpts)
+```
+
+Pendefinisian ulang method `print`
+
+```{r}
+print.vcoords <- function(obj) {
+    print(paste("(", format(xcoords(obj)), ", ", format(ycoords(obj)),
+        "; ", format(nilai(obj)), ")", sep = ""), quote = FALSE)
+}
+vpts
+```
+
+Pendefinisian ulang method `plot`
+
+```{r}
+plot.vcoords <- function(obj, txt = FALSE, bbox = FALSE, ...) {
+    if (bbox) {
+        if (!txt) {
+            plot(xcoords(obj), ycoords(obj), ...)
+        } else {
+            plot(xcoords(obj), ycoords(obj), type = "n", ...)
+            text(xcoords(obj), ycoords(obj), nilai(obj), ...)
+        }
+        x <- c(bbox(pts)[1], bbox(pts)[2], bbox(pts)[2], bbox(pts)[1])
+        y <- c(bbox(pts)[3], bbox(pts)[3], bbox(pts)[4], bbox(pts)[4])
+        polygon(x, y)
+    } else {
+        if (!txt) {
+            plot(xcoords(obj), ycoords(obj), ...)
+        } else {
+            plot(xcoords(obj), ycoords(obj), type = "n", ...)
+            text(xcoords(obj), ycoords(obj), nilai(obj), ...)
+        }
+    }
+}
+```
+
+Menampilkan plot
+
+```{r}
+plot(vpts)
+plot(vpts, txt = T, bbox = T, col = "red")
+```
+
+Subseting
+
+```{r}
+`[.vcoords` <- function(x, i) {
+    vcoords(xcoords(x)[i], ycoords(x)[i], nilai(x)[i])
+}
+vpts[1:3]
+```
+
+### Pemeriksaan suatu class objek
+
+```{r}
+inherits(pts, " coords ")
+inherits(pts, " vcoords ")
+inherits(vpts, " coords ")
+inherits(vpts, " vcoords ")
+```
+
+```{r}
+model <- list(1:10)
+class(model) <- "lm"
+
+model
+```
+## Object : Class System S4
+
+Class System S4 mengatasi masalah dalam Class System S3 dengan sistem objek lebih formal. Sebuah class terdiri dari *slot* dengan tipe atau *class* spesifik.
+
+
+### Deklarasi
+
+Class dideklarasikan dengan fungsi `setClass`
+
+Contoh 1, mendefinisikan ulang class `coords` ke class system S4
+
+
+```{r}
+setClass("coords",
+         representation(x="numeric",
+                        y="numeric"))
+```
+
+Contoh 2, deklarasi class `car`
+
+```{r}
+setClass("car",
+         representation(Nama="character",
+                        Panjang="numeric",
+                        Lebar="numeric",
+                        Kecepatan="numeric"))
+
+Car1 <- new("car",
+            Nama="Toyota",
+            Panjang=3.5, Lebar=2,
+            Kecepatan=180)
+```
+
+
+### Konstruktor
+
+Membuat objek `coords`
+
+```{r}
+coords <- function(x, y) {
+  if (length(x) != length(y))
+    stop("length x dan y harus bernilai sama")
+  if (!is.numeric(x) || !is.numeric(y))
+    stop("x dan y harus vektor numeric")
+  new("coords", x = as.vector(x), y = as.vector(y))
+}
+```
+
+```{r}
+set.seed(123)
+pts <- coords(round(rnorm(5), 2), round(rnorm(5), 2))
+pts
+```
+
+Membuat object `car` menggunakan fungsi konstruktor
+
+```{r}
+car <- function(Nama,Panjang,Lebar,Kecepatan) {
+  if(Panjang<2 || Lebar<1.5 || Kecepatan<80)
+    stop("atribut tidak sesuai")
+  new("car", Nama=Nama, Panjang=Panjang,
+      Lebar=Lebar, Kecepatan=Kecepatan)
+}
+
+Car2 <- car("Suzuki", 2.4, 1.8, 150)
+class(Car2)
+class(Mobil1)
+```
+
+
+### Aksesor
+
+Akses terhadap slot menggunakan operator `@`
+
+```{r}
+slot(pts, "x")
+pts@x
+
+slot(pts, "y")
+pts@y
+```
+
+Disarankan menggunakan fungsi
+
+```{r}
+xcoords <- function(obj) obj@x
+ycoords <- function(obj) obj@y
+xcoords(pts)
+```
+
+Akses terhadap slot pada objek `car`
+
+```{r}
+Car1@Nama
+Car2@Kecepatan
+```
+
+Akses terhadap slot pada objek `car` dengan fungsi aksesor
+
+```{r}
+nama1 <- function(objek) objek@Nama
+kecepatan1 <- function(objek) objek@Kecepatan
+
+nama1(Car1)
+kecepatan1(Car2)
+```
+
+### Fungsi generik
+
+Penciptaan fungsi generik menggunakan fungsi `setMethod`. Argumen didefinisikan dalam `signature`
+
+Contoj: `show` (setara dengan `print` pada S3)
+
+
+```{r}
+setMethod(show, signature(object = "coords"), 
+          function(object) print(paste("(",
+                                       format(xcoords(object)), 
+                                       ", ", format(ycoords(object)),
+                                       ")", sep = ""), 
+                                 quote = FALSE))
+pts
+```
+
+```{r}
+setMethod(show, "car",
+          function(object) {
+            print(cat("Nama : ", nama1(object), "\n",
+                      "Kecepatan : ", kecepatan1(object),
+                      sep="")
+                  )}
+          )
+Car2
+```
+
+### Definisi fungsi generik baru
+
+```{r}
+setGeneric("bbox", function(obj) standardGeneric("bbox"))
+
+setMethod("bbox", signature(obj = "coords"), 
+          function(obj) 
+            matrix(c(range(xcoords(obj)),
+                     range(ycoords(obj))), 
+                   nc = 2, 
+                   dimnames = list(c("min","max"), 
+                                   c("x:", "y:")
+                                   )
+                   ))
+bbox(pts)
+```
+
+#### Fungsi generik plot
+
+```{r}
+setMethod("plot", signature(x = "coords"),
+          function(x, bbox = FALSE, ...) {
+            if (bbox) {
+              plot(xcoords(x), ycoords(x), ...)
+              x.1 <- c(bbox(x)[1], bbox(x)[2], bbox(x)[2], bbox(x)[1])
+              y.1 <- c(bbox(x)[3], bbox(x)[3], bbox(x)[4], bbox(x)[4])
+              polygon(x.1, y.1)
+              
+              } else {
+                plot(xcoords(x), ycoords(x), ...) 
+              }
+            })
+
+plot(pts)
+
+plot(pts, bbox = T, pch = 19, col = "red", xlab = "x",
+     ylab = "y")
+```
+
+
+### Pewarisan *class*
+
+Akan dibuat class baru yang diturunkan dari `coords` dengan menambahkan slot nilai
+
+```{r}
+setClass("vcoords", representation(nilai = "numeric"),
+         contains = "coords")
+
+vcoords <- function(x, y, nilai) {
+  if ((length(x) != length(y)) || (length(x) != length(nilai)))
+    stop("length x, y, dan nilai harus bernilai sama")
+  if (!is.numeric(x) || !is.numeric(y) || !is.numeric(nilai))
+    stop("x, y, dan nilai harus vektor numeric")
+  new("vcoords", x = as.vector(x), y = as.vector(y),
+      nilai = as.vector(nilai))
+}
+```
+
+```{r}
+nilai <- function(obj) obj@nilai
+```
+
+
+```{r}
+vpts <- vcoords(xcoords(pts), ycoords(pts), round(100*runif(5)))
+vpts
+```
+
+Definisi ulang method `show`
+
+```{r}
+setMethod(show, signature(object = "vcoords"), 
+          function(object) 
+            print(paste("(",
+                        format(xcoords(object)), 
+                        ", ", 
+                        format(ycoords(object)),
+                        "; ", 
+                        format(nilai(object)), 
+                        ")", sep = ""), 
+                  quote = FALSE))
+vpts
+```
+
+Definisi ulang method `plot`
+
+```{r}
+setMethod("plot", signature(x = "vcoords"), 
+          function(x, txt = FALSE, bbox = FALSE, ...) {
+            if (bbox) {
+              if (!txt) {
+                plot(xcoords(x), ycoords(x), ...)
+                
+              } else {
+                plot(xcoords(x), ycoords(x), type = "n", ...)
+                text(xcoords(x), ycoords(x), nilai(x), ...)
+              }
+              
+              x.1 <- c(bbox(x)[1], bbox(x)[2], bbox(x)[2], bbox(x)[1])
+              y.1 <- c(bbox(x)[3], bbox(x)[3], bbox(x)[4], bbox(x)[4])
+              polygon(x.1, y.1)
+              
+            } else {
+              
+              if (!txt) {
+                plot(xcoords(x), ycoords(x), ...)
+                
+              } else {
+                plot(xcoords(x), ycoords(x), type = "n", ...)
+                text(xcoords(x), ycoords(x), nilai(x), ...)
+              }
+            }
+          })
+
+```
+
+```{r}
+plot(vpts)
+
+plot(vpts, txt = T, bbox = T, pch = 19, col = "red")
+```
+
+### Operasi Aritmetika
+
+Menggunakan perintah 
+
+```{r, eval=FALSE}
+setMethod("Arith", ...
+```
+
+```{r}
+sameloc <- function(e1, e2) (
+  length(nilai(e1)) == length(nilai(e2)) ||
+    any(xcoords(e1) == xcoords(e2)) || 
+    any(ycoords(e1) == ycoords(e2))
+  )
+
+setMethod("Arith", signature(e1 = "vcoords", 
+                             e2 = "vcoords"),
+          function(e1, e2) {
+            if (!sameloc(e1, e2))
+              stop("Dibutuhkan titik identik")
+            vcoords(xcoords(e1), ycoords(e2), callGeneric(nilai(e1),
+                                                          nilai(e2)))
+          })
+
+vpts + vpts
+```
+
+```{r, error=TRUE}
+2+vpts
+```
+
+```{r}
+setMethod("Arith", signature(e1 = "numeric", 
+                             e2 = "vcoords"),
+          function(e1, e2) {
+            if (length(e1) > length(nilai(e2)))
+              stop("length yang tidak benar")
+            vcoords(xcoords(e2), ycoords(e2), callGeneric(as.vector(e1),
+                                                          nilai(e2)))
+          })
+
+2*vpts
+vpts*vpts
+```
+
+### Subset
+
+```{r}
+setMethod("[", signature(x = "vcoords", 
+                         i = "ANY",
+                         j = "missing", 
+                         drop = "missing"), 
+          function(x,i, j) 
+            vcoords(xcoords(x)[i], 
+                    ycoords(x)[i], 
+                    nilai(x)[i]))
+vpts[1:3]
+```
+
+### Pemeriksaan Suatu Class Objek
+
+```{r}
+is(pts ,"coords")
+is(pts ,"vcoords")
+is(vpts ,"coords")
+is(vpts ,"vcoords")
+```
+
+### Coerce
+
+```{r, error=TRUE}
+vpts2 <- as(vpts, "coords")
+vpts2
+is(vpts2, "coords")
+
+pts2 <- as(pts , "vcoords")
+pts2
+is(pts2, "vcoords")
+
+ob <- list(x = round(rnorm(5), 2), y = round(rnorm(5), 2))
+ob
+
+as(ob , "vcoords")
+
+mdl <- list(123)
+class(mdl) <- "lm"
+
+mdl
+```
+
+
+#### Latihan
+
+Buat fungsi bernama `three.M` yang digunakan untuk menghitung `mean`, `median`, `modus` dari suatu vector (tanpa menggunakan fungsi `mean`, `quantile` atau pun fungsi "instan" lain yang sudah tersedia sebelumnya di R). 
+
+Hitung `mean`, `median`, dan `modus` dari suatu data `rbinom(100,10, 0.5)` dengan `seed(123)`.
+
+
+```{r}
+three.M <- function(vect) {
+  n <- length(vect) # banyak data 
+  
+  # rataan 
+  jumlah <- sum(vect)
+  rataan <- jumlah/n
+  
+  # median
+  vects <- sort(vect) # urutkan
+  if(n%%2 == 1) {m <- vects[(n+1)/2]}
+  else {m <- (vects[n/2]+vects[(n/2)+1])/2} 
+  
+  # modus
+  v <- unique(vect)
+  f <- NULL
+  for(i in v) {
+    byk <- sum(vect==i)
+    f <- c(f,byk)
+    }
+  
+  fmax <- max(f)
+  vf <- cbind(v,f)
+  mode <- vf[f==fmax,]
+  
+  # output
+  my_list <- list("mean" = rataan, "median" = m, "modus" = mode)
+  class(my_list) <- "threeM"
+  
+  return(my_list)
+}
+```
+
+Fungsi generik print
+
+```{r}
+print.threeM <- function(obj){
+  cat("three.M Statitic\n")
+  cat("\nMean: ", obj$mean)
+  cat("\nMedian: ", obj$median)
+  cat("\nModus:\n")
+  print(obj$modus)
+}
+
+set.seed(123)
+x1 <- rbinom(100,10,0.5)
+three.M(x1)
+```
+
+
+Latihan, membuat fungsi Regresi Komponen Utama
+
+
+```{r}
+AKU <- function(X){
+  
+  # transform X into matrix
+  X <- as.matrix(X)
+  
+  # transform all var into z-score
+  X <- scale(X, center = TRUE, scale = TRUE)
+  x.bar <- attr(X, "scaled:center")
+  x.stdev <- attr(X, "scaled:scale")
+  
+  # compute singular-value decomposition
+  SVD <- La.svd(X)
+  D  <- SVD$d
+  
+  # compute principal component
+  pc.score <- SVD$u %*% diag(D, nrow = ncol(X))
+  
+  # get eigenvector from SVD
+  eigenvector <- SVD$vt
+  
+  # compute eigenvalues and PC contributions
+  pc.score.stdev <- D / sqrt(max(1, nrow(X) - 1))
+  eigenvalue <- pc.score.stdev^2
+  eigenvalue.proportion <- eigenvalue/sum(eigenvalue)
+  eigenvalue.cum.proportion <- cumsum(eigenvalue.proportion)
+  eigenanalysis <-  rbind(eigenvalue, eigenvalue.proportion, eigenvalue.cum.proportion)
+  
+  # assign names
+  pc.name <- paste0('PC', seq(ncol(X)))
+  colnames(pc.score) <- rownames(eigenvector) <- colnames(eigenanalysis) <- names(pc.score.stdev) <- pc.name
+  rownames(pc.score) <- rownames(X)
+  colnames(eigenvector) <- colnames(X)
+  rownames(eigenanalysis) <- c("Eigenvalue", "Proportion", "Cumulative")
+  
+  # wrap output into list
+  out <- list(
+    n.col = ncol(X),
+    n.row = nrow(X),
+    x.bar = x.bar, x.stdev = x.stdev,
+    pc.score = pc.score, 
+    pc.score.stdev = pc.score.stdev, 
+    eigenvalue = eigenanalysis, eigenvector = t(eigenvector)
+  )
+  
+  # asign a class
+  class(out) <- "AKU"
+  return(out)
+  
+}
+```
+
+Metode generik `print.AKU`
+
+
+```{r}
+print.AKU <- function(obj) {
+  cat("PRINCIPAL COMPONENT ANALYSIS\n")
+  cat("Input: ", obj$n.row, "rows X", obj$n.col, "columns\n")
+  cat("\nEigenanalysis of Correlation Matrix:\n")
+  print(obj$eigenvalue)
+  cat("\nEigenvectors:\n")
+  print(obj$eigenvector)
+  cat("\nScore of Principal Component (Preview):\n")
+  print(rbind(head(obj$pc.score)))
+  if(nrow(obj$pc.score) > 6) cat("...")
+}
+```
+
+Contoh penggunaan
+
+```{r}
+url <- "https://raw.githubusercontent.com/nurandi/sta561-uts/main/data/pca-data.csv"
+dta <- read.csv(url)
+
+y <- dta[1]
+X <- dta[-1]
+```
+
+```{r}
+aku <- AKU(X)
+```
+
+```{r}
+aku
+print(aku)
+```
+
+```{r}
+aku$eigenvalue
+
+head(aku$pc.score)
+```
+
+Fungsi regresi komponen utama
+
+
+```{r}
+RKU <- function(y, X, k){
+  
+  if(is.null(colnames(X))) colnames(X) <- paste0("V", seq(ncol(X)))
+  
+  aku <- AKU(X)
+  
+  if(is.null(k)){
+    k <- ncol(X)
+  } else if(k < 1){
+    k <- sum(aku$eigenvalue[3,] < k) + 1
+  }
+    
+  pc.score <-  aku$pc.score[,1:k]
+  pcr.data <- as.data.frame(cbind(y, pc.score))
+  pc.name <- colnames(aku$pc.score)[1:k]
+  colnames(pcr.data) <- c("y", pc.name)
+  
+  pcr.lm <- lm(y ~ ., data = pcr.data)
+  pcr.summary <- summary.lm(pcr.lm)[c("coefficients", "sigma", 
+                                      "r.squared", "adj.r.squared",
+                                      "fstatistic", "df")]
+  
+  beta.pcr <- as.matrix(pcr.lm$coefficients) 
+  
+  beta.z.score1 <- (aku$eigenvector)[,1:k] %*% as.matrix(beta.pcr[-1])
+  beta.z.score <- rbind(beta.pcr[1], beta.z.score1)
+  beta.x <- rbind(beta.pcr[1] - (aku$x.bar/aku$x.stdev) %*% beta.z.score1,
+                  beta.z.score1/aku$x.stdev)
+  
+  # asign name
+  colnames(beta.pcr) <- colnames(beta.z.score) <- colnames(beta.x) <- "Estimates"
+  rownames(beta.z.score) <- c("(Intercept)", paste0("Z_", colnames(X)))
+  rownames(beta.x) <- c("(Intercept)", colnames(X))
+  
+  out <- list(pca = aku,
+              k = k,
+              pcr.lm = pcr.lm,
+              pcr.summary = pcr.summary,
+              pcr.coefficient = summary.lm(pcr.lm)$coefficients,
+              beta.z.score = beta.z.score,
+              beta.x = beta.x)
+  out <- c(aku, out)
+  class(out) <- "RKU"
+  return(out)
+} 
+```
+
+```{r}
+print.RKU <- function(obj, mode = "simple") {
+  
+  if(mode == "ext"){
+    print(obj$pca)
+    cat("\n\n")
+  }
+  
+  cat("PRINCIPAL COMPONENT REGRESSION\n")
+  cat("With", obj$k, "Principal Component(s)\n")
+  
+  cat("\nFormula: y ~ Principal Component Score\n\n")
+  print(obj$pcr.coefficient)
+  
+  cat("\nR-squared: ", obj$pcr.summary$r.squared)
+  cat(",  Adjusted R-squared: ", obj$pcr.summary$adj.r.squared,
+      "\nF Statistics:", obj$pcr.summary$fstatistic[1])
+  cat(",  DF1:", obj$pcr.summary$fstatistic[2])
+  cat(",  DF2:", obj$pcr.summary$fstatistic[3])
+  cat(",  p-value:", format.pval(pf(obj$pcr.summary$fstatistic[1], 
+                                    obj$pcr.summary$fstatistic[2],
+                                    obj$pcr.summary$fstatistic[3], 
+                                    lower.tail = FALSE)))
+  
+  if(mode == "simple"){
+    cat("\n\nNote: use print(obj, 'ext') to print extended output\n")}
+  
+  if(mode == "ext"){
+    cat("\n\nInverse Transform into Z Score\n")
+    print(obj$beta.z.score)
+    cat("\nInverse Transform into X\n")
+    print(obj$beta.x)
+  }
+  
+}
+```
+
+```{r}
+rku <- RKU(y = y, X = X, k = 1)
+```
+
+
+```{r}
+rku
+print(rku)
+print(rku, mode = "ext")
+```
+
+```{r}
+rku$pcr.coefficient
+
+# print class lm
+summary(rku$pcr.lm)
+```
+
+Ref [@MULI] [@AGUSMS] [@ANNISA]
+
+----
