@@ -24,7 +24,7 @@
 <meta name="author" content="Nur Andi Setiabudi" />
 
 
-<meta name="date" content="2021-10-06" />
+<meta name="date" content="2021-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -436,7 +436,7 @@ div.csl-indent {
 </ul>
 <p>Contoh, akan dicari turunan dari fungsi berikut</p>
 <p><span class="math display">\[
-f(x) = Exp(x)^2
+f(x) = \mathrm{exp}(x)^2
 \]</span></p>
 <div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="optimasi-secara-numerik.html#cb692-1" aria-hidden="true" tabindex="-1"></a>xfs <span class="ot">&lt;-</span> <span class="fu">expression</span>(<span class="fu">exp</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb692-2"><a href="optimasi-secara-numerik.html#cb692-2" aria-hidden="true" tabindex="-1"></a><span class="fu">D</span>(xfs, <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
@@ -445,7 +445,7 @@ f(x) = Exp(x)^2
 f(x) = x^2
 \]</span></p>
 <p>untuk nilai <span class="math inline">\(x=2\)</span></p>
-<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="optimasi-secara-numerik.html#cb694-1" aria-hidden="true" tabindex="-1"></a>xturunan <span class="ot">&lt;-</span> <span class="fu">deriv</span> (<span class="sc">~</span>x<span class="sc">^</span><span class="dv">2</span>, <span class="st">&quot;x&quot;</span>)</span>
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="optimasi-secara-numerik.html#cb694-1" aria-hidden="true" tabindex="-1"></a>xturunan <span class="ot">&lt;-</span> <span class="fu">deriv</span>(<span class="sc">~</span>x<span class="sc">^</span><span class="dv">2</span>, <span class="st">&quot;x&quot;</span>)</span>
 <span id="cb694-2"><a href="optimasi-secara-numerik.html#cb694-2" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="dv">2</span></span>
 <span id="cb694-3"><a href="optimasi-secara-numerik.html#cb694-3" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(xturunan)</span></code></pre></div>
 <pre><code>## [1] 4
@@ -461,20 +461,20 @@ f(x) = x^2
 <p>Metode golden section search digunakan untuk mencari nilai minimum suatu fungsi yang dibatasi dari dua buah nilai, yaitu sebuah selang <em>a</em> dan <em>b</em>. Algoritma untuk teknik ini adalah sebagai berikut:</p>
 <ul>
 <li>Mulai dengan selang [a,b] yang memuat minimum</li>
-<li>Perkecil selang [a’, b’] yang memuat minimum</li>
-<li>Berhenti sampai |b’ - a’| lebih kecil dari nilai toleransi</li>
+<li>Perkecil selang <span class="math inline">\([a’, b’]\)</span> yang memuat minimum</li>
+<li>Berhenti sampai <span class="math inline">\(|b’ - a’|\)</span> lebih kecil dari nilai toleransi</li>
 </ul>
-<p>Pemilihan nilai a’ dan b’, adalah sebagai berikut</p>
+<p>Pemilihan nilai <span class="math inline">\(a&#39;\)</span> dan <span class="math inline">\(b&#39;\)</span>, adalah sebagai berikut</p>
 <ul>
-<li>Nilai antara [a,b] memiliki sifat golden ratio</li>
-<li>Tentukan <span class="math inline">\(x_1\)</span> dan <span class="math inline">\(x_2\)</span>
-<span class="math inline">\(x_1 = b-(b-a)/goldenratio\)</span>
-<span class="math inline">\(x_2 = a+(b-a)/goldenratio\)</span></li>
-<li>Hitung <span class="math inline">\(f(x_1)\)</span> dan <span class="math inline">\(f(x_2)\)</span></li>
-<li>Jika <span class="math inline">\(f(x_1) &gt; f(x_2)\)</span> maka <span class="math inline">\([a’, b’] = [x_1, b\)</span></li>
-<li>Jika <span class="math inline">\(f(x_1) &lt; f(x_2)\)</span> maka <span class="math inline">\([a’, b’] = [a, x_2]\)</span></li>
+<li><p>Nilai antara [a,b] memiliki sifat golden ratio</p></li>
+<li><p>Tentukan <span class="math inline">\(x_1\)</span> dan <span class="math inline">\(x_2\)</span></p>
+<p><span class="math inline">\(x_1 = b-(b-a)/\mathrm{goldenratio}\)</span></p>
+<p><span class="math inline">\(x_2 = a+(b-a)/\mathrm{goldenratio}\)</span></p></li>
+<li><p>Hitung <span class="math inline">\(f(x_1)\)</span> dan <span class="math inline">\(f(x_2)\)</span></p></li>
+<li><p>Jika <span class="math inline">\(f(x_1) &gt; f(x_2)\)</span> maka <span class="math inline">\([a’, b’] = [x_1, b]\)</span></p></li>
+<li><p>Jika <span class="math inline">\(f(x_1) &lt; f(x_2)\)</span> maka <span class="math inline">\([a’, b’] = [a, x_2]\)</span></p></li>
 </ul>
-<p>Fungsi golder section</p>
+<p>Fungsi golden section</p>
 <div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="optimasi-secara-numerik.html#cb696-1" aria-hidden="true" tabindex="-1"></a>golden <span class="ot">&lt;-</span> <span class="cf">function</span> (f, a, b, <span class="at">tol=</span><span class="fl">0.0000001</span>){</span>
 <span id="cb696-2"><a href="optimasi-secara-numerik.html#cb696-2" aria-hidden="true" tabindex="-1"></a>  ratio <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">/</span> ( <span class="fu">sqrt</span> (<span class="dv">5</span>)<span class="sc">+</span><span class="dv">1</span>)</span>
 <span id="cb696-3"><a href="optimasi-secara-numerik.html#cb696-3" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> b<span class="sc">-</span>ratio <span class="sc">*</span> (b<span class="sc">-</span>a)</span>
@@ -517,7 +517,7 @@ f(x) = |x -3.5| (x-2)^2
 <div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="optimasi-secara-numerik.html#cb702-1" aria-hidden="true" tabindex="-1"></a><span class="fu">golden</span>(f,<span class="dv">3</span>,<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p><span class="math display">\[
-f(x) = 2Sin(x) - \frac{x^2}{10}
+f(x) = 2\mathrm{sin}(x) - \frac{x^2}{10}
 \]</span>
 Membuat fungsi <span class="math inline">\(f(x)\)</span></p>
 <div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="optimasi-secara-numerik.html#cb704-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Membuat fungsi f(x)</span></span>
@@ -552,19 +552,19 @@ Membuat fungsi <span class="math inline">\(f(x)\)</span></p>
 <p><span class="math display">\[
 f(x) = 4x^2 - 3x - 7
 \]</span></p>
-<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="optimasi-secara-numerik.html#cb708-1" aria-hidden="true" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">expression</span> (<span class="dv">4</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2-3</span><span class="sc">*</span>x<span class="dv">-7</span>)</span>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="optimasi-secara-numerik.html#cb708-1" aria-hidden="true" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">expression</span>(<span class="dv">4</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2-3</span><span class="sc">*</span>x<span class="dv">-7</span>)</span>
 <span id="cb708-2"><a href="optimasi-secara-numerik.html#cb708-2" aria-hidden="true" tabindex="-1"></a><span class="fu">newtonr</span>(fx,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.375</code></pre>
 <p><span class="math display">\[
 f(x) = e^{-x}+x^4
 \]</span></p>
-<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="optimasi-secara-numerik.html#cb710-1" aria-hidden="true" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">expression</span> (<span class="fu">exp</span>(<span class="sc">-</span>x)<span class="sc">+</span>x<span class="sc">^</span><span class="dv">4</span>)</span>
+<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="optimasi-secara-numerik.html#cb710-1" aria-hidden="true" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">expression</span>(<span class="fu">exp</span>(<span class="sc">-</span>x)<span class="sc">+</span>x<span class="sc">^</span><span class="dv">4</span>)</span>
 <span id="cb710-2"><a href="optimasi-secara-numerik.html#cb710-2" aria-hidden="true" tabindex="-1"></a><span class="fu">newtonr</span>(fx)</span></code></pre></div>
 <pre><code>## [1] 0.5282519</code></pre>
 <p><span class="math display">\[
 f(x) = x^2 - x
 \]</span></p>
-<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="optimasi-secara-numerik.html#cb712-1" aria-hidden="true" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">expression</span> (x<span class="sc">^</span><span class="dv">2</span><span class="sc">-</span>x)</span>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="optimasi-secara-numerik.html#cb712-1" aria-hidden="true" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">expression</span>(x<span class="sc">^</span><span class="dv">2</span><span class="sc">-</span>x)</span>
 <span id="cb712-2"><a href="optimasi-secara-numerik.html#cb712-2" aria-hidden="true" tabindex="-1"></a><span class="fu">newtonr</span>(fx)</span></code></pre></div>
 <pre><code>## [1] 0.5</code></pre>
 </div>
@@ -757,16 +757,16 @@ f(x) = 4x^4 - 2x^3 - 3x
 <p>Metode kuadrat terkecil pada regresi adalah mencari parameter <span class="math inline">\(\beta\)</span> sehingga jumlah kuadrat sisaan adalah minimum. Jadi meminimumkan dari fungsi kuadrat sisaan. Sehingga objective function-nya adalah kuadrat sisaan.</p>
 <div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="optimasi-secara-numerik.html#cb741-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span> (para,y,x){</span>
 <span id="cb741-2"><a href="optimasi-secara-numerik.html#cb741-2" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">cbind</span> (<span class="dv">1</span>,x)</span>
-<span id="cb741-3"><a href="optimasi-secara-numerik.html#cb741-3" aria-hidden="true" tabindex="-1"></a>  yhat <span class="ot">&lt;-</span> X<span class="sc">%*%</span> <span class="fu">as.matrix</span> (para)</span>
-<span id="cb741-4"><a href="optimasi-secara-numerik.html#cb741-4" aria-hidden="true" tabindex="-1"></a>  sisa2 <span class="ot">&lt;-</span> <span class="fu">sum</span> ((y<span class="sc">-</span>yhat)<span class="sc">^</span><span class="dv">2</span>) <span class="co"># kuadrat sisaan</span></span>
-<span id="cb741-5"><a href="optimasi-secara-numerik.html#cb741-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> (sisa2) }</span></code></pre></div>
+<span id="cb741-3"><a href="optimasi-secara-numerik.html#cb741-3" aria-hidden="true" tabindex="-1"></a>  yhat <span class="ot">&lt;-</span> X <span class="sc">%*%</span> <span class="fu">as.matrix</span>(para)</span>
+<span id="cb741-4"><a href="optimasi-secara-numerik.html#cb741-4" aria-hidden="true" tabindex="-1"></a>  sisa2 <span class="ot">&lt;-</span> <span class="fu">sum</span>((y<span class="sc">-</span>yhat)<span class="sc">^</span><span class="dv">2</span>) <span class="co"># kuadrat sisaan</span></span>
+<span id="cb741-5"><a href="optimasi-secara-numerik.html#cb741-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(sisa2) }</span></code></pre></div>
 <div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="optimasi-secara-numerik.html#cb742-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simulasi</span></span>
 <span id="cb742-2"><a href="optimasi-secara-numerik.html#cb742-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">runif</span> (<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">10</span>)</span>
 <span id="cb742-3"><a href="optimasi-secara-numerik.html#cb742-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">runif</span> (<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">10</span>)</span>
 <span id="cb742-4"><a href="optimasi-secara-numerik.html#cb742-4" aria-hidden="true" tabindex="-1"></a>galat <span class="ot">&lt;-</span> <span class="fu">rnorm</span> (<span class="dv">10</span>,<span class="dv">0</span>,<span class="fl">0.5</span>)</span>
 <span id="cb742-5"><a href="optimasi-secara-numerik.html#cb742-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">+</span><span class="dv">2</span><span class="sc">*</span>x1<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>x2<span class="sc">+</span>galat <span class="co"># untuk menduga nilai beta</span></span></code></pre></div>
 <div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="optimasi-secara-numerik.html#cb743-1" aria-hidden="true" tabindex="-1"></a>hasil <span class="ot">&lt;-</span> <span class="fu">optim</span> (<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>),f,<span class="at">y=</span>y,<span class="at">x=</span> <span class="fu">cbind</span> (x1,x2))</span>
-<span id="cb743-2"><a href="optimasi-secara-numerik.html#cb743-2" aria-hidden="true" tabindex="-1"></a>hasil <span class="sc">$</span>par</span></code></pre></div>
+<span id="cb743-2"><a href="optimasi-secara-numerik.html#cb743-2" aria-hidden="true" tabindex="-1"></a>hasil<span class="sc">$</span>par</span></code></pre></div>
 <pre><code>## [1] 1.622219 1.925578 2.984449</code></pre>
 <div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="optimasi-secara-numerik.html#cb745-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y<span class="sc">~</span>x1<span class="sc">+</span>x2)</span></code></pre></div>
 <pre><code>## 
